@@ -1,0 +1,49 @@
+{% load static %}
+
+<footer class="site-footer bg-gray-800 text-white mt-12">
+    <div class="container mx-auto px-4 py-8">
+        <div class="footer-content grid grid-cols-1 md:grid-cols-3 gap-8">
+            {# About Section #}
+            <div class="footer-section">
+                <h3 class="text-xl font-bold mb-4">Victimes des Pesticides du Québec</h3>
+                <p class="text-gray-300">
+                    Une organisation dédiée à donner une voix aux victimes des pesticides et à promouvoir une agriculture durable au Québec.
+                </p>
+            </div>
+
+            {# Quick Links #}
+            <div class="footer-section">
+                <h3 class="text-xl font-bold mb-4">Liens rapides</h3>
+                <ul class="footer-links">
+                    <li><a href="/a-propos/" class="footer-link">À propos</a></li>
+                    <li><a href="/actualites/" class="footer-link">Actualités</a></li>
+                    <li><a href="/contact/" class="footer-link">Contact</a></li>
+                    <li><a href="/soutenez-vpq/" class="footer-link">Soutenez-nous</a></li>
+                </ul>
+            </div>
+
+            {# Contact Info #}
+            <div class="footer-section">
+                <h3 class="text-xl font-bold mb-4">Nous joindre</h3>
+                <ul class="footer-contact">
+                    <li class="text-gray-300 mb-2">
+                        <span class="font-semibold">Email:</span>
+                        <a href="mailto:info@victimespesticidesquebec.org" class="footer-link">info@victimespesticidesquebec.org</a>
+                    </li>
+                    <li class="text-gray-300">
+                        <span class="font-semibold">Suivez-nous:</span>
+                        <div class="social-links mt-2 flex gap-4">
+                            <a href="#" class="footer-link hover:text-green-400" aria-label="Facebook">Facebook</a>
+                            <a href="#" class="footer-link hover:text-green-400" aria-label="Twitter">Twitter</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        {# Copyright #}
+        <div class="footer-bottom border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+            <p>&copy; {% now "Y" %} Victimes des Pesticides du Québec. Tous droits réservés.</p>
+        </div>
+    </div>
+</footer>

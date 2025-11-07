@@ -1,0 +1,43 @@
+{% load static %}
+
+<header class="site-header bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between py-4">
+            {# Logo #}
+            <div class="logo">
+                <a href="/">
+                    <img src="{% static 'images/logo.webp' %}" alt="Victimes des Pesticides du Québec" class="logo-img">
+                </a>
+            </div>
+
+            {# Navigation Desktop #}
+            <nav class="main-nav hidden md:block">
+                <ul class="nav-list flex gap-6">
+                    <li><a href="/a-propos/" class="nav-link">À propos</a></li>
+                    <li><a href="/quels-risques/" class="nav-link">Quels risques?</a></li>
+                    <li><a href="/malades-que-faire/" class="nav-link">Malades, que faire ?</a></li>
+                    <li><a href="/alternatives/" class="nav-link">Alternatives</a></li>
+                    <li><a href="/soutenez-vpq/" class="nav-link nav-link-cta">Soutenez VPQ</a></li>
+                </ul>
+            </nav>
+
+            {# Mobile Menu Button #}
+            <button class="mobile-menu-button md:hidden" id="mobileMenuButton" aria-label="Menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        {# Mobile Navigation #}
+        <nav class="mobile-nav hidden md:hidden" id="mobileNav">
+            <ul class="nav-list-mobile py-4">
+                <li><a href="/a-propos/" class="nav-link-mobile">À propos</a></li>
+                <li><a href="/quels-risques/" class="nav-link-mobile">Quels risques?</a></li>
+                <li><a href="/malades-que-faire/" class="nav-link-mobile">Malades, que faire ?</a></li>
+                <li><a href="/alternatives/" class="nav-link-mobile">Alternatives</a></li>
+                <li><a href="/soutenez-vpq/" class="nav-link-mobile nav-link-mobile-cta">Soutenez VPQ</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>

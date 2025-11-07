@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-standardpage{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+    <h1 class="text-4xl font-bold mb-6">{{ page.title }}</h1>
+
+    {% if page.introduction %}
+    <div class="text-xl text-gray-700 mb-8 leading-relaxed">
+        {{ page.introduction }}
+    </div>
+    {% endif %}
+
+    {% if page.corps %}
+    <div class="prose prose-lg max-w-none">
+        {% for block in page.corps %}
+            {% if block.block_type == 'paragraphe' %}
+                <div class="mb-6">{{ block.value|richtext }}</div>
+            {% elif block.block_type == 'titre' %}
+                <h2 class="text-3xl font-bold mt-10 mb-4">{{ block.value }}</h2>
+            {% elif block.block_type == 'image' %}
+                <figure class="my-8">
+                    {% image block.value width-800 class="rounded-lg shadow-md" %}
+                </figure>
+            {% elif block.block_type == 'citation' %}
+                <blockquote class="border-l-4 border-green-600 pl-6 py-2 my-6 text-xl italic text-gray-700">
+                    {{ block.value }}
+                </blockquote>
+            {% elif block.block_type == 'appel_action' %}
+                <div class="bg-green-50 border border-green-200 rounded-lg p-8 my-8">
+                    <h3 class="text-2xl font-bold mb-3">{{ block.value.titre }}</h3>
+                    <p class="mb-4 text-lg">{{ block.value.texte }}</p>
+                    {% if block.value.lien and block.value.texte_bouton %}
+                        <a href="{{ block.value.lien }}" class="inline-block bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 font-medium">
+                            {{ block.value.texte_bouton }}
+                        </a>
+                    {% endif %}
+                </div>
+            {% elif block.block_type == 'html_brut' %}
+                {{ block.value|safe }}
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
