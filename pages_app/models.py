@@ -137,6 +137,27 @@ class StandardPage(Page):
                 help_text="Hauteur en pixels (recommandé: 800-1000)"
             )),
         ], label="Formulaire de don Zeffy", icon="form")),
+        ('mailchimp_signup', blocks.StructBlock([
+            ('titre', blocks.CharBlock(label="Titre", default="Restez informé·e")),
+            ('description', blocks.TextBlock(
+                label="Description",
+                default="Inscrivez-vous à notre infolettre pour recevoir nos actualités et rester informé de nos actions."
+            )),
+            ('action_url', blocks.URLBlock(
+                label="URL d'action Mailchimp",
+                default="https://victimespesticidesquebec.us2.list-manage.com/subscribe/post?u=67c56a4224e79e980c9022db9&id=6e5f62b588",
+                help_text="URL du formulaire Mailchimp"
+            )),
+            ('bouton_text', blocks.CharBlock(label="Texte du bouton", default="S'abonner")),
+            ('style', blocks.ChoiceBlock(
+                label="Style",
+                choices=[
+                    ('simple', 'Simple (inline)'),
+                    ('box', 'Boîte mise en valeur'),
+                ],
+                default='box'
+            )),
+        ], label="Inscription infolettre Mailchimp", icon="mail")),
         ('html_brut', blocks.RawHTMLBlock(
             label="HTML brut",
             help_text="Utiliser avec précaution"

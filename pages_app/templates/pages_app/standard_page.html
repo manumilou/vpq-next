@@ -189,6 +189,38 @@
                     </div>
                 </div>
 
+            {% elif block.block_type == 'mailchimp_signup' %}
+                <div class="mailchimp-signup-block my-10 {% if block.value.style == 'box' %}bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200 rounded-lg p-8{% endif %}">
+                    {% if block.value.titre %}
+                    <h3 class="text-2xl font-bold mb-3 text-gray-900 {% if block.value.style == 'box' %}text-center{% endif %}">{{ block.value.titre }}</h3>
+                    {% endif %}
+                    {% if block.value.description %}
+                    <p class="mb-6 text-gray-700 {% if block.value.style == 'box' %}text-center{% endif %}">{{ block.value.description }}</p>
+                    {% endif %}
+                    <form action="{{ block.value.action_url }}" method="post" target="_blank" class="mailchimp-form {% if block.value.style == 'simple' %}flex gap-2{% else %}max-w-lg mx-auto{% endif %}">
+                        <div class="{% if block.value.style == 'simple' %}flex-1{% else %}mb-4{% endif %}">
+                            <label for="mce-EMAIL" class="sr-only">Adresse courriel</label>
+                            <input
+                                type="email"
+                                name="EMAIL"
+                                id="mce-EMAIL"
+                                placeholder="votre@courriel.com"
+                                required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            >
+                        </div>
+                        <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                            <input type="text" name="b_67c56a4224e79e980c9022db9_6e5f62b588" tabindex="-1" value="">
+                        </div>
+                        <button
+                            type="submit"
+                            class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-medium transition-colors {% if block.value.style == 'box' %}w-full{% endif %}"
+                        >
+                            {{ block.value.bouton_text }}
+                        </button>
+                    </form>
+                </div>
+
             {% elif block.block_type == 'html_brut' %}
                 {{ block.value|safe }}
             {% endif %}

@@ -12,7 +12,16 @@
       "Bash(curl:*)",
       "Bash(awk '{print $9, \"\"\"\"(\"\"\"\" $5 \"\"\"\")\"\"\"\"}')",
       "Bash(python:*)",
-      "Bash(python manage.py showmigrations:*)"
+      "Bash(python manage.py showmigrations:*)",
+      "Bash(test:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd PythonAnywhere deployment configuration\n\n- Create pythonanywhere.py settings with MySQL configuration\n- Add deployment dependencies (mysqlclient, whitenoise, python-decouple, gunicorn)\n- Add WhiteNoise middleware for static file serving\n- Create .env.example template for environment variables\n- Create comprehensive DEPLOYMENT.md guide\n- Add runtime.txt for Python version specification\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nFix BASE_DIR.parent AttributeError in pythonanywhere settings\n\n- Change BASE_DIR.parent to os.path.dirname(BASE_DIR)\n- BASE_DIR is a string path, not a Path object\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(lsof:*)",
+      "Bash(xargs:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd enhanced content blocks and Zeffy donation integration\n\nFeatures added:\n- Enhanced StandardPage with 8 new block types:\n  * Image avec légende (captioned images)\n  * Témoignage (testimonials with photos)\n  * Deux colonnes (two-column layout)\n  * Carte de personne (team member cards)\n  * Grille de cartes (icon card grids)\n  * Statistiques (statistics display)\n  * Alerte/Notice (info boxes)\n  * Accordéon FAQ (collapsible sections)\n  * Zeffy donation form embed\n\n- Created comprehensive page structure documentation (STRUCTURE-PAGES.md)\n- Added SVG icon system for professional iconography\n- Added accordion JavaScript functionality\n- Created \"Soutenez VPQ\" donation page with Zeffy form integration\n- Management commands for page enhancement and donation page creation\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd Mailchimp integration and import all news articles\n\nFeatures added:\n- Mailchimp newsletter signup block for StandardPage\n  * Two styles: simple inline and highlighted box\n  * Configurable title, description, and button text\n  * Integrated with victimespesticidesquebec.us2.list-manage.com\n\n- ActualiteIndexPage created at /actualites/\n  * Lists all news articles ordered by publication date\n  * Introduction text support\n\n- Imported 22 news articles from original site (2020-2025)\n  * Complete historical archive of VPQ communications\n  * All articles published and accessible\n  * Proper dates, titles, introductions, and content\n\nManagement commands:\n- import_all_actualites: Creates index page and imports all articles\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []
