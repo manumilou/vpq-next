@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags static %}
 
 {% block body_class %}template-standardpage{% endblock %}
 
@@ -14,30 +14,181 @@
     {% endif %}
 
     {% if page.corps %}
-    <div class="prose prose-lg max-w-none">
+    <div class="page-content">
         {% for block in page.corps %}
             {% if block.block_type == 'paragraphe' %}
-                <div class="mb-6">{{ block.value|richtext }}</div>
+                <div class="mb-6 prose prose-lg max-w-none">{{ block.value|richtext }}</div>
+
             {% elif block.block_type == 'titre' %}
-                <h2 class="text-3xl font-bold mt-10 mb-4">{{ block.value }}</h2>
+                <h2 class="text-3xl font-bold mt-10 mb-4 text-gray-900">{{ block.value }}</h2>
+
             {% elif block.block_type == 'image' %}
                 <figure class="my-8">
-                    {% image block.value width-800 class="rounded-lg shadow-md" %}
+                    {% image block.value width-800 class="rounded-lg shadow-md w-full" %}
                 </figure>
+
+            {% elif block.block_type == 'image_avec_legende' %}
+                <figure class="my-8">
+                    {% image block.value.image width-800 class="rounded-lg shadow-md w-full" %}
+                    {% if block.value.legende or block.value.credit %}
+                    <figcaption class="text-sm text-gray-600 mt-2 text-center">
+                        {% if block.value.legende %}{{ block.value.legende }}{% endif %}
+                        {% if block.value.credit %}<span class="block text-xs mt-1">{{ block.value.credit }}</span>{% endif %}
+                    </figcaption>
+                    {% endif %}
+                </figure>
+
             {% elif block.block_type == 'citation' %}
-                <blockquote class="border-l-4 border-green-600 pl-6 py-2 my-6 text-xl italic text-gray-700">
+                <blockquote class="border-l-4 border-blue-600 pl-6 py-2 my-6 text-xl italic text-gray-700">
                     {{ block.value }}
                 </blockquote>
+
+            {% elif block.block_type == 'temoignage' %}
+                <div class="temoignage-block bg-gray-50 rounded-lg p-6 my-8">
+                    <div class="flex items-start gap-4">
+                        {% if block.value.photo %}
+                        <div class="flex-shrink-0">
+                            {% image block.value.photo fill-80x80 class="rounded-full" %}
+                        </div>
+                        {% endif %}
+                        <div class="flex-1">
+                            <blockquote class="text-lg italic text-gray-800 mb-3">"{{ block.value.citation }}"</blockquote>
+                            <div class="text-sm">
+                                <p class="font-bold text-gray-900">{{ block.value.auteur }}</p>
+                                {% if block.value.role %}<p class="text-gray-600">{{ block.value.role }}</p>{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% elif block.block_type == 'deux_colonnes' %}
+                <div class="deux-colonnes grid md:grid-cols-2 gap-8 my-8">
+                    <div class="prose">{{ block.value.colonne_gauche|richtext }}</div>
+                    <div class="prose">{{ block.value.colonne_droite|richtext }}</div>
+                </div>
+
+            {% elif block.block_type == 'carte_personne' %}
+                <div class="carte-personne bg-white border border-gray-200 rounded-lg p-6 my-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-start gap-4">
+                        {% if block.value.photo %}
+                        <div class="flex-shrink-0">
+                            {% image block.value.photo fill-100x100 class="rounded-full" %}
+                        </div>
+                        {% endif %}
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-gray-900 mb-1">{{ block.value.nom }}</h3>
+                            <p class="text-sm text-blue-600 font-medium mb-3">{{ block.value.role }}</p>
+                            <p class="text-gray-700 mb-2">{{ block.value.biographie }}</p>
+                            {% if block.value.email %}
+                            <a href="mailto:{{ block.value.email }}" class="text-sm text-blue-600 hover:text-blue-800">{{ block.value.email }}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+            {% elif block.block_type == 'grille_cartes' %}
+                <div class="grille-cartes my-10">
+                    {% if block.value.titre %}
+                    <h3 class="text-2xl font-bold mb-6 text-gray-900">{{ block.value.titre }}</h3>
+                    {% endif %}
+                    <div class="grid md:grid-cols-3 gap-6">
+                        {% for carte in block.value.cartes %}
+                        <div class="carte-item bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow {% if carte.lien %}cursor-pointer{% endif %}">
+                            <div class="carte-icon mb-4">
+                                {% include "includes/icon_svg.html" with icon=carte.icone %}
+                            </div>
+                            <h4 class="text-lg font-bold mb-2 text-gray-900">{{ carte.titre }}</h4>
+                            <p class="text-gray-600 text-sm">{{ carte.description }}</p>
+                            {% if carte.lien %}
+                            <a href="{{ carte.lien }}" class="inline-block mt-4 text-blue-600 hover:text-blue-800 text-sm font-medium">En savoir plus →</a>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            {% elif block.block_type == 'statistiques' %}
+                <div class="statistiques-block my-10">
+                    {% if block.value.titre %}
+                    <h3 class="text-2xl font-bold mb-6 text-center text-gray-900">{{ block.value.titre }}</h3>
+                    {% endif %}
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        {% for stat in block.value.stats %}
+                        <div class="stat-item text-center">
+                            <div class="stat-number text-4xl md:text-5xl font-bold text-blue-600 mb-2">
+                                {{ stat.chiffre }}{% if stat.unite %}<span class="text-2xl">{{ stat.unite }}</span>{% endif %}
+                            </div>
+                            <div class="stat-description text-sm text-gray-600">{{ stat.description }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            {% elif block.block_type == 'alerte' %}
+                <div class="alerte-block my-6 rounded-lg p-4 border-l-4
+                    {% if block.value.type == 'info' %}bg-blue-50 border-blue-600 text-blue-900
+                    {% elif block.value.type == 'success' %}bg-green-50 border-green-600 text-green-900
+                    {% elif block.value.type == 'warning' %}bg-orange-50 border-orange-600 text-orange-900
+                    {% elif block.value.type == 'danger' %}bg-red-50 border-red-600 text-red-900
+                    {% endif %}">
+                    {% if block.value.titre %}
+                    <h4 class="font-bold mb-2">{{ block.value.titre }}</h4>
+                    {% endif %}
+                    <p>{{ block.value.message }}</p>
+                </div>
+
+            {% elif block.block_type == 'accordeon' %}
+                <div class="accordeon-block my-10">
+                    {% if block.value.titre %}
+                    <h3 class="text-2xl font-bold mb-6 text-gray-900">{{ block.value.titre }}</h3>
+                    {% endif %}
+                    <div class="space-y-2">
+                        {% for item in block.value.items %}
+                        <div class="accordeon-item border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="accordeon-toggle w-full text-left px-6 py-4 bg-white hover:bg-gray-50 flex justify-between items-center font-medium text-gray-900" data-target="accordeon-{{ forloop.counter }}">
+                                {{ item.question }}
+                                <svg class="accordeon-icon w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div class="accordeon-content hidden px-6 py-4 bg-gray-50" id="accordeon-{{ forloop.counter }}">
+                                <div class="prose">{{ item.reponse|richtext }}</div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
             {% elif block.block_type == 'appel_action' %}
-                <div class="bg-green-50 border border-green-200 rounded-lg p-8 my-8">
-                    <h3 class="text-2xl font-bold mb-3">{{ block.value.titre }}</h3>
-                    <p class="mb-4 text-lg">{{ block.value.texte }}</p>
+                <div class="bg-gradient-to-r from-blue-50 to-orange-50 border border-blue-200 rounded-lg p-8 my-8">
+                    <h3 class="text-2xl font-bold mb-3 text-gray-900">{{ block.value.titre }}</h3>
+                    <p class="mb-4 text-lg text-gray-700">{{ block.value.texte }}</p>
                     {% if block.value.lien and block.value.texte_bouton %}
-                        <a href="{{ block.value.lien }}" class="inline-block bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 font-medium">
+                        <a href="{{ block.value.lien }}" class="inline-block bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 font-medium transition-colors">
                             {{ block.value.texte_bouton }}
                         </a>
                     {% endif %}
                 </div>
+
+            {% elif block.block_type == 'zeffy_donation' %}
+                <div class="zeffy-donation-block my-10">
+                    {% if block.value.titre %}
+                    <h3 class="text-3xl font-bold mb-4 text-center text-gray-900">{{ block.value.titre }}</h3>
+                    {% endif %}
+                    {% if block.value.description %}
+                    <p class="text-lg text-gray-700 mb-6 text-center max-w-3xl mx-auto">{{ block.value.description }}</p>
+                    {% endif %}
+                    <div class="zeffy-embed-container bg-white rounded-lg shadow-lg overflow-hidden">
+                        <iframe
+                            src="{{ block.value.form_url }}"
+                            style="width: 100%; height: {{ block.value.hauteur }}px; border: none;"
+                            title="Formulaire de don"
+                            allowpaymentrequest
+                            allow="payment">
+                        </iframe>
+                    </div>
+                </div>
+
             {% elif block.block_type == 'html_brut' %}
                 {{ block.value|safe }}
             {% endif %}

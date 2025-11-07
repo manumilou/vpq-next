@@ -28,13 +28,115 @@ class StandardPage(Page):
             form_classname="full title"
         )),
         ('image', ImageChooserBlock(label="Image")),
+        ('image_avec_legende', blocks.StructBlock([
+            ('image', ImageChooserBlock(label="Image")),
+            ('legende', blocks.CharBlock(label="Légende", required=False)),
+            ('credit', blocks.CharBlock(label="Crédit photo", required=False)),
+        ], label="Image avec légende", icon="image")),
         ('citation', blocks.BlockQuoteBlock(label="Citation")),
+        ('temoignage', blocks.StructBlock([
+            ('citation', blocks.TextBlock(label="Citation")),
+            ('auteur', blocks.CharBlock(label="Auteur")),
+            ('role', blocks.CharBlock(label="Rôle/Titre", required=False)),
+            ('photo', ImageChooserBlock(label="Photo", required=False)),
+        ], label="Témoignage", icon="user")),
+        ('deux_colonnes', blocks.StructBlock([
+            ('colonne_gauche', blocks.RichTextBlock(
+                label="Colonne gauche",
+                features=['bold', 'italic', 'link', 'ol', 'ul']
+            )),
+            ('colonne_droite', blocks.RichTextBlock(
+                label="Colonne droite",
+                features=['bold', 'italic', 'link', 'ol', 'ul']
+            )),
+        ], label="Deux colonnes", icon="horizontalrule")),
+        ('carte_personne', blocks.StructBlock([
+            ('nom', blocks.CharBlock(label="Nom")),
+            ('role', blocks.CharBlock(label="Rôle")),
+            ('photo', ImageChooserBlock(label="Photo", required=False)),
+            ('biographie', blocks.TextBlock(label="Biographie")),
+            ('email', blocks.EmailBlock(label="Email", required=False)),
+        ], label="Carte de personne (équipe)", icon="user")),
+        ('grille_cartes', blocks.StructBlock([
+            ('titre', blocks.CharBlock(label="Titre de la section", required=False)),
+            ('cartes', blocks.ListBlock(
+                blocks.StructBlock([
+                    ('icone', blocks.ChoiceBlock(
+                        label="Icône",
+                        choices=[
+                            ('info', 'Information'),
+                            ('heart', 'Coeur'),
+                            ('users', 'Utilisateurs'),
+                            ('check', 'Vérification'),
+                            ('star', 'Étoile'),
+                            ('book', 'Livre'),
+                            ('lightbulb', 'Ampoule'),
+                            ('shield', 'Bouclier'),
+                        ],
+                        default='info'
+                    )),
+                    ('titre', blocks.CharBlock(label="Titre")),
+                    ('description', blocks.TextBlock(label="Description")),
+                    ('lien', blocks.URLBlock(label="Lien", required=False)),
+                ])
+            )),
+        ], label="Grille de cartes", icon="grip")),
+        ('statistiques', blocks.StructBlock([
+            ('titre', blocks.CharBlock(label="Titre de la section", required=False)),
+            ('stats', blocks.ListBlock(
+                blocks.StructBlock([
+                    ('chiffre', blocks.CharBlock(label="Chiffre")),
+                    ('unite', blocks.CharBlock(label="Unité", required=False)),
+                    ('description', blocks.CharBlock(label="Description")),
+                ])
+            )),
+        ], label="Statistiques", icon="list-ol")),
+        ('alerte', blocks.StructBlock([
+            ('type', blocks.ChoiceBlock(
+                label="Type",
+                choices=[
+                    ('info', 'Information (bleu)'),
+                    ('success', 'Succès (vert)'),
+                    ('warning', 'Attention (orange)'),
+                    ('danger', 'Danger (rouge)'),
+                ],
+                default='info'
+            )),
+            ('titre', blocks.CharBlock(label="Titre", required=False)),
+            ('message', blocks.TextBlock(label="Message")),
+        ], label="Alerte/Notice", icon="warning")),
+        ('accordeon', blocks.StructBlock([
+            ('titre', blocks.CharBlock(label="Titre de la section", required=False)),
+            ('items', blocks.ListBlock(
+                blocks.StructBlock([
+                    ('question', blocks.CharBlock(label="Question/Titre")),
+                    ('reponse', blocks.RichTextBlock(
+                        label="Réponse/Contenu",
+                        features=['bold', 'italic', 'link', 'ol', 'ul']
+                    )),
+                ])
+            )),
+        ], label="Accordéon (FAQ)", icon="list-ul")),
         ('appel_action', blocks.StructBlock([
             ('titre', blocks.CharBlock(label="Titre")),
             ('texte', blocks.TextBlock(label="Texte")),
             ('lien', blocks.URLBlock(label="Lien", required=False)),
             ('texte_bouton', blocks.CharBlock(label="Texte du bouton", required=False)),
         ], label="Appel à l'action")),
+        ('zeffy_donation', blocks.StructBlock([
+            ('titre', blocks.CharBlock(label="Titre", default="Soutenez notre cause")),
+            ('description', blocks.TextBlock(label="Description", required=False)),
+            ('form_url', blocks.URLBlock(
+                label="URL du formulaire Zeffy",
+                default="https://www.zeffy.com/embed/donation-form/victimes-des-pesticides-du-quebec",
+                help_text="URL d'intégration Zeffy (ex: https://www.zeffy.com/embed/donation-form/...)"
+            )),
+            ('hauteur', blocks.IntegerBlock(
+                label="Hauteur du formulaire (px)",
+                default=800,
+                help_text="Hauteur en pixels (recommandé: 800-1000)"
+            )),
+        ], label="Formulaire de don Zeffy", icon="form")),
         ('html_brut', blocks.RawHTMLBlock(
             label="HTML brut",
             help_text="Utiliser avec précaution"

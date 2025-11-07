@@ -26,4 +26,21 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Accordion Toggle
+    const accordeonToggles = document.querySelectorAll('.accordeon-toggle');
+    accordeonToggles.forEach(function(toggle) {
+        toggle.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const content = document.getElementById(targetId);
+            const icon = this.querySelector('.accordeon-icon');
+
+            if (content) {
+                content.classList.toggle('hidden');
+                if (icon) {
+                    icon.classList.toggle('rotate-180');
+                }
+            }
+        });
+    });
 });
