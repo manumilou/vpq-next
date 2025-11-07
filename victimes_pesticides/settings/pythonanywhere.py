@@ -32,14 +32,14 @@ DATABASES = {
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/stable/howto/static-files/
-STATIC_ROOT = config('STATIC_ROOT', default=os.path.join(BASE_DIR.parent, 'static'))
+STATIC_ROOT = config('STATIC_ROOT', default=os.path.join(os.path.dirname(BASE_DIR), 'static'))
 STATIC_URL = '/static/'
 
 # WhiteNoise for static file serving
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files (user uploads)
-MEDIA_ROOT = config('MEDIA_ROOT', default=os.path.join(BASE_DIR.parent, 'media'))
+MEDIA_ROOT = config('MEDIA_ROOT', default=os.path.join(os.path.dirname(BASE_DIR), 'media'))
 MEDIA_URL = '/media/'
 
 # Security settings
