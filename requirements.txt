@@ -31,7 +31,6 @@ wagtail==7.1.2
 Willow==1.12.0
 
 # Production dependencies
-mysqlclient==2.2.7
 whitenoise==6.9.0
 python-decouple==3.8
 gunicorn==23.0.0
@@ -39,3 +38,6 @@ gunicorn==23.0.0
 # Railway/PostgreSQL dependencies
 dj-database-url==2.2.0
 psycopg2-binary==2.9.10
+
+# PythonAnywhere/MySQL dependencies (not needed for Railway)
+# mysqlclient==2.2.7
