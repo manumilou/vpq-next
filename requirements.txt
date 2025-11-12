@@ -1,4 +1,4 @@
-# Railway-specific requirements (PostgreSQL only, no MySQL)
+# Railway deployment - PostgreSQL only (no MySQL dependencies)
 anyascii==0.3.3
 asgiref==3.10.0
 beautifulsoup4==4.14.2
