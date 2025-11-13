@@ -1,9 +1,3 @@
-[build]
-builder = "nixpacks"
-
-[build.env]
-NIXPACKS_PYTHON_VERSION = "3.10"
-
 [deploy]
 startCommand = "gunicorn victimes_pesticides.wsgi:application --bind 0.0.0.0:$PORT"
 healthcheckPath = "/admin/"

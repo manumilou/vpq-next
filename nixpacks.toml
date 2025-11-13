@@ -1,11 +1,5 @@
 [phases.setup]
 nixPkgs = ["python310", "postgresql"]
 
-[phases.install]
-cmds = [
-  "pip install --no-cache-dir --upgrade pip",
-  "pip install --no-cache-dir -r requirements.txt"
-]
-
 [start]
 cmd = "gunicorn victimes_pesticides.wsgi:application --bind 0.0.0.0:$PORT"
