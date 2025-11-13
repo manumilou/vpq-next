@@ -23,6 +23,13 @@ ALLOWED_HOSTS = [
 # Remove empty strings
 ALLOWED_HOSTS = [h for h in ALLOWED_HOSTS if h]
 
+# CSRF trusted origins for Railway
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.railway.app',
+    'https://victimespesticidesquebec.org',
+    'https://www.victimespesticidesquebec.org',
+]
+
 # Database - Railway provides DATABASE_URL automatically
 # https://docs.railway.app/databases/postgresql
 DATABASES = {
