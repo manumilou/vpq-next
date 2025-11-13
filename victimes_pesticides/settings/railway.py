@@ -25,6 +25,7 @@ ALLOWED_HOSTS = [h for h in ALLOWED_HOSTS if h]
 
 # CSRF trusted origins for Railway
 CSRF_TRUSTED_ORIGINS = [
+    'https://vpq-next-production.up.railway.app',
     'https://*.railway.app',
     'https://victimespesticidesquebec.org',
     'https://www.victimespesticidesquebec.org',
