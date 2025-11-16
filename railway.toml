@@ -2,7 +2,7 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "python manage.py migrate && python manage.py loaddata vpq_data_export.json && python manage.py collectstatic --noinput && gunicorn victimes_pesticides.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 2 --log-level info --access-logfile - --error-logfile -"
+startCommand = "python manage.py migrate && python manage.py loaddata vpq_production_export.json && python manage.py collectstatic --noinput && gunicorn victimes_pesticides.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 2 --log-level info --access-logfile - --error-logfile -"
 healthcheckPath = "/admin/"
 healthcheckTimeout = 30
 restartPolicyType = "on_failure"

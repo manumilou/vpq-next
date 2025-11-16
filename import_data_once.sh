@@ -7,7 +7,7 @@ if [ ! -f "$MARKER_FILE" ]; then
     echo "First deployment detected - importing data from PythonAnywhere..."
 
     # Import database data
-    python manage.py import_from_pythonanywhere vpq_data_export.json
+    python manage.py import_from_pythonanywhere vpq_production_export.json
 
     # Extract media files
     if [ -f "media_backup_20251113.tar.gz" ]; then
