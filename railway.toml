@@ -2,7 +2,7 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "python manage.py migrate && python manage.py collectstatic --noinput && tar -xzf media_backup_20251113.tar.gz 2>/dev/null || true && gunicorn victimes_pesticides.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 2 --log-level info --access-logfile - --error-logfile -"
+startCommand = "python manage.py migrate && python manage.py collectstatic --noinput && (tar -xzf media_backup_20251113.tar.gz -C / 2>/dev/null || echo 'Media already extracted') && ls -la /app/media/ && gunicorn victimes_pesticides.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 2 --log-level info --access-logfile - --error-logfile -"
 healthcheckPath = "/"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
