@@ -1,4 +1,4 @@
-{% load static %}
+{% load static wagtailcore_tags %}
 
 <header class="site-header bg-white shadow-md sticky top-0 z-50">
     <div class="container mx-auto px-4">
@@ -10,14 +10,16 @@
                 </a>
             </div>
 
-            {# Navigation Desktop #}
+            {# Navigation Desktop - Dynamic from Wagtail #}
             <nav class="main-nav hidden md:block">
                 <ul class="nav-list flex gap-6">
-                    <li><a href="/a-propos/" class="nav-link">À propos</a></li>
-                    <li><a href="/quels-risques/" class="nav-link">Quels risques?</a></li>
-                    <li><a href="/malades-que-faire/" class="nav-link">Malades, que faire ?</a></li>
-                    <li><a href="/alternatives/" class="nav-link">Alternatives</a></li>
-                    <li><a href="/soutenez-vpq/" class="nav-link nav-link-cta">Soutenez VPQ</a></li>
+                    {% for menuitem in menuitems %}
+                        <li>
+                            <a href="{% pageurl menuitem %}" class="nav-link {% if menuitem.slug == 'soutenez-vpq' %}nav-link-cta{% endif %}">
+                                {{ menuitem.title }}
+                            </a>
+                        </li>
+                    {% endfor %}
                 </ul>
             </nav>
 
@@ -29,14 +31,16 @@
             </button>
         </div>
 
-        {# Mobile Navigation #}
+        {# Mobile Navigation - Dynamic from Wagtail #}
         <nav class="mobile-nav hidden md:hidden" id="mobileNav">
             <ul class="nav-list-mobile py-4">
-                <li><a href="/a-propos/" class="nav-link-mobile">À propos</a></li>
-                <li><a href="/quels-risques/" class="nav-link-mobile">Quels risques?</a></li>
-                <li><a href="/malades-que-faire/" class="nav-link-mobile">Malades, que faire ?</a></li>
-                <li><a href="/alternatives/" class="nav-link-mobile">Alternatives</a></li>
-                <li><a href="/soutenez-vpq/" class="nav-link-mobile nav-link-mobile-cta">Soutenez VPQ</a></li>
+                {% for menuitem in menuitems %}
+                    <li>
+                        <a href="{% pageurl menuitem %}" class="nav-link-mobile {% if menuitem.slug == 'soutenez-vpq' %}nav-link-mobile-cta{% endif %}">
+                            {{ menuitem.title }}
+                        </a>
+                    </li>
+                {% endfor %}
             </ul>
         </nav>
     </div>
