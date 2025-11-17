@@ -6,6 +6,7 @@ from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.contrib.forms.panels import FormSubmissionsPanel
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.contrib.table_block.blocks import TableBlock
 from modelcluster.fields import ParentalKey
 
 
@@ -34,6 +35,10 @@ class StandardPage(Page):
             ('credit', blocks.CharBlock(label="Crédit photo", required=False)),
         ], label="Image avec légende", icon="image")),
         ('citation', blocks.BlockQuoteBlock(label="Citation")),
+        ('tableau', TableBlock(
+            label="Tableau",
+            help_text="Tableau avec lignes et colonnes"
+        )),
         ('temoignage', blocks.StructBlock([
             ('citation', blocks.TextBlock(label="Citation")),
             ('auteur', blocks.CharBlock(label="Auteur")),
