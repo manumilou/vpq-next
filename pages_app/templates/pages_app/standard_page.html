@@ -221,6 +221,11 @@
                     </form>
                 </div>
 
+            {% elif block.block_type == 'tableau' %}
+                <div class="table-block my-8 overflow-x-auto">
+                    {% include_block block %}
+                </div>
+
             {% elif block.block_type == 'html_brut' %}
                 {{ block.value|safe }}
             {% endif %}
@@ -228,4 +233,89 @@
     </div>
     {% endif %}
 </div>
+
+<style>
+    /* Table styling for better presentation */
+    .table-block table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    .table-block th {
+        background-color: #1f2937;
+        color: white;
+        font-weight: 600;
+        text-align: left;
+        padding: 0.75rem 1rem;
+        border-bottom: 2px solid #374151;
+    }
+
+    .table-block td {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .table-block tr:last-child td {
+        border-bottom: none;
+    }
+
+    .table-block tbody tr:hover {
+        background-color: #f9fafb;
+    }
+
+    /* Mobile responsive: stack table on small screens */
+    @media (max-width: 640px) {
+        .table-block {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .table-block table {
+            min-width: 100%;
+            font-size: 0.875rem;
+        }
+
+        .table-block th,
+        .table-block td {
+            padding: 0.5rem 0.75rem;
+        }
+    }
+
+    /* Alternative mobile view: card-style for very small screens */
+    @media (max-width: 480px) {
+        .table-block.mobile-cards thead {
+            display: none;
+        }
+
+        .table-block.mobile-cards tr {
+            display: block;
+            margin-bottom: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            background-color: white;
+        }
+
+        .table-block.mobile-cards td {
+            display: block;
+            text-align: right;
+            border-bottom: 1px solid #f3f4f6;
+            padding: 0.5rem 0.75rem;
+        }
+
+        .table-block.mobile-cards td:last-child {
+            border-bottom: none;
+        }
+
+        .table-block.mobile-cards td::before {
+            content: attr(data-label);
+            float: left;
+            font-weight: 600;
+            color: #374151;
+        }
+    }
+</style>
 {% endblock %}

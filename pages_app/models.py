@@ -246,6 +246,10 @@ class ContactPage(AbstractEmailForm):
         FieldPanel('subject'),
     ]
 
+    def get_landing_page_template(self, request, *args, **kwargs):
+        """Return the landing page template after form submission"""
+        return 'pages_app/contact_page_landing.html'
+
     class Meta:
         verbose_name = "Page de contact"
         verbose_name_plural = "Pages de contact"
