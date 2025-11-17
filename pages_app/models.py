@@ -10,6 +10,40 @@ from wagtail.contrib.table_block.blocks import TableBlock
 from modelcluster.fields import ParentalKey
 
 
+class LinkBlock(blocks.StructBlock):
+    """Block for internal or external links"""
+    link_type = blocks.ChoiceBlock(
+        label="Type de lien",
+        choices=[
+            ('internal', 'Page interne'),
+            ('external', 'Lien externe'),
+        ],
+        default='internal'
+    )
+    internal_page = blocks.PageChooserBlock(
+        label="Page interne",
+        required=False,
+        help_text="Choisir une page du site"
+    )
+    external_url = blocks.URLBlock(
+        label="URL externe",
+        required=False,
+        help_text="Ex: https://example.com"
+    )
+
+    class Meta:
+        icon = 'link'
+        label = 'Lien'
+
+    def get_url(self, value):
+        """Get the appropriate URL based on link type"""
+        if value.get('link_type') == 'internal' and value.get('internal_page'):
+            return value['internal_page'].url
+        elif value.get('link_type') == 'external' and value.get('external_url'):
+            return value['external_url']
+        return '#'
+
+
 class StandardPage(Page):
     """Page d'information standard avec contenu flexible"""
 
@@ -82,7 +116,7 @@ class StandardPage(Page):
                     )),
                     ('titre', blocks.CharBlock(label="Titre")),
                     ('description', blocks.TextBlock(label="Description")),
-                    ('lien', blocks.URLBlock(label="Lien", required=False)),
+                    ('lien', LinkBlock(label="Lien", required=False)),
                 ])
             )),
         ], label="Grille de cartes", icon="grip")),
@@ -125,7 +159,7 @@ class StandardPage(Page):
         ('appel_action', blocks.StructBlock([
             ('titre', blocks.CharBlock(label="Titre")),
             ('texte', blocks.TextBlock(label="Texte")),
-            ('lien', blocks.URLBlock(label="Lien", required=False)),
+            ('lien', LinkBlock(label="Lien", required=False)),
             ('texte_bouton', blocks.CharBlock(label="Texte du bouton", required=False)),
         ], label="Appel à l'action")),
         ('zeffy_donation', blocks.StructBlock([

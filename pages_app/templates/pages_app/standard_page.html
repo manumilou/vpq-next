@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags static %}
+{% load wagtailcore_tags wagtailimages_tags static pages_tags %}
 
 {% block body_class %}template-standardpage{% endblock %}
 
@@ -100,7 +100,7 @@
                             <h4 class="text-lg font-bold mb-2 text-gray-900">{{ carte.titre }}</h4>
                             <p class="text-gray-600 text-sm">{{ carte.description }}</p>
                             {% if carte.lien %}
-                            <a href="{{ carte.lien }}" class="inline-block mt-4 text-blue-600 hover:text-blue-800 text-sm font-medium">En savoir plus →</a>
+                            <a href="{% get_link_url carte.lien %}" class="inline-block mt-4 text-blue-600 hover:text-blue-800 text-sm font-medium">En savoir plus →</a>
                             {% endif %}
                         </div>
                         {% endfor %}
@@ -164,7 +164,7 @@
                     <h3 class="text-2xl font-bold mb-3 text-gray-900">{{ block.value.titre }}</h3>
                     <p class="mb-4 text-lg text-gray-700">{{ block.value.texte }}</p>
                     {% if block.value.lien and block.value.texte_bouton %}
-                        <a href="{{ block.value.lien }}" class="inline-block bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 font-medium transition-colors">
+                        <a href="{% get_link_url block.value.lien %}" class="inline-block bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 font-medium transition-colors">
                             {{ block.value.texte_bouton }}
                         </a>
                     {% endif %}
