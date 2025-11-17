@@ -184,6 +184,59 @@
                     {% endif %}
                 </div>
             </div>
+
+        {% elif block.block_type == 'dernieres_actualites' %}
+            {# Latest News Block #}
+            <section class="dernieres-actualites-section section-spacing">
+                <div class="container mx-auto px-4">
+                    <h2 class="section-title text-center mb-8">{{ block.value.titre }}</h2>
+
+                    {% load actualites_tags %}
+                    {% if block.value.afficher_vedettes_seulement %}
+                        {% get_featured_actualites block.value.nombre_actualites as actualites_list %}
+                    {% else %}
+                        {% get_latest_actualites block.value.nombre_actualites as actualites_list %}
+                    {% endif %}
+
+                    {% if actualites_list %}
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {% for actualite in actualites_list %}
+                        <article class="actualite-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                            {% if actualite.image_principale %}
+                            <a href="{% pageurl actualite %}" class="block">
+                                {% image actualite.image_principale fill-400x250 class="w-full h-48 object-cover" loading="lazy" %}
+                            </a>
+                            {% endif %}
+                            <div class="p-6">
+                                <time datetime="{{ actualite.date_publication|date:'Y-m-d' }}" class="text-sm text-green-600 font-medium">
+                                    {{ actualite.date_publication|date:"d F Y" }}
+                                </time>
+                                <h3 class="text-xl font-bold mt-2 mb-3">
+                                    <a href="{% pageurl actualite %}" class="text-gray-900 hover:text-green-600 transition-colors">
+                                        {{ actualite.title }}
+                                    </a>
+                                </h3>
+                                {% if actualite.introduction %}
+                                <p class="text-gray-600 line-clamp-3">{{ actualite.introduction|truncatewords:25 }}</p>
+                                {% endif %}
+                                <a href="{% pageurl actualite %}" class="inline-block mt-4 text-green-600 hover:text-green-700 font-medium text-sm">
+                                    Lire la suite →
+                                </a>
+                            </div>
+                        </article>
+                        {% endfor %}
+                    </div>
+
+                    <div class="text-center mt-8">
+                        <a href="/actualites/" class="inline-block bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 font-medium transition-colors">
+                            {{ block.value.texte_bouton }}
+                        </a>
+                    </div>
+                    {% else %}
+                    <p class="text-center text-gray-600">Aucune actualité disponible pour le moment.</p>
+                    {% endif %}
+                </div>
+            </section>
         {% endif %}
     {% endfor %}
 {% endif %}
@@ -218,4 +271,55 @@
     </div>
     {% endif %}
 </div>
+
+<style>
+    /* News card styling */
+    .actualite-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .actualite-card .p-6 {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .actualite-card p.line-clamp-3 {
+        flex: 1;
+    }
+
+    /* Line clamp utility for truncating text */
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* Section spacing */
+    .section-spacing {
+        padding: 3rem 0;
+    }
+
+    @media (min-width: 768px) {
+        .section-spacing {
+            padding: 4rem 0;
+        }
+    }
+
+    /* Section title */
+    .section-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1f2937;
+    }
+
+    @media (min-width: 768px) {
+        .section-title {
+            font-size: 2.5rem;
+        }
+    }
+</style>
 {% endblock %}

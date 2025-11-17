@@ -124,6 +124,25 @@ class HomePage(Page):
             ('lien', blocks.URLBlock(label="Lien", required=False)),
             ('texte_bouton', blocks.CharBlock(label="Texte du bouton", required=False)),
         ], label="Appel à l'action")),
+        ('dernieres_actualites', blocks.StructBlock([
+            ('titre', blocks.CharBlock(label="Titre de la section", default="Dernières actualités")),
+            ('nombre_actualites', blocks.IntegerBlock(
+                label="Nombre d'actualités à afficher",
+                default=3,
+                min_value=1,
+                max_value=6
+            )),
+            ('afficher_vedettes_seulement', blocks.BooleanBlock(
+                label="Afficher seulement les actualités en vedette",
+                required=False,
+                default=False,
+                help_text="Si activé, affiche uniquement les actualités marquées 'mise en vedette'"
+            )),
+            ('texte_bouton', blocks.CharBlock(
+                label="Texte du bouton 'Voir toutes les actualités'",
+                default="Voir toutes les actualités"
+            )),
+        ], label="Dernières actualités", icon="doc-full-inverse")),
     ], use_json_field=True, blank=True, verbose_name="Contenu principal")
 
     content_panels = Page.content_panels + [
