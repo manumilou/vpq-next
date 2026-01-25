@@ -69,11 +69,11 @@ Après analyse, Wagtail s'est avéré être la meilleure solution pour ce projet
 │  │ (Templates)│ (Wagtail)  │ │
 │  └────────────┴────────────┘ │
 │         ▼                     │
-│     Database (PostgreSQL)     │
+│   Database (PostgreSQL/MySQL) │
 └──────────────────────────────┘
               │
-         Railway/Render
-      (hosting tout-en-un)
+         Hosting simple
+       (tout-en-un)
 
 - 1 seul système
 - Pas d'API calls
@@ -137,7 +137,7 @@ Après analyse, Wagtail s'est avéré être la meilleure solution pour ce projet
 
 - **Coûts réduits** : Pas d'abonnement CMS séparé
 - **Maintenance simplifiée** : Un seul système à gérer
-- **Hébergement simple** : Railway, Render, ou tout hébergeur Django
+- **Hébergement simple** : PythonAnywhere, Render, ou tout hébergeur Django
 - **Évolutif** : Facile d'ajouter de nouvelles fonctionnalités
 
 ## Équivalences de concepts
@@ -270,10 +270,9 @@ Wagtail permet d'ajouter facilement :
 ### Q: Quels sont les coûts d'hébergement ?
 
 **R:** Très abordables :
-- **Railway** : Gratuit pour commencer, puis ~$5/mois
+- **PythonAnywhere** : $5/mois
 - **Render** : Gratuit pour tests, ~$7/mois pour production
 - **DigitalOcean** : $6/mois pour un petit serveur
-- **PythonAnywhere** : $5/mois
 
 Comparé à Next.js (Vercel) + Sanity (~$20-30/mois), c'est 2-3x moins cher.
 

@@ -253,28 +253,11 @@ Pour la production, ajouter :
 
 ## 📈 Déploiement
 
-### Options recommandées
-
-1. **Railway** (Le plus simple)
-   - Détection automatique Django
-   - PostgreSQL inclus
-   - SSL automatique
-   - ~$5/mois
-
-2. **Render** (Bon rapport qualité/prix)
-   - Configuration simple
-   - PostgreSQL gratuit pour commencer
-   - SSL automatique
-   - Gratuit → $7/mois
-
-3. **DigitalOcean** (Plus de contrôle)
-   - Droplet Ubuntu
-   - Configuration manuelle
-   - ~$6/mois
+Voir [DEPLOYMENT.md](DEPLOYMENT.md) pour le guide complet de déploiement sur PythonAnywhere.
 
 ### Checklist de déploiement
 - [ ] Configurer les variables d'environnement
-- [ ] Utiliser PostgreSQL en production
+- [ ] Utiliser MySQL (PythonAnywhere) ou PostgreSQL en production
 - [ ] Configurer ALLOWED_HOSTS
 - [ ] DEBUG = False
 - [ ] Collecter les fichiers statiques

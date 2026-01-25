@@ -19,8 +19,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {# Favicon #}
-        <link rel="icon" type="image/webp" href="{% static 'images/logo.webp' %}">
-        <link rel="apple-touch-icon" href="{% static 'images/logo.webp' %}">
+        <link rel="icon" type="image/webp" href="{% static 'images/vpq-logo.png' %}">
+        <link rel="apple-touch-icon" href="{% static 'images/vpq-logo.png' %}">
 
         {# Force all links in the live preview panel to be opened in a new tab #}
         {% if request.in_preview_panel %}
@@ -33,6 +33,40 @@
         {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
         {% endblock %}
+
+        {# Google Analytics 4 - Avec consentement #}
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+
+            // Check if user has already consented
+            if (localStorage.getItem('ga_consent') === 'accepted') {
+                // Load GA4 if consent was given
+                loadGoogleAnalytics();
+            } else {
+                // Default: deny until user consents
+                gtag('consent', 'default', {
+                    'analytics_storage': 'denied'
+                });
+            }
+
+            function loadGoogleAnalytics() {
+                var script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+                document.head.appendChild(script);
+
+                script.onload = function() {
+                    gtag('js', new Date());
+                    gtag('config', 'G-XXXXXXXXXX', {
+                        'anonymize_ip': true
+                    });
+                    gtag('consent', 'update', {
+                        'analytics_storage': 'granted'
+                    });
+                };
+            }
+        </script>
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
@@ -45,6 +79,9 @@
         </main>
 
         {% include "includes/footer.html" %}
+
+        {# Cookie Consent Banner #}
+        {% include "includes/cookie_banner.html" %}
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/victimes_pesticides.js' %}"></script>

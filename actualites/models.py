@@ -167,10 +167,37 @@ class ActualiteIndexPage(Page):
         verbose_name_plural = "Pages d'index des actualités"
 
     def get_context(self, request):
+        from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+        from django.db.models import Q
+
         context = super().get_context(request)
+
         # Get all published actualites, ordered by publication date
         actualites = ActualitePage.objects.live().order_by('-date_publication')
-        context['actualites'] = actualites
+
+        # Search functionality
+        search_query = request.GET.get('q', '').strip()
+        if search_query:
+            actualites = actualites.filter(
+                Q(title__icontains=search_query) |
+                Q(introduction__icontains=search_query) |
+                Q(corps__icontains=search_query)
+            )
+            context['search_query'] = search_query
+
+        # Pagination - 9 articles per page (3x3 grid)
+        paginator = Paginator(actualites, 9)
+        page_number = request.GET.get('page', 1)
+
+        try:
+            actualites_page = paginator.page(page_number)
+        except PageNotAnInteger:
+            actualites_page = paginator.page(1)
+        except EmptyPage:
+            actualites_page = paginator.page(paginator.num_pages)
+
+        context['actualites'] = actualites_page
+        context['paginator'] = paginator
         return context
 
     # Only allow ActualitePage as children

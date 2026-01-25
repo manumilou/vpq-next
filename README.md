@@ -142,23 +142,9 @@ Le site est entièrement configuré en français :
 
 ## Déploiement
 
-### Option 1 : Railway
+Voir le guide détaillé dans [DEPLOYMENT.md](DEPLOYMENT.md) pour le déploiement sur PythonAnywhere.
 
-1. Créer un compte sur [Railway](https://railway.app)
-2. Connecter votre dépôt GitHub
-3. Ajouter une base de données PostgreSQL
-4. Configurer les variables d'environnement
-5. Railway détectera automatiquement Django et déploiera
-
-### Option 2 : Render
-
-1. Créer un compte sur [Render](https://render.com)
-2. Créer un nouveau "Web Service"
-3. Connecter votre dépôt
-4. Ajouter une base de données PostgreSQL
-5. Configurer les variables d'environnement
-
-### Variables d'environnement requises
+### Variables d'environnement requises pour la production
 
 ```
 DJANGO_SECRET_KEY=générer-avec-get_random_secret_key

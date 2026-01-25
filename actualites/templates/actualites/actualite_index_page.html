@@ -13,6 +13,41 @@
     </div>
     {% endif %}
 
+    {# Search Bar #}
+    <div class="search-container mb-8">
+        <form method="get" action="" class="search-form">
+            <div class="search-input-wrapper">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+                <input
+                    type="text"
+                    name="q"
+                    value="{{ search_query|default:'' }}"
+                    placeholder="Rechercher des actualités..."
+                    class="search-input"
+                    aria-label="Rechercher des actualités"
+                >
+                {% if search_query %}
+                <a href="{% pageurl page %}" class="search-clear" aria-label="Effacer la recherche" title="Effacer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </a>
+                {% endif %}
+            </div>
+            <button type="submit" class="search-button">
+                Rechercher
+            </button>
+        </form>
+
+        {% if search_query %}
+        <p class="search-results-info">
+            {{ actualites.paginator.count }} résultat{{ actualites.paginator.count|pluralize }} pour « <strong>{{ search_query }}</strong> »
+        </p>
+        {% endif %}
+    </div>
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {% for actualite in actualites %}
         <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
@@ -42,5 +77,50 @@
         <p class="col-span-full text-gray-600">Aucune actualité pour le moment.</p>
         {% endfor %}
     </div>
+
+    {# Pagination #}
+    {% if actualites.has_other_pages %}
+    <nav class="pagination-nav mt-12 flex justify-center items-center gap-2" aria-label="Pagination">
+        {% if actualites.has_previous %}
+        <a href="?{% if search_query %}q={{ search_query }}&{% endif %}page={{ actualites.previous_page_number }}" class="pagination-link pagination-arrow" aria-label="Page précédente">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+        </a>
+        {% else %}
+        <span class="pagination-link pagination-arrow pagination-disabled" aria-disabled="true">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+        </span>
+        {% endif %}
+
+        {% for num in actualites.paginator.page_range %}
+        {% if actualites.number == num %}
+        <span class="pagination-link pagination-current" aria-current="page">{{ num }}</span>
+        {% elif num > actualites.number|add:'-3' and num < actualites.number|add:'3' %}
+        <a href="?{% if search_query %}q={{ search_query }}&{% endif %}page={{ num }}" class="pagination-link">{{ num }}</a>
+        {% endif %}
+        {% endfor %}
+
+        {% if actualites.has_next %}
+        <a href="?{% if search_query %}q={{ search_query }}&{% endif %}page={{ actualites.next_page_number }}" class="pagination-link pagination-arrow" aria-label="Page suivante">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+        </a>
+        {% else %}
+        <span class="pagination-link pagination-arrow pagination-disabled" aria-disabled="true">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+        </span>
+        {% endif %}
+    </nav>
+
+    <p class="text-center text-gray-600 mt-4 text-sm">
+        Page {{ actualites.number }} sur {{ actualites.paginator.num_pages }} ({{ actualites.paginator.count }} articles au total)
+    </p>
+    {% endif %}
 </div>
 {% endblock %}

@@ -1,0 +1,70 @@
+{% load static %}
+
+{# Cookie Consent Banner #}
+<div id="cookieBanner" class="cookie-banner" style="display: none;">
+    <div class="cookie-banner-content">
+        <div class="cookie-banner-text">
+            <h3 class="cookie-banner-title">Respect de votre vie privée</h3>
+            <p class="cookie-banner-description">
+                Nous utilisons des cookies pour analyser le trafic de notre site et améliorer votre expérience.
+                Vos données sont anonymisées et ne sont jamais partagées avec des tiers.
+                <a href="/politique-de-confidentialite/" class="cookie-banner-link">En savoir plus</a>
+            </p>
+        </div>
+        <div class="cookie-banner-actions">
+            <button onclick="acceptCookies()" class="cookie-banner-button cookie-banner-accept">
+                Accepter
+            </button>
+            <button onclick="refuseCookies()" class="cookie-banner-button cookie-banner-refuse">
+                Refuser
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Show banner if user hasn't made a choice
+    (function() {
+        var consent = localStorage.getItem('ga_consent');
+        if (!consent) {
+            document.getElementById('cookieBanner').style.display = 'block';
+        }
+    })();
+
+    function acceptCookies() {
+        localStorage.setItem('ga_consent', 'accepted');
+        document.getElementById('cookieBanner').style.display = 'none';
+
+        // Load Google Analytics
+        if (typeof loadGoogleAnalytics === 'function') {
+            loadGoogleAnalytics();
+        }
+
+        // Track acceptance event
+        if (typeof gtag === 'function') {
+            gtag('event', 'cookie_consent', {
+                'event_category': 'engagement',
+                'event_label': 'accepted'
+            });
+        }
+    }
+
+    function refuseCookies() {
+        localStorage.setItem('ga_consent', 'refused');
+        document.getElementById('cookieBanner').style.display = 'none';
+
+        // Track refusal event (without storing data)
+        if (typeof gtag === 'function') {
+            gtag('event', 'cookie_consent', {
+                'event_category': 'engagement',
+                'event_label': 'refused'
+            });
+        }
+    }
+
+    // Allow users to change their mind - add this function to your privacy policy page
+    function resetCookieConsent() {
+        localStorage.removeItem('ga_consent');
+        location.reload();
+    }
+</script>

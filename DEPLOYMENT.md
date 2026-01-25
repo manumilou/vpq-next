@@ -223,42 +223,187 @@ Enter: `/home/yourusername/.virtualenvs/vpq-env`
 2. Reinstall requirements: `pip install -r requirements.txt`
 3. Check the virtualenv path in the Web tab
 
-## Updating Your Site
+## Mise à jour du site (Déploiement d'une nouvelle version)
 
-When you make changes to your code:
+### Procédure complète de déploiement
+
+Quand vous faites des changements à votre code et que vous voulez les déployer sur PythonAnywhere:
+
+#### Étape 1: Préparer les changements localement
 
 ```bash
-# SSH into PythonAnywhere console
-cd ~/vpq-next
+# Sur votre machine locale, assurez-vous que tout fonctionne
+source venv/bin/activate
+python manage.py check
+python manage.py test  # Si vous avez des tests
 
-# Pull latest changes
-git pull origin main
-
-# Activate virtualenv
-workon vpq-env
-
-# Install any new dependencies
-pip install -r requirements.txt
-
-# Run migrations if any
-python manage.py migrate
-
-# Collect static files if CSS/JS changed
-python manage.py collectstatic --noinput
-
-# Reload web app from Web tab
+# Commitez vos changements
+git add .
+git commit -m "Description de vos changements"
+git push origin main
 ```
 
-Or use the "Reload" button in the Web tab.
+#### Étape 2: Se connecter à PythonAnywhere
+
+1. Allez sur [www.pythonanywhere.com](https://www.pythonanywhere.com)
+2. Connectez-vous à votre compte
+3. Allez dans l'onglet **Consoles**
+4. Ouvrez une console Bash (ou réutilisez une existante)
+
+#### Étape 3: Mettre à jour le code
+
+```bash
+# Naviguer vers votre projet
+cd ~/vpq-next
+
+# Activer l'environnement virtuel
+workon vpq-env
+
+# Récupérer les derniers changements
+git pull origin main
+```
+
+#### Étape 4: Installer les nouvelles dépendances (si nécessaire)
+
+```bash
+# Installer les nouvelles dépendances si requirements.txt a changé
+pip install -r requirements.txt
+```
+
+#### Étape 5: Appliquer les migrations de base de données (si nécessaire)
+
+```bash
+# Exporter la variable d'environnement pour les settings
+export DJANGO_SETTINGS_MODULE=victimes_pesticides.settings.pythonanywhere
+
+# Vérifier s'il y a des migrations à appliquer
+python manage.py showmigrations
+
+# Appliquer les migrations
+python manage.py migrate
+```
+
+#### Étape 6: Collecter les fichiers statiques (si CSS/JS/images ont changé)
+
+```bash
+# Collecter tous les fichiers statiques
+python manage.py collectstatic --noinput
+```
+
+#### Étape 7: Recharger l'application web
+
+1. Allez dans l'onglet **Web** de PythonAnywhere
+2. Cliquez sur le gros bouton vert **Reload** en haut de la page
+3. Attendez quelques secondes que le rechargement se termine
+
+#### Étape 8: Vérifier le déploiement
+
+1. Visitez votre site : `https://yourusername.pythonanywhere.com`
+2. Vérifiez que vos changements sont bien appliqués
+3. Consultez les logs en cas de problème (voir section Troubleshooting)
+
+### Script de déploiement rapide
+
+Pour simplifier le processus, vous pouvez créer un script bash:
+
+```bash
+# Créer le fichier deploy.sh
+nano ~/vpq-next/deploy.sh
+```
+
+Contenu du fichier:
+
+```bash
+#!/bin/bash
+echo "🚀 Déploiement en cours..."
+
+# Aller dans le répertoire du projet
+cd ~/vpq-next
+
+# Activer l'environnement virtuel
+source ~/.virtualenvs/vpq-env/bin/activate
+
+# Tirer les derniers changements
+echo "📥 Récupération des changements..."
+git pull origin main
+
+# Installer les dépendances
+echo "📦 Installation des dépendances..."
+pip install -r requirements.txt --quiet
+
+# Appliquer les migrations
+echo "🗄️  Application des migrations..."
+export DJANGO_SETTINGS_MODULE=victimes_pesticides.settings.pythonanywhere
+python manage.py migrate --noinput
+
+# Collecter les fichiers statiques
+echo "📁 Collecte des fichiers statiques..."
+python manage.py collectstatic --noinput
+
+echo "✅ Déploiement terminé!"
+echo "⚠️  N'oubliez pas de cliquer sur 'Reload' dans l'onglet Web!"
+```
+
+Rendre le script exécutable:
+
+```bash
+chmod +x ~/vpq-next/deploy.sh
+```
+
+Utilisation:
+
+```bash
+~/vpq-next/deploy.sh
+```
+
+### Checklist de déploiement
+
+- [ ] Code testé localement
+- [ ] Changements committés et pushés sur GitHub
+- [ ] Console Bash ouverte sur PythonAnywhere
+- [ ] Virtualenv activé
+- [ ] `git pull` exécuté
+- [ ] Nouvelles dépendances installées (si nécessaire)
+- [ ] Migrations appliquées (si nécessaire)
+- [ ] Fichiers statiques collectés (si nécessaire)
+- [ ] Application web rechargée via l'onglet Web
+- [ ] Site vérifié et fonctionnel
+
+### Fréquence des déploiements
+
+- **Petits changements (CSS, texte)**: Immédiat après commit
+- **Nouvelles fonctionnalités**: Après tests complets
+- **Changements de modèles**: Toujours avec migrations
+- **Urgences/Corrections**: Dès que possible
+
+### Rollback (Retour en arrière)
+
+En cas de problème après un déploiement:
+
+```bash
+# Voir l'historique git
+git log --oneline -5
+
+# Revenir à la version précédente
+git checkout [hash-du-commit-précédent]
+
+# Ou créer une nouvelle branche
+git revert HEAD
+
+# Puis redéployer
+python manage.py migrate
+python manage.py collectstatic --noinput
+```
+
+N'oubliez pas de recharger l'application dans l'onglet Web!
 
 ## Next Steps
 
-Once your prototype is validated, you can migrate to a more robust hosting solution:
+Once your prototype is validated, you can migrate to a more robust hosting solution like:
 
 - **DigitalOcean App Platform**: Easy deployment with managed PostgreSQL
-- **Railway**: Git-based deployments with PostgreSQL
+- **Render**: Free tier available, easy setup
 - **Fly.io**: Global CDN with edge computing
-- **Heroku**: Classic PaaS with many add-ons
 
 All these platforms support easy migration from your current setup. You'll mainly need to:
 1. Export your MySQL database to PostgreSQL format
