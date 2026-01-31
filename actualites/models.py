@@ -93,7 +93,8 @@ class ActualitePage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        verbose_name="Image principale"
+        verbose_name="Image de prévisualisation",
+        help_text="Image optionnelle affichée dans la liste des actualités et en haut de l'article (recommandé: format paysage, min. 1200x800px)"
     )
 
     introduction = models.TextField(

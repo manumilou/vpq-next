@@ -29,9 +29,9 @@
         {% endif %}
 
         {% if page.image_principale %}
-        <div class="mb-8">
-            {% image page.image_principale width-1200 class="w-full rounded-lg shadow-lg" %}
-        </div>
+        <figure class="mb-8 -mx-4 sm:mx-0">
+            {% image page.image_principale width-1200 class="w-full rounded-none sm:rounded-lg shadow-lg" %}
+        </figure>
         {% endif %}
     </header>
 
