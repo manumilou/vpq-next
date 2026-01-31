@@ -10,7 +10,7 @@
         <div class="carrousel-slides relative overflow-hidden rounded-lg shadow-xl bg-white">
             {% for temoignage in value.temoignages %}
             <div class="carrousel-slide {% if forloop.first %}active{% endif %}" data-slide="{{ forloop.counter0 }}">
-                <div class="flex flex-col md:flex-row items-center gap-8 p-8 md:p-12">
+                <div class="flex flex-col md:flex-row items-center gap-8 p-10 md:p-16">
                     <!-- Photo -->
                     <div class="flex-shrink-0">
                         {% image temoignage.photo fill-200x200 class="rounded-full w-32 h-32 md:w-48 md:h-48 object-cover shadow-lg" %}
@@ -18,24 +18,21 @@
 
                     <!-- Contenu du témoignage -->
                     <div class="flex-1 text-center md:text-left">
-                        <!-- Citation -->
-                        <div class="relative mb-6">
-                            <svg class="absolute -top-4 -left-2 w-8 h-8 text-gray-200 opacity-50" fill="currentColor" viewBox="0 0 32 32">
-                                <path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H8c0-1.1.9-2 2-2h2V8h-2zm12 0c-3.3 0-6 2.7-6 6v10h10V14h-6c0-1.1.9-2 2-2h2V8h-2z"/>
-                            </svg>
-                            <p class="text-lg md:text-xl text-gray-700 italic leading-relaxed pl-6">
-                                {{ temoignage.citation }}
+                        <!-- Citation avec guillemets subtiles -->
+                        <div class="mb-6">
+                            <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
+                                <span class="text-3xl text-gray-300 leading-none">"</span>{{ temoignage.citation }}<span class="text-3xl text-gray-300 leading-none">"</span>
                             </p>
                         </div>
 
                         <!-- Informations sur l'auteur -->
-                        <div class="border-t border-gray-200 pt-4">
-                            <p class="font-bold text-gray-900 text-lg">{{ temoignage.nom }}</p>
+                        <div class="border-t border-gray-200 pt-4 mt-6">
+                            <p class="font-bold text-gray-900 text-xl">{{ temoignage.nom }}</p>
                             {% if temoignage.role %}
-                            <p class="text-green-600 font-medium">{{ temoignage.role }}</p>
+                            <p class="text-green-600 font-medium mt-1">{{ temoignage.role }}</p>
                             {% endif %}
                             {% if temoignage.localisation %}
-                            <p class="text-gray-500 text-sm">{{ temoignage.localisation }}</p>
+                            <p class="text-gray-500 text-sm mt-1">{{ temoignage.localisation }}</p>
                             {% endif %}
                         </div>
                     </div>

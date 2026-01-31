@@ -1301,7 +1301,8 @@ button:focus {
 
 .carrousel-slides {
     position: relative;
-    min-height: 300px;
+    min-height: 450px;
+    background: linear-gradient(to bottom right, #f9fafb, #ffffff);
 }
 
 .carrousel-slide {
@@ -1327,6 +1328,7 @@ button:focus {
     }
 }
 
+/* Navigation buttons styling */
 .carrousel-navigation {
     user-select: none;
 }
@@ -1334,11 +1336,14 @@ button:focus {
 .carrousel-prev,
 .carrousel-next {
     transition: all 0.2s ease;
+    border: 2px solid #e5e7eb;
 }
 
 .carrousel-prev:hover,
 .carrousel-next:hover {
     transform: scale(1.1);
+    background-color: #f3f4f6;
+    border-color: #16a34a;
 }
 
 .carrousel-prev:active,
@@ -1346,6 +1351,7 @@ button:focus {
     transform: scale(0.95);
 }
 
+/* Dots styling */
 .carrousel-dot {
     cursor: pointer;
     transition: all 0.2s ease;
@@ -1360,15 +1366,25 @@ button:focus {
     background-color: #6b7280; /* gray-500 */
 }
 
+/* Photo styling in carousel */
+.carrousel-slide img {
+    border: 4px solid #ffffff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .carrousel-slides {
-        min-height: 400px;
+        min-height: 450px;
     }
 
     .carrousel-slide .flex {
         flex-direction: column;
         text-align: center;
+    }
+
+    .carrousel-slide img {
+        margin-bottom: 1.5rem;
     }
 }
 

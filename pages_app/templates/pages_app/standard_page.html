@@ -144,7 +144,7 @@
                         {% for carte in block.value.cartes %}
                         <div class="carte-item bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow {% if carte.lien %}cursor-pointer{% endif %}">
                             <div class="carte-icon mb-4">
-                                {% include "includes/icon_svg.html" with icon=carte.icone %}
+                                {% include 'includes/icon_svg.html' with icon=carte.icone %}
                             </div>
                             <h4 class="text-lg font-bold mb-2 text-gray-900">{{ carte.titre }}</h4>
                             <p class="text-gray-600 text-sm">{{ carte.description }}</p>
