@@ -95,7 +95,20 @@ class StandardPage(Page):
             ('photo', ImageChooserBlock(label="Photo", required=False)),
             ('biographie', blocks.TextBlock(label="Biographie")),
             ('email', blocks.EmailBlock(label="Email", required=False)),
-        ], label="Carte de personne (équipe)", icon="user")),
+        ], label="Carte de personne (unique)", icon="user")),
+        ('grille_equipe', blocks.StructBlock([
+            ('titre', blocks.CharBlock(label="Titre de la section", required=False)),
+            ('personnes', blocks.ListBlock(
+                blocks.StructBlock([
+                    ('photo', ImageChooserBlock(label="Photo", required=False)),
+                    ('nom', blocks.CharBlock(label="Nom")),
+                    ('role', blocks.CharBlock(label="Rôle")),
+                    ('biographie', blocks.TextBlock(label="Biographie courte", required=False)),
+                    ('email', blocks.EmailBlock(label="Email", required=False)),
+                    ('telephone', blocks.CharBlock(label="Téléphone", required=False)),
+                ])
+            )),
+        ], label="Grille d'équipe", icon="group")),
         ('grille_cartes', blocks.StructBlock([
             ('titre', blocks.CharBlock(label="Titre de la section", required=False)),
             ('cartes', blocks.ListBlock(
@@ -156,6 +169,24 @@ class StandardPage(Page):
                 ])
             )),
         ], label="Accordéon (FAQ)", icon="list-ul")),
+        ('carrousel_temoignages', blocks.StructBlock([
+            ('titre', blocks.CharBlock(label="Titre de la section", required=False)),
+            ('temoignages', blocks.ListBlock(
+                blocks.StructBlock([
+                    ('photo', ImageChooserBlock(label="Photo")),
+                    ('citation', blocks.TextBlock(label="Témoignage")),
+                    ('nom', blocks.CharBlock(label="Nom")),
+                    ('role', blocks.CharBlock(label="Rôle/Titre", required=False)),
+                    ('localisation', blocks.CharBlock(label="Localisation", required=False)),
+                ])
+            )),
+            ('defilement_auto', blocks.BooleanBlock(
+                label="Défilement automatique",
+                default=True,
+                required=False,
+                help_text="Les témoignages défileront automatiquement toutes les 5 secondes"
+            )),
+        ], label="Carrousel de témoignages", icon="group")),
         ('appel_action', blocks.StructBlock([
             ('titre', blocks.CharBlock(label="Titre")),
             ('texte', blocks.TextBlock(label="Texte")),

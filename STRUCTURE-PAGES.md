@@ -46,11 +46,25 @@ Root (Wagtail system page)
   - Paragraphe (texte enrichi avec gras, italique, listes, titres h2-h4)
   - Titre de section
   - Image
+  - Image avec légende
   - Citation
+  - Tableau (avec lignes et colonnes)
+  - Témoignage (simple, avec photo optionnelle)
+  - **Carrousel de témoignages** (nouveau - plusieurs témoignages avec défilement automatique)
+  - Deux colonnes (layout en 2 colonnes)
+  - Carte de personne (équipe/membres)
+  - Grille de cartes (avec icônes SVG)
+  - Statistiques (affichage de chiffres clés)
+  - Alerte/Notice (info, succès, attention, danger)
+  - Accordéon/FAQ (sections pliables)
   - Appel à l'action (avec titre, texte, lien, bouton)
+  - Formulaire de don Zeffy (intégration iframe)
+  - Inscription infolettre Mailchimp
   - HTML brut (utiliser avec précaution)
 - **Champs additionnels:**
   - Introduction (texte simple)
+- **Documentation détaillée:**
+  - Voir [CARROUSEL-TEMOIGNAGES.md](CARROUSEL-TEMOIGNAGES.md) pour le bloc carrousel
 
 ### 3. ContactPage (Page de contact)
 - **Localisation:** `pages_app/models.py`

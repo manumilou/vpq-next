@@ -1238,6 +1238,166 @@ button:focus {
     color: #9ca3af;
 }
 
+/* ============================================
+   CARROUSEL DE TÉMOIGNAGES
+   ============================================ */
+
+.carrousel-temoignages-wrapper {
+    position: relative;
+}
+
+.carrousel-temoignages-container {
+    padding: 0 1rem;
+}
+
+.carrousel-slides {
+    position: relative;
+    min-height: 300px;
+}
+
+.carrousel-slide {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carrousel-slide.active {
+    display: block;
+    opacity: 1;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.carrousel-navigation {
+    user-select: none;
+}
+
+.carrousel-prev,
+.carrousel-next {
+    transition: all 0.2s ease;
+}
+
+.carrousel-prev:hover,
+.carrousel-next:hover {
+    transform: scale(1.1);
+}
+
+.carrousel-prev:active,
+.carrousel-next:active {
+    transform: scale(0.95);
+}
+
+.carrousel-dot {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.carrousel-dot.active {
+    background-color: #16a34a; /* green-600 */
+    transform: scale(1.3);
+}
+
+.carrousel-dot:hover {
+    background-color: #6b7280; /* gray-500 */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .carrousel-slides {
+        min-height: 400px;
+    }
+
+    .carrousel-slide .flex {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ============================================
+   ICÔNES SVG - TAILLES PAR DÉFAUT
+   ============================================ */
+
+/* Taille par défaut pour tous les icônes SVG */
+.icon-svg {
+    width: 32px;
+    height: 32px;
+}
+
+/* ============================================
+   GRILLE DE CARTES - ICÔNES RÉDUITES
+   ============================================ */
+
+.grille-cartes .carte-icon .icon-svg {
+    width: 32px !important;
+    height: 32px !important;
+}
+
+/* Optionnel: taille encore plus petite sur mobile */
+@media (max-width: 640px) {
+    .grille-cartes .carte-icon .icon-svg {
+        width: 28px !important;
+        height: 28px !important;
+    }
+}
+
+/* ============================================
+   GRILLE D'ÉQUIPE
+   ============================================ */
+
+.grille-equipe {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.personne-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.personne-photo-container {
+    overflow: hidden;
+}
+
+.personne-photo-container img {
+    transition: transform 0.3s ease;
+}
+
+.personne-card:hover .personne-photo-container img {
+    transform: scale(1.05);
+}
+
+.personne-photo-placeholder {
+    background: linear-gradient(135deg, #e0f2fe 0%, #d1fae5 100%);
+}
+
+/* Limiter le nombre de lignes de la bio sur les cartes */
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Responsive: 1 colonne sur mobile, 2 sur tablette, 3 sur desktop */
+@media (min-width: 640px) and (max-width: 1023px) {
+    .grille-equipe .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 .w-5 {
     width: 1.25rem;
 }

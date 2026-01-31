@@ -1,0 +1,163 @@
+{% load wagtailimages_tags %}
+
+<div class="carrousel-temoignages-wrapper my-12">
+    {% if value.titre %}
+    <h2 class="text-3xl font-bold text-center mb-8">{{ value.titre }}</h2>
+    {% endif %}
+
+    <div class="carrousel-temoignages-container relative max-w-4xl mx-auto">
+        <!-- Témoignages -->
+        <div class="carrousel-slides relative overflow-hidden rounded-lg shadow-xl bg-white">
+            {% for temoignage in value.temoignages %}
+            <div class="carrousel-slide {% if forloop.first %}active{% endif %}" data-slide="{{ forloop.counter0 }}">
+                <div class="flex flex-col md:flex-row items-center gap-8 p-8 md:p-12">
+                    <!-- Photo -->
+                    <div class="flex-shrink-0">
+                        {% image temoignage.photo fill-200x200 class="rounded-full w-32 h-32 md:w-48 md:h-48 object-cover shadow-lg" %}
+                    </div>
+
+                    <!-- Contenu du témoignage -->
+                    <div class="flex-1 text-center md:text-left">
+                        <!-- Citation -->
+                        <div class="relative mb-6">
+                            <svg class="absolute -top-4 -left-2 w-8 h-8 text-gray-200 opacity-50" fill="currentColor" viewBox="0 0 32 32">
+                                <path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H8c0-1.1.9-2 2-2h2V8h-2zm12 0c-3.3 0-6 2.7-6 6v10h10V14h-6c0-1.1.9-2 2-2h2V8h-2z"/>
+                            </svg>
+                            <p class="text-lg md:text-xl text-gray-700 italic leading-relaxed pl-6">
+                                {{ temoignage.citation }}
+                            </p>
+                        </div>
+
+                        <!-- Informations sur l'auteur -->
+                        <div class="border-t border-gray-200 pt-4">
+                            <p class="font-bold text-gray-900 text-lg">{{ temoignage.nom }}</p>
+                            {% if temoignage.role %}
+                            <p class="text-green-600 font-medium">{{ temoignage.role }}</p>
+                            {% endif %}
+                            {% if temoignage.localisation %}
+                            <p class="text-gray-500 text-sm">{{ temoignage.localisation }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Navigation -->
+        {% if value.temoignages|length > 1 %}
+        <div class="carrousel-navigation flex justify-center items-center gap-4 mt-6">
+            <!-- Bouton précédent -->
+            <button class="carrousel-prev bg-white hover:bg-gray-100 text-gray-800 font-bold p-3 rounded-full shadow-lg transition" aria-label="Témoignage précédent">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </button>
+
+            <!-- Indicateurs -->
+            <div class="carrousel-dots flex gap-2">
+                {% for temoignage in value.temoignages %}
+                <button class="carrousel-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition {% if forloop.first %}active{% endif %}" data-slide="{{ forloop.counter0 }}" aria-label="Aller au témoignage {{ forloop.counter }}"></button>
+                {% endfor %}
+            </div>
+
+            <!-- Bouton suivant -->
+            <button class="carrousel-next bg-white hover:bg-gray-100 text-gray-800 font-bold p-3 rounded-full shadow-lg transition" aria-label="Témoignage suivant">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% if value.temoignages|length > 1 %}
+<script>
+(function() {
+    const container = document.currentScript.previousElementSibling;
+    const slides = container.querySelectorAll('.carrousel-slide');
+    const dots = container.querySelectorAll('.carrousel-dot');
+    const prevBtn = container.querySelector('.carrousel-prev');
+    const nextBtn = container.querySelector('.carrousel-next');
+
+    let currentSlide = 0;
+    let autoplayInterval = null;
+    const autoplay = {{ value.defilement_auto|default:True|yesno:"true,false" }};
+
+    function showSlide(index) {
+        // Wrap around
+        if (index >= slides.length) index = 0;
+        if (index < 0) index = slides.length - 1;
+
+        // Update slides
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+
+        // Update dots
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+
+    function startAutoplay() {
+        if (autoplay && slides.length > 1) {
+            autoplayInterval = setInterval(nextSlide, 5000); // 5 secondes
+        }
+    }
+
+    function stopAutoplay() {
+        if (autoplayInterval) {
+            clearInterval(autoplayInterval);
+            autoplayInterval = null;
+        }
+    }
+
+    // Event listeners
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopAutoplay();
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopAutoplay();
+        });
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showSlide(index);
+            stopAutoplay();
+        });
+    });
+
+    // Pause autoplay on hover
+    container.addEventListener('mouseenter', stopAutoplay);
+    container.addEventListener('mouseleave', startAutoplay);
+
+    // Start autoplay
+    startAutoplay();
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') prevSlide();
+        if (e.key === 'ArrowRight') nextSlide();
+    });
+})();
+</script>
+{% endif %}
