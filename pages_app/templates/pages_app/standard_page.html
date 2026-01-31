@@ -95,7 +95,7 @@
                         {% for personne in block.value.personnes %}
                         <div class="personne-card bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-shadow">
                             {% if personne.photo %}
-                            <div class="personne-photo-container aspect-square">
+                            <div class="personne-photo-container aspect-square overflow-hidden bg-gray-100">
                                 {% image personne.photo fill-400x400 class="w-full h-full object-cover" %}
                             </div>
                             {% else %}
