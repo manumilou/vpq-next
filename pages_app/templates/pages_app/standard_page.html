@@ -95,11 +95,11 @@
                         {% for personne in block.value.personnes %}
                         <div class="personne-card bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-shadow">
                             {% if personne.photo %}
-                            <div class="personne-photo-container">
-                                {% image personne.photo fill-400x400 class="w-full h-64 object-cover" %}
+                            <div class="personne-photo-container aspect-square overflow-hidden bg-gray-100">
+                                {% image personne.photo fill-400x400 class="w-full h-full object-cover" %}
                             </div>
                             {% else %}
-                            <div class="personne-photo-placeholder bg-gradient-to-br from-blue-100 to-green-100 h-64 flex items-center justify-center">
+                            <div class="personne-photo-placeholder bg-gradient-to-br from-blue-100 to-green-100 aspect-square flex items-center justify-center">
                                 <svg class="w-24 h-24 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
                                 </svg>
