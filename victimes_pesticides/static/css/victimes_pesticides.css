@@ -1587,6 +1587,19 @@ a.logo-item:hover {
     font-weight: 500;
 }
 
+.bio-toggle {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: #6b7280;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.bio-toggle:hover {
+    color: #1f2937;
+}
+
 @media (max-width: 640px) {
     .logos-grid {
         grid-template-columns: repeat(2, 1fr);
