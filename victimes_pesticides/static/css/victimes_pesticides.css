@@ -1189,6 +1189,18 @@ figure {
     overflow: hidden;
 }
 
+iframe {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+}
+
+.page-content iframe,
+.prose iframe {
+    border-radius: 0.5rem;
+}
+
 @media (min-width: 768px) {
     .page-content {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
