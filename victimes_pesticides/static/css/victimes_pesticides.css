@@ -281,8 +281,15 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .prose img {
+    max-width: 100%;
+    height: auto;
     margin-top: 2em;
     margin-bottom: 2em;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Links in text */
