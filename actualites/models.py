@@ -1,4 +1,5 @@
 from django.db import models
+from modelcluster.fields import ParentalManyToManyField
 from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel
@@ -81,7 +82,7 @@ class ActualitePage(Page):
         verbose_name="Auteur"
     )
 
-    categories = models.ManyToManyField(
+    categories = ParentalManyToManyField(
         Categorie,
         blank=True,
         verbose_name="Catégories"
