@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (mobileMenuButton && mobileNav) {
         mobileMenuButton.addEventListener('click', function() {
             mobileNav.classList.toggle('hidden');
+            const expanded = !mobileNav.classList.contains('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', expanded);
+            mobileMenuButton.setAttribute('aria-label', expanded ? 'Fermer le menu' : 'Ouvrir le menu');
         });
 
         // Close mobile menu when clicking on a link
@@ -23,6 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (!isClickInsideNav && !isClickOnButton && !mobileNav.classList.contains('hidden')) {
                 mobileNav.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                mobileMenuButton.setAttribute('aria-label', 'Ouvrir le menu');
             }
         });
     }
@@ -30,6 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Accordion Toggle
     const accordeonToggles = document.querySelectorAll('.accordeon-toggle');
     accordeonToggles.forEach(function(toggle) {
+        // Set initial ARIA state
+        toggle.setAttribute('aria-expanded', 'false');
         toggle.addEventListener('click', function() {
             const targetId = this.getAttribute('data-target');
             const content = document.getElementById(targetId);
@@ -37,6 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (content) {
                 content.classList.toggle('hidden');
+                const expanded = !content.classList.contains('hidden');
+                this.setAttribute('aria-expanded', expanded);
                 if (icon) {
                     icon.classList.toggle('rotate-180');
                 }

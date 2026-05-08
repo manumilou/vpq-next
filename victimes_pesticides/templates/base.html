@@ -28,7 +28,7 @@
         {% endif %}
 
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/victimes_pesticides.css' %}?v=10">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/victimes_pesticides.css' %}?v=11">
 
         {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
@@ -72,9 +72,12 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
+        {# Skip to content link for keyboard users #}
+        <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
         {% include "includes/header.html" %}
 
-        <main class="site-main">
+        <main class="site-main" id="main-content">
             {% block content %}{% endblock %}
         </main>
 

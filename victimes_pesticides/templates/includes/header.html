@@ -11,7 +11,7 @@
             </div>
 
             {# Navigation Desktop - Dynamic from Wagtail #}
-            <nav class="main-nav hidden xl:block">
+            <nav class="main-nav hidden xl:block" aria-label="Navigation principale">
                 <ul class="nav-list flex gap-6">
                     {% for menuitem in menuitems %}
                         {% pageurl menuitem as item_url %}
@@ -25,7 +25,7 @@
             </nav>
 
             {# Mobile Menu Button #}
-            <button class="mobile-menu-button xl:hidden" id="mobileMenuButton" aria-label="Menu">
+            <button class="mobile-menu-button xl:hidden" id="mobileMenuButton" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
@@ -33,7 +33,7 @@
         </div>
 
         {# Mobile Navigation - Dynamic from Wagtail #}
-        <nav class="mobile-nav hidden xl:hidden" id="mobileNav">
+        <nav class="mobile-nav hidden xl:hidden" id="mobileNav" aria-label="Navigation mobile">
             <ul class="nav-list-mobile py-4">
                 {% for menuitem in menuitems %}
                     {% pageurl menuitem as item_url %}
