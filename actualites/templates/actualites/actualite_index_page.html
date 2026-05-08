@@ -84,13 +84,7 @@
                 <a href="{% pageurl actualite %}" class="inline-block mt-4 text-green-600 hover:text-green-700 font-medium text-sm">
                     Lire la suite →
                 </a>
-                {% if actualite.categories.all %}
-                <div class="flex flex-wrap gap-1 mt-4 pt-3 border-t border-gray-100">
-                    {% for categorie in actualite.categories.all %}
-                    <span class="categorie-badge-sm">{{ categorie.nom }}</span>
-                    {% endfor %}
-                </div>
-                {% endif %}
+
             </div>
         </article>
         {% empty %}
