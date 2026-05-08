@@ -278,6 +278,28 @@
                     {% include_block block %}
                 </div>
 
+            {% elif block.block_type == 'grille_logos' %}
+                <div class="grille-logos my-10">
+                    {% if block.value.titre %}
+                    <h3 class="text-2xl font-bold mb-6 text-gray-900">{{ block.value.titre }}</h3>
+                    {% endif %}
+                    <div class="logos-grid">
+                        {% for item in block.value.logos %}
+                        {% if item.lien %}
+                        <a href="{{ item.lien }}" target="_blank" rel="noopener" class="logo-item" title="{{ item.nom }}">
+                            {% image item.logo max-200x100 class="logo-img" %}
+                            <span class="logo-name">{{ item.nom }}</span>
+                        </a>
+                        {% else %}
+                        <div class="logo-item" title="{{ item.nom }}">
+                            {% image item.logo max-200x100 class="logo-img" %}
+                            <span class="logo-name">{{ item.nom }}</span>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
             {% elif block.block_type == 'html_brut' %}
                 {{ block.value|safe }}
             {% endif %}

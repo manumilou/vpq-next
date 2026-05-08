@@ -228,6 +228,16 @@ class StandardPage(Page):
                 default='box'
             )),
         ], label="Inscription infolettre Mailchimp", icon="mail")),
+        ('grille_logos', blocks.StructBlock([
+            ('titre', blocks.CharBlock(label="Titre de la section", required=False)),
+            ('logos', blocks.ListBlock(
+                blocks.StructBlock([
+                    ('nom', blocks.CharBlock(label="Nom de l'organisation")),
+                    ('logo', ImageChooserBlock(label="Logo")),
+                    ('lien', blocks.URLBlock(label="Lien vers le site", required=False)),
+                ])
+            )),
+        ], label="Grille de logos", icon="image")),
         ('html_brut', blocks.RawHTMLBlock(
             label="HTML brut",
             help_text="Utiliser avec précaution"
