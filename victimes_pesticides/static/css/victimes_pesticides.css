@@ -1616,21 +1616,25 @@ a.logo-item:hover {
     border-top: 1px solid #e5e7eb;
 }
 
-.stat-sources-list {
-    list-style: decimal;
-    padding-left: 1.5rem;
+.stat-source-item {
     font-size: 0.8rem;
     color: #6b7280;
-    line-height: 1.8;
+    line-height: 2;
 }
 
-.stat-sources-list a {
+.stat-source-item sup {
+    color: #4b5563;
+    font-weight: 600;
+    margin-right: 0.3rem;
+}
+
+.stat-source-item a {
     color: #4b5563;
     text-decoration: underline;
     text-underline-offset: 2px;
 }
 
-.stat-sources-list a:hover {
+.stat-source-item a:hover {
     color: #1f2937;
 }
 
