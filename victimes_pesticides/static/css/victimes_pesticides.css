@@ -1176,6 +1176,12 @@ button:focus {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.page-content > * {
+    min-width: 0;
 }
 
 @media (min-width: 768px) {
