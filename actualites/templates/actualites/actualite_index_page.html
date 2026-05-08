@@ -13,6 +13,23 @@
     </div>
     {% endif %}
 
+    {# Category Filter #}
+    {% if all_categories %}
+    <div class="categorie-filter mb-6">
+        <div class="flex flex-wrap gap-2 items-center">
+            <span class="text-sm font-medium text-gray-600 mr-2">Filtrer :</span>
+            <a href="{% pageurl page %}{% if search_query %}?q={{ search_query }}{% endif %}" class="categorie-badge {% if not categorie_active %}active{% endif %}">
+                Toutes
+            </a>
+            {% for cat in all_categories %}
+            <a href="{% pageurl page %}?categorie={{ cat.slug }}{% if search_query %}&q={{ search_query }}{% endif %}" class="categorie-badge {% if categorie_active == cat.slug %}active{% endif %}">
+                {{ cat.nom }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
     {# Search Bar #}
     <div class="search-container mb-8">
         <form method="get" action="" class="search-form">
@@ -57,6 +74,13 @@
             </a>
             {% endif %}
             <div class="p-6">
+                {% if actualite.categories.all %}
+                <div class="flex flex-wrap gap-1 mb-2">
+                    {% for categorie in actualite.categories.all %}
+                    <span class="categorie-badge-sm">{{ categorie.nom }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
                 <time datetime="{{ actualite.date_publication|date:'Y-m-d' }}" class="text-sm text-green-600 font-medium">
                     {{ actualite.date_publication|date:"d F Y" }}
                 </time>

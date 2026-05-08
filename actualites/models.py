@@ -187,6 +187,15 @@ class ActualiteIndexPage(Page):
             )
             context['search_query'] = search_query
 
+        # Category filter
+        categorie_slug = request.GET.get('categorie', '').strip()
+        if categorie_slug:
+            actualites = actualites.filter(categories__slug=categorie_slug)
+            context['categorie_active'] = categorie_slug
+
+        # All categories for filter UI
+        context['all_categories'] = Categorie.objects.all().order_by('nom')
+
         # Pagination - 9 articles per page (3x3 grid)
         paginator = Paginator(actualites, 9)
         page_number = request.GET.get('page', 1)
