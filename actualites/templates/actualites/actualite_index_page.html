@@ -66,9 +66,9 @@
         <article class="actualite-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
             <a href="{% pageurl actualite %}" class="block">
                 {% if actualite.image_principale %}
-                    {% image actualite.image_principale fill-400x120 class="w-full object-cover" style="height:96px" %}
+                    {% image actualite.image_principale fill-400x120 class="w-full object-cover card-banner" %}
                 {% else %}
-                    <div class="w-full flex items-center justify-center placeholder-img" style="height:96px" data-index="{{ forloop.counter }}">
+                    <div class="w-full flex items-center justify-center placeholder-img card-banner" data-index="{{ forloop.counter }}">
                         <svg class="w-8 h-8 opacity-30" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM5 19V5h14v14H5zm4-5.86l2.14 2.58 3-3.86L18 17H6l3-3.86z"/>
                         </svg>

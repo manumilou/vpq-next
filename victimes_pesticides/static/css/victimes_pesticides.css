@@ -1541,6 +1541,16 @@ button:focus {
     margin-top: 1rem;
 }
 
+.card-banner {
+    height: 96px;
+}
+
+@media (max-width: 767px) {
+    .card-banner {
+        height: 72px;
+    }
+}
+
 .placeholder-img {
     color: #ffffff;
 }
