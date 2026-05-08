@@ -1315,7 +1315,9 @@ button:focus {
 
 .carrousel-slides {
     position: relative;
-    background: linear-gradient(to bottom right, #f9fafb, #ffffff);
+    background: linear-gradient(to bottom right, #f0f4f8, #f9fafb);
+    padding: 2rem;
+    border-radius: 0.75rem;
 }
 
 .carrousel-slide {
