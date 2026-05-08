@@ -14,8 +14,9 @@
             <nav class="main-nav hidden xl:block">
                 <ul class="nav-list flex gap-6">
                     {% for menuitem in menuitems %}
+                        {% pageurl menuitem as item_url %}
                         <li>
-                            <a href="{% pageurl menuitem %}" class="nav-link {% if menuitem.slug == 'soutenez-vpq' %}nav-link-cta{% endif %}">
+                            <a href="{{ item_url }}" class="nav-link {% if menuitem.slug == 'soutenez-vpq' %}nav-link-cta{% endif %}{% if item_url != '/' and item_url in request.path %} active{% elif request.path == item_url %} active{% endif %}">
                                 {{ menuitem.title }}
                             </a>
                         </li>
@@ -35,8 +36,9 @@
         <nav class="mobile-nav hidden xl:hidden" id="mobileNav">
             <ul class="nav-list-mobile py-4">
                 {% for menuitem in menuitems %}
+                    {% pageurl menuitem as item_url %}
                     <li>
-                        <a href="{% pageurl menuitem %}" class="nav-link-mobile {% if menuitem.slug == 'soutenez-vpq' %}nav-link-mobile-cta{% endif %}">
+                        <a href="{{ item_url }}" class="nav-link-mobile {% if menuitem.slug == 'soutenez-vpq' %}nav-link-mobile-cta{% endif %}{% if item_url != '/' and item_url in request.path %} active{% elif request.path == item_url %} active{% endif %}">
                             {{ menuitem.title }}
                         </a>
                     </li>

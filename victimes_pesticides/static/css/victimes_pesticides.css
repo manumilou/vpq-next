@@ -441,8 +441,13 @@ a:hover {
     transition: color 0.2s;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link.active {
     color: #1e40af;
+}
+
+.nav-link.active {
+    border-bottom: 2px solid #1e40af;
 }
 
 .nav-link-cta {
@@ -520,7 +525,8 @@ a:hover {
     font-weight: 500;
 }
 
-.nav-link-mobile:hover {
+.nav-link-mobile:hover,
+.nav-link-mobile.active {
     background-color: #f3f4f6;
     color: #1e40af;
 }
