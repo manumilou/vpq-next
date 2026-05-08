@@ -58,7 +58,16 @@ class HomePage(Page):
                     ('chiffre', blocks.CharBlock(label="Chiffre", max_length=20)),
                     ('unite', blocks.CharBlock(label="Unité", max_length=30, required=False)),
                     ('description', blocks.CharBlock(label="Description", max_length=100)),
+                    ('source_num', blocks.IntegerBlock(label="N° de source (exposant)", required=False, help_text="Numéro renvoyant à la liste des sources")),
                 ])
+            )),
+            ('sources', blocks.ListBlock(
+                blocks.StructBlock([
+                    ('texte', blocks.CharBlock(label="Référence")),
+                    ('url', blocks.URLBlock(label="Lien", required=False)),
+                ]),
+                label="Sources",
+                required=False,
             )),
         ], label="Statistiques", icon="order")),
         ('problematique_block', blocks.StructBlock([

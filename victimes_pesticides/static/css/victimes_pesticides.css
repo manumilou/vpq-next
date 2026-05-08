@@ -1599,6 +1599,41 @@ a.logo-item:hover {
     color: #1f2937;
 }
 
+/* ============================================
+   STATISTICS SOURCES
+   ============================================ */
+
+.stat-source-ref {
+    font-size: 0.5em;
+    color: #6b7280;
+    margin-left: 2px;
+    font-weight: 400;
+}
+
+.stat-sources {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.stat-sources-list {
+    list-style: decimal;
+    padding-left: 1.5rem;
+    font-size: 0.8rem;
+    color: #6b7280;
+    line-height: 1.8;
+}
+
+.stat-sources-list a {
+    color: #4b5563;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.stat-sources-list a:hover {
+    color: #1f2937;
+}
+
 @media (max-width: 640px) {
     .logos-grid {
         grid-template-columns: repeat(2, 1fr);

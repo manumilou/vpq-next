@@ -140,7 +140,16 @@ class StandardPage(Page):
                     ('chiffre', blocks.CharBlock(label="Chiffre")),
                     ('unite', blocks.CharBlock(label="Unité", required=False)),
                     ('description', blocks.CharBlock(label="Description")),
+                    ('source_num', blocks.IntegerBlock(label="N° de source (exposant)", required=False, help_text="Numéro renvoyant à la liste des sources")),
                 ])
+            )),
+            ('sources', blocks.ListBlock(
+                blocks.StructBlock([
+                    ('texte', blocks.CharBlock(label="Référence")),
+                    ('url', blocks.URLBlock(label="Lien", required=False)),
+                ]),
+                label="Sources",
+                required=False,
             )),
         ], label="Statistiques", icon="list-ol")),
         ('alerte', blocks.StructBlock([

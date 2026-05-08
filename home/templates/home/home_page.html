@@ -82,11 +82,22 @@
                     <div class="stats-grid">
                         {% for stat in block.value.statistiques %}
                         <div class="stat-card">
-                            <div class="stat-number">{{ stat.chiffre }}{% if stat.unite %}<span class="stat-unit">{{ stat.unite }}</span>{% endif %}</div>
+                            <div class="stat-number">{{ stat.chiffre }}{% if stat.unite %}<span class="stat-unit">{{ stat.unite }}</span>{% endif %}{% if stat.source_num %}<sup class="stat-source-ref">{{ stat.source_num }}</sup>{% endif %}</div>
                             <div class="stat-description">{{ stat.description }}</div>
                         </div>
                         {% endfor %}
                     </div>
+                    {% if block.value.sources %}
+                    <div class="stat-sources">
+                        <ol class="stat-sources-list">
+                            {% for source in block.value.sources %}
+                            <li>
+                                {% if source.url %}<a href="{{ source.url }}" target="_blank" rel="noopener">{{ source.texte }}</a>{% else %}{{ source.texte }}{% endif %}
+                            </li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                    {% endif %}
                 </div>
             </section>
 

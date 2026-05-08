@@ -166,12 +166,23 @@
                         {% for stat in block.value.stats %}
                         <div class="stat-item text-center">
                             <div class="stat-number text-4xl md:text-5xl font-bold text-blue-600 mb-2">
-                                {{ stat.chiffre }}{% if stat.unite %}<span class="text-2xl">{{ stat.unite }}</span>{% endif %}
+                                {{ stat.chiffre }}{% if stat.unite %}<span class="text-2xl">{{ stat.unite }}</span>{% endif %}{% if stat.source_num %}<sup class="stat-source-ref">{{ stat.source_num }}</sup>{% endif %}
                             </div>
                             <div class="stat-description text-sm text-gray-600">{{ stat.description }}</div>
                         </div>
                         {% endfor %}
                     </div>
+                    {% if block.value.sources %}
+                    <div class="stat-sources">
+                        <ol class="stat-sources-list">
+                            {% for source in block.value.sources %}
+                            <li>
+                                {% if source.url %}<a href="{{ source.url }}" target="_blank" rel="noopener">{{ source.texte }}</a>{% else %}{{ source.texte }}{% endif %}
+                            </li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                    {% endif %}
                 </div>
 
             {% elif block.block_type == 'alerte' %}
