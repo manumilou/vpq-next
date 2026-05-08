@@ -13,24 +13,7 @@
     </div>
     {% endif %}
 
-    {# Category Filter #}
-    {% if all_categories %}
-    <div class="categorie-filter mb-6">
-        <div class="flex flex-wrap gap-2 items-center">
-            <span class="text-sm font-medium text-gray-600 mr-2">Filtrer :</span>
-            <a href="{% pageurl page %}{% if search_query %}?q={{ search_query }}{% endif %}" class="categorie-badge {% if not categorie_active %}active{% endif %}">
-                Toutes
-            </a>
-            {% for cat in all_categories %}
-            <a href="{% pageurl page %}?categorie={{ cat.slug }}{% if search_query %}&q={{ search_query }}{% endif %}" class="categorie-badge {% if categorie_active == cat.slug %}active{% endif %}">
-                {{ cat.nom }}
-            </a>
-            {% endfor %}
-        </div>
-    </div>
-    {% endif %}
-
-    {# Search Bar #}
+    {# Search and Filter #}
     <div class="search-container mb-8">
         <form method="get" action="" class="search-form">
             <div class="search-input-wrapper">
@@ -62,6 +45,19 @@
         <p class="search-results-info">
             {{ actualites.paginator.count }} résultat{{ actualites.paginator.count|pluralize }} pour « <strong>{{ search_query }}</strong> »
         </p>
+        {% endif %}
+
+        {% if all_categories %}
+        <div class="categorie-filter">
+            <a href="{% pageurl page %}{% if search_query %}?q={{ search_query }}{% endif %}" class="categorie-badge {% if not categorie_active %}active{% endif %}">
+                Toutes
+            </a>
+            {% for cat in all_categories %}
+            <a href="{% pageurl page %}?categorie={{ cat.slug }}{% if search_query %}&q={{ search_query }}{% endif %}" class="categorie-badge {% if categorie_active == cat.slug %}active{% endif %}">
+                {{ cat.nom }}
+            </a>
+            {% endfor %}
+        </div>
         {% endif %}
     </div>
 
