@@ -1547,22 +1547,22 @@ button:focus {
 
 .logos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 1.5rem;
     align-items: stretch;
 }
 
 .logo-item {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 1.5rem 1rem;
+    padding: 1.5rem;
     background: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 0.75rem;
     text-decoration: none;
     transition: all 0.2s;
+    min-height: 120px;
 }
 
 a.logo-item:hover {
@@ -1573,18 +1573,10 @@ a.logo-item:hover {
 
 .logo-item .logo-img {
     max-width: 100%;
-    max-height: 80px;
+    max-height: 100px;
     width: auto;
     height: auto;
     object-fit: contain;
-}
-
-.logo-name {
-    margin-top: 0.75rem;
-    font-size: 0.8rem;
-    color: #4b5563;
-    text-align: center;
-    font-weight: 500;
 }
 
 .bio-toggle {
@@ -1607,11 +1599,12 @@ a.logo-item:hover {
     }
 
     .logo-item {
-        padding: 1rem 0.75rem;
+        padding: 1rem;
+        min-height: 90px;
     }
 
     .logo-item .logo-img {
-        max-height: 60px;
+        max-height: 70px;
     }
 }
 

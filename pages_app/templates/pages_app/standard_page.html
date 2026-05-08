@@ -288,13 +288,11 @@
                         {% for item in block.value.logos %}
                         {% if item.lien %}
                         <a href="{{ item.lien }}" target="_blank" rel="noopener" class="logo-item" title="{{ item.nom }}">
-                            {% image item.logo max-200x100 class="logo-img" %}
-                            <span class="logo-name">{{ item.nom }}</span>
+                            {% image item.logo max-280x140 class="logo-img" %}
                         </a>
                         {% else %}
                         <div class="logo-item" title="{{ item.nom }}">
-                            {% image item.logo max-200x100 class="logo-img" %}
-                            <span class="logo-name">{{ item.nom }}</span>
+                            {% image item.logo max-280x140 class="logo-img" %}
                         </div>
                         {% endif %}
                         {% endfor %}
