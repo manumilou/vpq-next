@@ -1542,13 +1542,9 @@ button:focus {
 }
 
 .card-banner {
-    height: 96px;
-}
-
-@media (max-width: 767px) {
-    .card-banner {
-        height: 72px;
-    }
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
 }
 
 .placeholder-img {
