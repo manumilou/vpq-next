@@ -1541,6 +1541,20 @@ button:focus {
     margin-top: 1rem;
 }
 
+.placeholder-img {
+    color: #ffffff;
+}
+
+.placeholder-img[data-index="1"] { background-color: #6366f1; }
+.placeholder-img[data-index="2"] { background-color: #0891b2; }
+.placeholder-img[data-index="3"] { background-color: #059669; }
+.placeholder-img[data-index="4"] { background-color: #d97706; }
+.placeholder-img[data-index="5"] { background-color: #dc2626; }
+.placeholder-img[data-index="6"] { background-color: #7c3aed; }
+.placeholder-img[data-index="7"] { background-color: #2563eb; }
+.placeholder-img[data-index="8"] { background-color: #0d9488; }
+.placeholder-img[data-index="9"] { background-color: #ca8a04; }
+
 /* ============================================
    SEARCH BAR (ACTUALITES)
    ============================================ */
