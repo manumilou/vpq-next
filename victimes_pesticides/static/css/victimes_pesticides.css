@@ -1545,6 +1545,13 @@ button:focus {
     width: 100%;
     aspect-ratio: 16 / 9;
     height: auto;
+    object-fit: cover;
+}
+
+div.card-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .placeholder-img {
