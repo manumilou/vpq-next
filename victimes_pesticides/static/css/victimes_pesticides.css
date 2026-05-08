@@ -448,6 +448,11 @@ a:hover {
 
 .nav-link.active {
     border-bottom: 2px solid #1e40af;
+    padding-bottom: 0.4rem;
+}
+
+.nav-link-cta.active {
+    background-color: #c2410c;
 }
 
 .nav-link-cta {
