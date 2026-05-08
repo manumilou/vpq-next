@@ -28,7 +28,12 @@
         {% endif %}
 
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/victimes_pesticides.css' %}?v=11">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/victimes_pesticides.css' %}?v=12">
+        <style>
+            /* Critical responsive fix - inline to bypass cache */
+            img { max-width: 100% !important; height: auto !important; }
+            .site-main { overflow-x: hidden; }
+        </style>
 
         {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
