@@ -54,6 +54,36 @@ class StandardPage(Page):
     )
 
     corps = StreamField([
+        ('hero_block', blocks.StructBlock([
+            ('image_fond', ImageChooserBlock(label="Image de fond")),
+            ('titre_principal', blocks.CharBlock(label="Titre principal")),
+            ('sous_titre', blocks.CharBlock(label="Sous-titre", required=False)),
+            ('texte_bouton', blocks.CharBlock(label="Texte du bouton", required=False)),
+            ('lien_bouton', blocks.URLBlock(label="Lien du bouton", required=False)),
+            ('opacite_overlay', blocks.IntegerBlock(
+                label="Opacité de l'overlay (%)",
+                default=40,
+                min_value=0,
+                max_value=80,
+                help_text="Assombrit l'image pour améliorer la lisibilité du texte (0-80%)"
+            )),
+        ], label="Bloc héro pleine largeur", icon="image")),
+        ('problematique_block', blocks.StructBlock([
+            ('titre', blocks.CharBlock(label="Titre")),
+            ('contenu', blocks.RichTextBlock(
+                label="Contenu",
+                features=['bold', 'italic', 'link', 'ol', 'ul']
+            )),
+            ('image', ImageChooserBlock(label="Image", required=False)),
+            ('position_image', blocks.ChoiceBlock(
+                choices=[
+                    ('left', 'Gauche'),
+                    ('right', 'Droite'),
+                ],
+                default='right',
+                label="Position de l'image"
+            )),
+        ], label="Bloc problématique", icon="doc-full")),
         ('paragraphe', blocks.RichTextBlock(
             label="Paragraphe",
             features=['bold', 'italic', 'link', 'ol', 'ul', 'h2', 'h3', 'h4']

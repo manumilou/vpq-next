@@ -16,7 +16,40 @@
     {% if page.corps %}
     <div class="page-content">
         {% for block in page.corps %}
-            {% if block.block_type == 'paragraphe' %}
+            {% if block.block_type == 'hero_block' %}
+                <div class="hero-block relative w-full hero-height flex items-center justify-center overflow-hidden rounded-lg my-8">
+                    {% image block.value.image_fond fill-1920x1080 as hero_img %}
+                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ hero_img.url }}');"></div>
+                    <div class="absolute inset-0 bg-black" style="opacity: {{ block.value.opacite_overlay|default:40 }}%;"></div>
+                    <div class="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+                        <h2 class="hero-title font-bold mb-4 drop-shadow-lg">{{ block.value.titre_principal }}</h2>
+                        {% if block.value.sous_titre %}
+                            <p class="hero-subtitle mb-8 drop-shadow-lg">{{ block.value.sous_titre }}</p>
+                        {% endif %}
+                        {% if block.value.texte_bouton and block.value.lien_bouton %}
+                            <a href="{{ block.value.lien_bouton }}" class="cta-button">
+                                {{ block.value.texte_bouton }}
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+            {% elif block.block_type == 'problematique_block' %}
+                <section class="problematique-section section-spacing">
+                    <div class="problematique-content {% if block.value.image %}problematique-with-image problematique-image-{{ block.value.position_image }}{% endif %}">
+                        <div class="problematique-text">
+                            <h2 class="section-title mb-4">{{ block.value.titre }}</h2>
+                            <div class="prose">{{ block.value.contenu|richtext }}</div>
+                        </div>
+                        {% if block.value.image %}
+                        <div class="problematique-image">
+                            {% image block.value.image width-800 class="rounded-lg shadow-lg" loading="lazy" %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </section>
+
+            {% elif block.block_type == 'paragraphe' %}
                 <div class="mb-4 prose prose-lg max-w-none">{{ block.value|richtext }}</div>
 
             {% elif block.block_type == 'titre' %}
