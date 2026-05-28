@@ -627,9 +627,9 @@ a:hover {
 }
 
 .footer-logo {
-    height: 80px;
+    height: 52px;
     width: auto;
-    max-width: 200px;
+    max-width: 150px;
 }
 
 .footer-section h3 {
@@ -694,7 +694,8 @@ a:hover {
 }
 
 .footer-link:hover {
-    color: #0891b2;
+    color: #d1d5db;
+    text-decoration: none;
 }
 
 .footer-bottom {
