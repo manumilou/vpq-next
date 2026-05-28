@@ -1487,6 +1487,7 @@ iframe {
 .grille-cartes .carte-icon .icon-svg {
     width: 32px !important;
     height: 32px !important;
+    color: #1e40af;
 }
 
 /* Optionnel: taille encore plus petite sur mobile */
