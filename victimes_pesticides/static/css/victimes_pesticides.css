@@ -1,57 +1,34 @@
 /* Basic Tailwind-like utility classes for the Wagtail CMS */
 
-/* Font Face Declarations */
+/* Font Face Declarations
+   Self-hosted Google Fonts subsets (latin) under the SIL Open Font License 1.1. */
 @font-face {
-    font-family: 'Rubik';
-    src: url('../fonts/rubik.woff2') format('woff2');
-    font-weight: 400;
+    font-family: 'Inter';
+    src: url('../fonts/inter-latin.woff2') format('woff2');
+    font-weight: 400 700;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Rubik';
-    src: url('../fonts/rubik-500.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Inter';
+    src: url('../fonts/inter-latin-italic.woff2') format('woff2');
+    font-weight: 400 700;
+    font-style: italic;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Rubik';
-    src: url('../fonts/rubik-600.woff2') format('woff2');
+    font-family: 'Barlow Condensed';
+    src: url('../fonts/barlow-condensed-600-latin.woff2') format('woff2');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Rubik';
-    src: url('../fonts/rubik-700.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Bitter';
-    src: url('../fonts/bitter.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Bitter';
-    src: url('../fonts/bitter-600.woff2') format('woff2');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Bitter';
-    src: url('../fonts/bitter-700.woff2') format('woff2');
+    font-family: 'Barlow Condensed';
+    src: url('../fonts/barlow-condensed-700-latin.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -83,7 +60,7 @@
 }
 
 body {
-    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     line-height: 1.6;
     color: #111827;
     background-color: #f9fafb;
@@ -206,14 +183,18 @@ body {
 
 .transition { transition-property: all; transition-duration: 150ms; }
 
-/* Headings - Bitter font */
-h1, h2, h3, h4, h5, h6,
+/* Heading typography */
+h2, h3, h4, h5, h6,
 .section-title,
-.hero-title,
 .cta-final-title,
 .action-title,
 .mission-title {
-    font-family: 'Bitter', Georgia, serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+h1,
+.hero-title {
+    font-family: 'Barlow Condensed', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 /* Responsive grid */
@@ -276,7 +257,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .prose h2 {
-    font-family: 'Bitter', Georgia, serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: #111827;
     font-weight: 700;
     font-size: 1.5em;
@@ -286,7 +267,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .prose h3 {
-    font-family: 'Bitter', Georgia, serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: #111827;
     font-weight: 600;
     font-size: 1.25em;
@@ -651,7 +632,7 @@ a:hover {
 }
 
 .footer-section h3 {
-    font-family: 'Bitter', Georgia, serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 1rem;
@@ -1257,7 +1238,7 @@ iframe {
 }
 
 .cookie-banner-title {
-    font-family: 'Bitter', Georgia, serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
@@ -1295,7 +1276,7 @@ iframe {
     cursor: pointer;
     transition: all 0.2s;
     min-width: 120px;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 .cookie-banner-accept {
@@ -1801,7 +1782,7 @@ div.card-banner {
     border: 2px solid #d1d5db;
     border-radius: 0.5rem;
     font-size: 1rem;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: #111827;
     transition: all 0.2s;
 }
@@ -1846,7 +1827,7 @@ div.card-banner {
     border-radius: 0.5rem;
     font-size: 1rem;
     font-weight: 600;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     cursor: pointer;
     transition: all 0.2s;
     white-space: nowrap;
