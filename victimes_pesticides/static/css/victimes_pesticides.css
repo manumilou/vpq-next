@@ -627,9 +627,9 @@ a:hover {
 }
 
 .footer-logo {
-    height: 52px;
-    width: auto;
-    max-width: 150px;
+    width: clamp(90px, 24vw, 110px);
+    height: auto;
+    max-width: 100%;
 }
 
 .footer-section h3 {
