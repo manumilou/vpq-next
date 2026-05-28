@@ -196,6 +196,11 @@ class ActualiteIndexPage(Page):
         # All categories for filter UI
         context['all_categories'] = Categorie.objects.all().order_by('nom')
 
+        # Preserve active filters/search params when building pagination links.
+        pagination_params = request.GET.copy()
+        pagination_params.pop('page', None)
+        context['pagination_querystring'] = pagination_params.urlencode()
+
         # Pagination - 9 articles per page (3x3 grid)
         paginator = Paginator(actualites, 9)
         page_number = request.GET.get('page', 1)

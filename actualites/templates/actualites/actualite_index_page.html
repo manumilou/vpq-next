@@ -102,7 +102,7 @@
     {% if actualites.has_other_pages %}
     <nav class="pagination-nav mt-12 flex justify-center items-center gap-2" aria-label="Pagination">
         {% if actualites.has_previous %}
-        <a href="?{% if search_query %}q={{ search_query }}&{% endif %}page={{ actualites.previous_page_number }}" class="pagination-link pagination-arrow" aria-label="Page précédente">
+        <a href="?{% if pagination_querystring %}{{ pagination_querystring }}&{% endif %}page={{ actualites.previous_page_number }}" class="pagination-link pagination-arrow" aria-label="Page précédente">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
             </svg>
@@ -119,12 +119,12 @@
         {% if actualites.number == num %}
         <span class="pagination-link pagination-current" aria-current="page">{{ num }}</span>
         {% elif num > actualites.number|add:'-3' and num < actualites.number|add:'3' %}
-        <a href="?{% if search_query %}q={{ search_query }}&{% endif %}page={{ num }}" class="pagination-link">{{ num }}</a>
+        <a href="?{% if pagination_querystring %}{{ pagination_querystring }}&{% endif %}page={{ num }}" class="pagination-link">{{ num }}</a>
         {% endif %}
         {% endfor %}
 
         {% if actualites.has_next %}
-        <a href="?{% if search_query %}q={{ search_query }}&{% endif %}page={{ actualites.next_page_number }}" class="pagination-link pagination-arrow" aria-label="Page suivante">
+        <a href="?{% if pagination_querystring %}{{ pagination_querystring }}&{% endif %}page={{ actualites.next_page_number }}" class="pagination-link pagination-arrow" aria-label="Page suivante">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
             </svg>
