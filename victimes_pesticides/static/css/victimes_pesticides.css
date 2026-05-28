@@ -1167,6 +1167,10 @@ button:focus {
     min-width: 0;
 }
 
+.page-content [id] {
+    scroll-margin-top: 6rem;
+}
+
 figure {
     max-width: 100%;
     overflow: hidden;

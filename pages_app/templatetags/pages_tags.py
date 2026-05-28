@@ -24,5 +24,7 @@ def get_link_url(link_block):
         return link_block['internal_page'].url
     elif link_type == 'external' and link_block.get('external_url'):
         return link_block['external_url']
+    elif link_type == 'anchor' and link_block.get('anchor_id'):
+        return f"#{link_block['anchor_id'].lstrip('#')}"
 
     return '#'

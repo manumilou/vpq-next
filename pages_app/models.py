@@ -11,12 +11,13 @@ from modelcluster.fields import ParentalKey
 
 
 class LinkBlock(blocks.StructBlock):
-    """Block for internal or external links"""
+    """Block for internal, external, or same-page anchor links"""
     link_type = blocks.ChoiceBlock(
         label="Type de lien",
         choices=[
             ('internal', 'Page interne'),
             ('external', 'Lien externe'),
+            ('anchor', 'Ancre sur cette page'),
         ],
         default='internal'
     )
@@ -30,6 +31,11 @@ class LinkBlock(blocks.StructBlock):
         required=False,
         help_text="Ex: https://example.com"
     )
+    anchor_id = blocks.CharBlock(
+        label="Ancre",
+        required=False,
+        help_text="Ex: reclamation-a-la-cnesst — sans le #"
+    )
 
     class Meta:
         icon = 'link'
@@ -41,6 +47,8 @@ class LinkBlock(blocks.StructBlock):
             return value['internal_page'].url
         elif value.get('link_type') == 'external' and value.get('external_url'):
             return value['external_url']
+        elif value.get('link_type') == 'anchor' and value.get('anchor_id'):
+            return f"#{value['anchor_id'].lstrip('#')}"
         return '#'
 
 
