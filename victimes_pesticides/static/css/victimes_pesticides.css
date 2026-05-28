@@ -1385,7 +1385,7 @@ iframe {
 .carrousel-slides {
     position: relative;
     background: linear-gradient(to bottom right, #f0f4f8, #f9fafb);
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 0.75rem;
 }
 

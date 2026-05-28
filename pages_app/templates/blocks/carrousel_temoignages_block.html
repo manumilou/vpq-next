@@ -10,14 +10,14 @@
         <div class="carrousel-slides relative overflow-hidden rounded-lg shadow-xl bg-white">
             {% for temoignage in value.temoignages %}
             <div class="carrousel-slide {% if forloop.first %}active{% endif %}" data-slide="{{ forloop.counter0 }}">
-                <div class="flex flex-col md:flex-row items-center gap-8 p-10 md:p-16">
+                <div class="flex flex-col md:flex-row items-center gap-6 p-4 md:p-6">
                     <!-- Photo -->
                     <div class="flex-shrink-0">
                         {% image temoignage.photo fill-200x200 class="rounded-full w-32 h-32 md:w-48 md:h-48 object-cover shadow-lg" %}
                     </div>
 
                     <!-- Contenu du témoignage -->
-                    <div class="flex-1 text-center md:text-left p-4 md:p-6">
+                    <div class="flex-1 text-center md:text-left p-2">
                         <!-- Citation avec guillemets subtiles -->
                         <div class="mb-6">
                             <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
