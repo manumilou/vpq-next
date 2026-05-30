@@ -131,6 +131,10 @@ body {
 .bg-green-100 { background-color: #dbeafe; } /* blue light */
 .bg-green-600 { background-color: #1e40af; } /* blue primary */
 .bg-green-700 { background-color: #1e3a8a; } /* blue dark */
+.bg-blue-600 { background-color: #1e40af; }
+.bg-blue-700 { background-color: #1e3a8a; }
+.bg-orange-600 { background-color: #ea580c; }
+.bg-orange-700 { background-color: #c2410c; }
 .bg-gray-100 { background-color: #f3f4f6; }
 .bg-red-50 { background-color: #fef2f2; }
 
@@ -181,6 +185,8 @@ body {
 .hover\:text-green-600:hover { color: #16a34a; }
 .hover\:text-green-700:hover { color: #15803d; }
 .hover\:bg-green-700:hover { background-color: #15803d; }
+.hover\:bg-blue-700:hover { background-color: #1e3a8a; }
+.hover\:bg-orange-700:hover { background-color: #c2410c; }
 
 .transition { transition-property: all; transition-duration: 150ms; }
 
@@ -2062,7 +2068,32 @@ div.card-banner {
     margin-bottom: 0.5rem;
 }
 
-.alerte-block p {
-    margin: 0;
+.alerte-message p,
+.alerte-message ul,
+.alerte-message ol {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
     line-height: 1.6;
+}
+
+.alerte-message p:last-child,
+.alerte-message ul:last-child,
+.alerte-message ol:last-child {
+    margin-bottom: 0;
+}
+
+.alerte-message ul,
+.alerte-message ol {
+    padding-left: 1.25rem;
+}
+
+.alerte-message li + li {
+    margin-top: 0.35rem;
+}
+
+.alerte-message a {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
 }

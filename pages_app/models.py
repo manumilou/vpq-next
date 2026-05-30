@@ -203,7 +203,10 @@ class StandardPage(Page):
                 default='info'
             )),
             ('titre', blocks.CharBlock(label="Titre", required=False)),
-            ('message', blocks.TextBlock(label="Message")),
+            ('message', blocks.RichTextBlock(
+                label="Message",
+                features=['bold', 'italic', 'link', 'ol', 'ul']
+            )),
         ], label="Alerte/Notice", icon="warning")),
         ('accordeon', blocks.StructBlock([
             ('titre', blocks.CharBlock(label="Titre de la section", required=False)),

@@ -227,7 +227,7 @@
                     {% if block.value.titre %}
                     <h4 class="font-bold mb-2">{{ block.value.titre }}</h4>
                     {% endif %}
-                    <p>{{ block.value.message }}</p>
+                    <div class="alerte-message">{{ block.value.message|richtext }}</div>
                 </div>
 
             {% elif block.block_type == 'accordeon' %}
