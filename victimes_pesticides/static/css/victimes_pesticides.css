@@ -1859,6 +1859,92 @@ div.card-banner {
     font-size: 0.9375rem;
 }
 
+/* ============================================
+   ACCORDÉON - PRESENTATION DES LISTES LONGUES
+   ============================================ */
+
+.accordeon-block {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.accordeon-block > h3 {
+    line-height: 1.25;
+}
+
+.accordeon-block .space-y-2 > * + * {
+    margin-top: 0.75rem;
+}
+
+.accordeon-toggle {
+    width: 100%;
+    border: 0;
+    cursor: pointer;
+    gap: 1rem;
+    line-height: 1.35;
+}
+
+.accordeon-toggle:hover {
+    text-decoration: none;
+}
+
+.accordeon-icon {
+    flex-shrink: 0;
+}
+
+.accordeon-content {
+    background-color: #f9fafb;
+}
+
+.accordeon-content .prose ul,
+.accordeon-content .prose ol {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+}
+
+.accordeon-content .prose li {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #1e40af;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    margin: 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.accordeon-content .prose li strong,
+.accordeon-content .prose li b {
+    display: block;
+    color: #111827;
+    font-size: 1.0625rem;
+    line-height: 1.35;
+    margin-bottom: 0.35rem;
+}
+
+.accordeon-content .prose li em,
+.accordeon-content .prose li i {
+    color: #1e40af;
+    font-style: normal;
+    font-weight: 600;
+}
+
+@media (max-width: 640px) {
+    .accordeon-toggle {
+        padding: 1rem;
+    }
+
+    .accordeon-content {
+        padding: 1rem;
+    }
+
+    .accordeon-content .prose li {
+        padding: 0.875rem;
+    }
+}
+
 /* Alert Block Styles */
 .alerte-block {
     position: relative;
