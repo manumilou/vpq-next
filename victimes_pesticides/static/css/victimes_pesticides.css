@@ -1168,7 +1168,13 @@ button:focus {
 }
 
 .page-content [id] {
-    scroll-margin-top: 6rem;
+    scroll-margin-top: 9rem;
+}
+
+@media (max-width: 767px) {
+    .page-content [id] {
+        scroll-margin-top: 7rem;
+    }
 }
 
 figure {

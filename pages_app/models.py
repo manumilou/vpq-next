@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, InlinePanel
@@ -48,7 +49,7 @@ class LinkBlock(blocks.StructBlock):
         elif value.get('link_type') == 'external' and value.get('external_url'):
             return value['external_url']
         elif value.get('link_type') == 'anchor' and value.get('anchor_id'):
-            return f"#{value['anchor_id'].lstrip('#')}"
+            return f"#{slugify(value['anchor_id'].lstrip('#'))}"
         return '#'
 
 

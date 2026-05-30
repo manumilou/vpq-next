@@ -1,5 +1,6 @@
 """Template tags for pages_app"""
 from django import template
+from django.utils.text import slugify
 
 register = template.Library()
 
@@ -25,6 +26,6 @@ def get_link_url(link_block):
     elif link_type == 'external' and link_block.get('external_url'):
         return link_block['external_url']
     elif link_type == 'anchor' and link_block.get('anchor_id'):
-        return f"#{link_block['anchor_id'].lstrip('#')}"
+        return f"#{slugify(link_block['anchor_id'].lstrip('#'))}"
 
     return '#'
