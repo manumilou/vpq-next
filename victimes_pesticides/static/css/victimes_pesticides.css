@@ -1876,6 +1876,45 @@ div.card-banner {
     margin-top: 0.75rem;
 }
 
+.presumption-legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    margin: -0.75rem 0 1.25rem;
+    padding: 0.875rem 1rem;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 0.75rem;
+    color: #1e3a8a;
+    font-size: 0.9375rem;
+}
+
+.presumption-legend-title {
+    font-weight: 700;
+    margin-right: 0.25rem;
+}
+
+.presumption-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    white-space: nowrap;
+}
+
+.presumption-legend-item strong {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.75rem;
+    min-height: 1.75rem;
+    padding: 0 0.35rem;
+    border-radius: 9999px;
+    background: #ffffff;
+    color: #1e40af;
+    line-height: 1;
+}
+
 .accordeon-toggle {
     width: 100%;
     border: 0;
@@ -1932,6 +1971,11 @@ div.card-banner {
 }
 
 @media (max-width: 640px) {
+    .presumption-legend {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
     .accordeon-toggle {
         padding: 1rem;
     }

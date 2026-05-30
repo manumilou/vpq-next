@@ -234,6 +234,16 @@
                 <div class="accordeon-block my-10">
                     {% if block.value.titre %}
                     <h3 class="text-2xl font-bold mb-6 text-gray-900">{{ block.value.titre }}</h3>
+                    {% with titre_accordeon=block.value.titre|lower %}
+                    {% if 'pesticides' in titre_accordeon or 'maladies' in titre_accordeon or 'pathologies' in titre_accordeon %}
+                    <div class="presumption-legend" aria-label="Légende des niveaux de présomption de lien avec les pesticides">
+                        <span class="presumption-legend-title">Présomption de lien :</span>
+                        <span class="presumption-legend-item"><strong>++</strong> Forte</span>
+                        <span class="presumption-legend-item"><strong>+</strong> Moyenne</span>
+                        <span class="presumption-legend-item"><strong>±</strong> Faible</span>
+                    </div>
+                    {% endif %}
+                    {% endwith %}
                     {% endif %}
                     <div class="space-y-2">
                         {% for item in block.value.items %}
