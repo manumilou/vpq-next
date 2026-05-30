@@ -1907,24 +1907,13 @@ div.card-banner {
     margin-right: 0.25rem;
 }
 
-.presumption-legend-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    white-space: nowrap;
+.presumption-legend-text {
+    line-height: 1.5;
 }
 
-.presumption-legend-item strong {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 1.75rem;
-    min-height: 1.75rem;
-    padding: 0 0.35rem;
-    border-radius: 9999px;
-    background: #ffffff;
+.presumption-legend-text strong {
     color: #1e40af;
-    line-height: 1;
+    white-space: nowrap;
 }
 
 .accordeon-toggle {
