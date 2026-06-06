@@ -411,6 +411,14 @@ a:hover {
     border-radius: 0;
 }
 
+.template-standardpage .standard-page-container-with-hero {
+    padding-top: 0;
+}
+
+.template-standardpage .page-content > .standard-page-hero:first-child {
+    margin-top: 0;
+}
+
 /* Additional responsive utilities for hero */
 .text-5xl {
     font-size: 3rem;
