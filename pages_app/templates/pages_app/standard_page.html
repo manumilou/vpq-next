@@ -5,13 +5,17 @@
 
 {% block content %}
 <div class="container mx-auto px-4 py-8 max-w-4xl">
-    <h1 class="text-4xl font-bold mb-6">{{ page.title }}</h1>
+    {% with first_block=page.corps|first %}
+        {% if first_block.block_type != 'hero_block' %}
+            <h1 class="text-4xl font-bold mb-6">{{ page.title }}</h1>
 
-    {% if page.introduction %}
-    <div class="text-xl text-gray-700 mb-8 leading-relaxed">
-        {{ page.introduction }}
-    </div>
-    {% endif %}
+            {% if page.introduction %}
+            <div class="text-xl text-gray-700 mb-8 leading-relaxed">
+                {{ page.introduction }}
+            </div>
+            {% endif %}
+        {% endif %}
+    {% endwith %}
 
     {% if page.corps %}
     <div class="page-content">
@@ -23,7 +27,11 @@
                     <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ hero_img.url }}');"></div>
                     <div class="absolute inset-0 bg-black" style="opacity: {{ block.value.opacite_overlay|default:40 }}%;"></div>
                     <div class="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-                        <h2 class="hero-title font-bold mb-4 drop-shadow-lg">{{ block.value.titre_principal }}</h2>
+                        {% if forloop.first %}
+                            <h1 class="hero-title font-bold mb-4 drop-shadow-lg">{{ block.value.titre_principal }}</h1>
+                        {% else %}
+                            <h2 class="hero-title font-bold mb-4 drop-shadow-lg">{{ block.value.titre_principal }}</h2>
+                        {% endif %}
                         {% if block.value.sous_titre %}
                             <p class="hero-subtitle mb-8 drop-shadow-lg">{{ block.value.sous_titre }}</p>
                         {% endif %}
