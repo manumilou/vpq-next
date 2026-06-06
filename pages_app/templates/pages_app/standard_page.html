@@ -17,7 +17,8 @@
     <div class="page-content">
         {% for block in page.corps %}
             {% if block.block_type == 'hero_block' %}
-                <div class="hero-block relative w-full hero-height flex items-center justify-center overflow-hidden rounded-lg my-8">
+                {# Full-bleed hero block, matching the homepage banner treatment #}
+                <div class="hero-block standard-page-hero relative w-full hero-height flex items-center justify-center overflow-hidden my-8">
                     {% image block.value.image_fond fill-1920x1080 as hero_img %}
                     <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ hero_img.url }}');"></div>
                     <div class="absolute inset-0 bg-black" style="opacity: {{ block.value.opacite_overlay|default:40 }}%;"></div>
