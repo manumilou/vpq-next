@@ -410,18 +410,22 @@ a.logo-item:hover {
 }
 
 .stats-panel {
-    width: 100%;
-    margin: 0;
+    position: relative;
+    left: 50%;
+    width: 100vw;
+    margin-left: -50vw;
+    margin-right: -50vw;
     overflow: hidden;
-    border-radius: 0.35rem;
+    border-radius: 0;
     background: linear-gradient(105deg, var(--vpq-cream) 0%, #fff8e8 58%, #ffffff 100%);
-    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.12);
+    box-shadow: none;
 }
 
 .stats-panel .section-title {
-    max-width: none;
-    margin: 0;
-    padding: 2rem 2.25rem 0;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2.25rem 2.25rem 0;
     color: var(--vpq-blue-dark) !important;
     text-align: left;
 }
@@ -431,9 +435,12 @@ a.logo-item:hover {
 }
 
 .stats-panel .stats-grid {
-    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
     gap: 0;
-    padding: 1.25rem 2rem 1.75rem;
+    padding: 1.5rem 2rem 2rem;
 }
 
 .stat-card {
@@ -485,13 +492,19 @@ a.logo-item:hover {
 }
 
 .stats-panel .stat-sources {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem 0.45rem;
     margin: 0;
-    padding: 1rem 1.5rem;
+    padding: 0.85rem max(1.5rem, calc((100vw - 1280px) / 2 + 2rem));
     border: 0;
     background: linear-gradient(90deg, var(--vpq-green-dark), #004d38);
     color: #ffffff;
-    font-size: 0.875rem;
-    line-height: 1.4;
+    font-size: 0.78rem;
+    line-height: 1.35;
+    text-align: center;
 }
 
 .stats-panel .stat-sources-label,
@@ -499,6 +512,12 @@ a.logo-item:hover {
 .stats-panel .stat-source-item a,
 .stats-panel .stat-source-separator {
     color: #ffffff !important;
+}
+
+.stats-panel .stat-sources-label {
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 
 .stats-panel .stat-source-item,
@@ -700,5 +719,22 @@ a.logo-item:hover {
     .stat-card + .stat-card {
         border-left: 0 !important;
         border-top: 2px solid rgba(0, 99, 64, 0.28) !important;
+    }
+
+    .stats-panel .stat-sources {
+        display: block;
+        padding: 0.85rem 1.25rem;
+        font-size: 0.7rem;
+        line-height: 1.45;
+        text-align: left;
+    }
+
+    .stats-panel .stat-sources-label {
+        display: block;
+        margin-bottom: 0.3rem;
+    }
+
+    .stats-panel .stat-source-item {
+        display: inline;
     }
 }
