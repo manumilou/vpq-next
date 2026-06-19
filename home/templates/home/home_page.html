@@ -83,40 +83,32 @@
                         <div class="stats-grid">
                             {% for stat in block.value.statistiques %}
                             <div class="stat-card">
-                            <div class="stat-icon" aria-hidden="true">
-                                {% if forloop.counter == 1 %}
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M16 21v-2a4 4 0 0 0-8 0v2" />
-                                    <circle cx="12" cy="7" r="4" />
-                                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                                    <path d="M2 21v-2a4 4 0 0 1 3-3.87" />
-                                    <path d="M8 3.13a4 4 0 0 0 0 7.75" />
-                                </svg>
-                                {% elif forloop.counter == 2 %}
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2a8 8 0 0 0-8 8c0 3.54 2.29 6.53 5.47 7.59L9 22h6l-.47-4.41A8 8 0 0 0 12 2Z" />
-                                    <circle cx="9" cy="10" r="1" fill="currentColor" stroke="none" />
-                                    <circle cx="15" cy="10" r="1" fill="currentColor" stroke="none" />
-                                    <path d="M10 15h4" />
-                                </svg>
-                                {% elif forloop.counter == 3 %}
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <path d="M2 12h20" />
-                                    <path d="M12 2a15.3 15.3 0 0 1 0 20" />
-                                    <path d="M12 2a15.3 15.3 0 0 0 0 20" />
-                                </svg>
-                                {% else %}
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M11 20A7 7 0 0 1 4 13c0-4 3-7 8-9 5 2 8 5 8 9a7 7 0 0 1-7 7" />
-                                    <path d="M12 14c-2 1.5-3 3.5-3 6" />
-                                    <path d="M12 14c2 1.5 3 3.5 3 6" />
-                                </svg>
-                                {% endif %}
-                            </div>
-                            <div class="stat-number">{{ stat.chiffre }}{% if stat.unite %}<span class="stat-unit">{{ stat.unite }}</span>{% endif %}</div>
-                            <div class="stat-description">{{ stat.description }}{% if stat.source_num %}<sup class="stat-source-ref">{{ stat.source_num }}</sup>{% endif %}</div>
+                                <div class="stat-icon" aria-hidden="true">
+                                    {% if forloop.counter == 1 %}
+                                    <svg viewBox="0 0 64 64" fill="currentColor" role="img">
+                                        <circle cx="32" cy="18" r="10" />
+                                        <circle cx="15" cy="24" r="7" opacity="0.9" />
+                                        <circle cx="49" cy="24" r="7" opacity="0.9" />
+                                        <path d="M12 53c0-11.8 8.5-20 20-20s20 8.2 20 20H12Z" />
+                                        <path d="M3 53c0-8.2 5.5-14.3 13.2-15.6 2.2 3.1 3.7 6.9 4.2 11.2V53H3Z" opacity="0.85" />
+                                        <path d="M43.6 53v-4.4c.5-4.3 2-8.1 4.2-11.2C55.5 38.7 61 44.8 61 53H43.6Z" opacity="0.85" />
+                                    </svg>
+                                    {% elif forloop.counter == 2 %}
+                                    <svg viewBox="0 0 64 64" fill="currentColor" role="img">
+                                        <path d="M32 5C19.3 5 9 15.2 9 27.8c0 8.2 4.3 15.4 10.9 19.4V57h7v-6.6h10.2V57h7v-9.8C50.7 43.2 55 36 55 27.8 55 15.2 44.7 5 32 5Zm-9.5 28.8a6.8 6.8 0 1 1 0-13.6 6.8 6.8 0 0 1 0 13.6Zm19 0a6.8 6.8 0 1 1 0-13.6 6.8 6.8 0 0 1 0 13.6ZM28.3 43.5 32 36l3.7 7.5h-7.4Z" />
+                                    </svg>
+                                    {% elif forloop.counter == 3 %}
+                                    <svg viewBox="0 0 64 64" fill="currentColor" role="img">
+                                        <path d="M32 4a28 28 0 1 0 0 56 28 28 0 0 0 0-56Zm18.3 18H41a43.2 43.2 0 0 0-4.1-11.3A21.2 21.2 0 0 1 50.3 22ZM32 10.2A36 36 0 0 1 37.1 22H26.9A36 36 0 0 1 32 10.2ZM10.9 36a21.7 21.7 0 0 1 0-8h11.7a46.5 46.5 0 0 0 0 8H10.9Zm2.8 6H23a43.2 43.2 0 0 0 4.1 11.3A21.2 21.2 0 0 1 13.7 42ZM23 22h-9.3a21.2 21.2 0 0 1 13.4-11.3A43.2 43.2 0 0 0 23 22Zm9 31.8A36 36 0 0 1 26.9 42h10.2A36 36 0 0 1 32 53.8ZM38.3 36H25.7a38.6 38.6 0 0 1 0-8h12.6a38.6 38.6 0 0 1 0 8Zm-1.4 17.3A43.2 43.2 0 0 0 41 42h9.3a21.2 21.2 0 0 1-13.4 11.3ZM41.4 36a46.5 46.5 0 0 0 0-8h11.7a21.7 21.7 0 0 1 0 8H41.4Z" />
+                                    </svg>
+                                    {% else %}
+                                    <svg viewBox="0 0 64 64" fill="currentColor" role="img">
+                                        <path d="M53.7 9.4C35.1 10.5 18.3 22 18.3 39.2c0 3.6 1 6.8 2.8 9.4-3.7 2.7-6.3 5.8-7.7 9.4h8.2c4.5-8.6 14.5-13.1 25.9-14.3-10.2 2.5-17.6 6.8-22.1 12.8 2.5 1 5.3 1.5 8.3 1.5C50.8 58 60 40.3 60 21.8c0-4.5-.6-8.7-1.8-12.8-1.5.2-3 .3-4.5.4Z" />
+                                    </svg>
+                                    {% endif %}
+                                </div>
+                                <div class="stat-number">{{ stat.chiffre }}{% if stat.unite %}<span class="stat-unit">{{ stat.unite }}</span>{% endif %}</div>
+                                <div class="stat-description">{{ stat.description }}{% if stat.source_num %}<sup class="stat-source-ref">{{ stat.source_num }}</sup>{% endif %}</div>
                             </div>
                             {% endfor %}
                         </div>
