@@ -407,6 +407,7 @@ a.logo-item:hover {
 
 .stats-section {
     background: #ffffff !important;
+    padding-top: 0 !important;
 }
 
 .stats-panel {
@@ -495,29 +496,37 @@ a.logo-item:hover {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    gap: 0.25rem 0.45rem;
+    align-items: baseline;
+    gap: 0.1rem 0.35rem;
     margin: 0;
-    padding: 0.85rem max(1.5rem, calc((100vw - 1280px) / 2 + 2rem));
+    padding: 0.55rem max(1.5rem, calc((100vw - 1280px) / 2 + 2rem));
     border: 0;
     background: linear-gradient(90deg, var(--vpq-green-dark), #004d38);
-    color: #ffffff;
-    font-size: 0.78rem;
-    line-height: 1.35;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.68rem;
+    line-height: 1.18;
     text-align: center;
 }
 
 .stats-panel .stat-sources-label,
 .stats-panel .stat-source-item,
 .stats-panel .stat-source-item a,
-.stats-panel .stat-source-separator {
-    color: #ffffff !important;
+.stats-panel .stat-source-separator,
+.stats-panel .stat-source-number {
+    color: rgba(255, 255, 255, 0.78) !important;
 }
 
 .stats-panel .stat-sources-label {
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+.stats-panel .stat-source-number {
+    margin-right: 0.12rem;
+    color: var(--vpq-yellow) !important;
+    font-size: 0.75em;
     font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
+    line-height: 0;
 }
 
 .stats-panel .stat-source-item,
@@ -723,15 +732,15 @@ a.logo-item:hover {
 
     .stats-panel .stat-sources {
         display: block;
-        padding: 0.85rem 1.25rem;
-        font-size: 0.7rem;
-        line-height: 1.45;
+        padding: 0.55rem 1rem;
+        font-size: 0.62rem;
+        line-height: 1.22;
         text-align: left;
     }
 
     .stats-panel .stat-sources-label {
-        display: block;
-        margin-bottom: 0.3rem;
+        display: inline;
+        margin-right: 0.25rem;
     }
 
     .stats-panel .stat-source-item {
