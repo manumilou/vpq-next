@@ -45,7 +45,13 @@
                                 <p class="action-description">{{ action.description }}</p>
                             </div>
                             <div class="action-icon action-icon-{{ action.icone }}">
-                                {% if action.icone == 'voice' %}
+                                {% if forloop.counter == 1 %}
+                                <i class="ph-duotone ph-info"></i>
+                                {% elif forloop.counter == 2 %}
+                                <i class="ph-duotone ph-megaphone"></i>
+                                {% elif forloop.counter == 3 %}
+                                <i class="ph-duotone ph-hand-heart"></i>
+                                {% elif action.icone == 'voice' %}
                                 <i class="ph ph-megaphone"></i>
                                 {% elif action.icone == 'alert' %}
                                 <i class="ph ph-warning"></i>

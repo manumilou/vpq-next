@@ -389,11 +389,11 @@ button[type="submit"]:hover {
 
 .action-card-1,
 .action-card-3 {
-    background: linear-gradient(135deg, var(--vpq-cream) 0%, #fff8e8 64%, #ffffff 100%) !important;
+    background: linear-gradient(135deg, var(--vpq-green-light) 0%, #eff8f4 62%, #ffffff 100%) !important;
 }
 
 .action-card-2 {
-    background: linear-gradient(135deg, var(--vpq-green-light) 0%, #eff8f4 62%, #ffffff 100%) !important;
+    background: linear-gradient(135deg, var(--vpq-cream) 0%, #fff8e8 64%, #ffffff 100%) !important;
 }
 
 .action-card::before,
@@ -419,12 +419,9 @@ button[type="submit"]:hover {
     background: rgba(0, 99, 64, 0.14);
 }
 
-.action-card-2::before {
-    background: rgba(255, 243, 213, 0.9);
-}
-
+.action-card-2::before,
 .action-card-2::after {
-    background: rgba(0, 99, 64, 0.24);
+    display: none;
 }
 
 .action-number {
@@ -467,7 +464,8 @@ button[type="submit"]:hover {
     color: var(--vpq-green-dark) !important;
 }
 
-.action-card .action-icon .ph {
+.action-card .action-icon .ph,
+.action-card .action-icon .ph-duotone {
     font-size: 5.8rem;
 }
 
@@ -484,6 +482,18 @@ button[type="submit"]:hover {
 
     .action-card {
         min-height: 14rem !important;
+    }
+
+    .action-card .action-icon {
+        width: 4.2rem;
+        height: 4.2rem;
+        right: 1rem;
+        bottom: 1rem;
+    }
+
+    .action-card .action-icon .ph,
+    .action-card .action-icon .ph-duotone {
+        font-size: 4.2rem;
     }
 }
 
@@ -534,7 +544,8 @@ a.logo-item:hover {
     color: var(--vpq-green-dark) !important;
 }
 
-.action-icon .ph {
+.action-icon .ph,
+.action-icon .ph-duotone {
     display: block;
     font-size: 3rem;
     line-height: 1;
@@ -555,7 +566,7 @@ a.logo-item:hover {
     overflow: hidden;
     border-radius: 0;
     background: linear-gradient(105deg, var(--vpq-cream) 0%, #fff8e8 60%, #ffffff 100%);
-    padding: 1.75rem max(1.25rem, calc((100vw - 1280px) / 2 + 2rem));
+    padding: 2.5rem max(1.25rem, calc((100vw - 1280px) / 2 + 2rem));
     box-shadow: none;
 }
 
@@ -656,6 +667,7 @@ a.logo-item:hover {
     overflow: hidden;
     border-radius: 0;
     background: linear-gradient(105deg, var(--vpq-cream) 0%, #fff8e8 58%, #ffffff 100%);
+    padding-top: 2.5rem;
     box-shadow: none;
 }
 
@@ -663,7 +675,7 @@ a.logo-item:hover {
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
-    padding: 2.25rem 2.25rem 0;
+    padding: 0 2.25rem;
     color: var(--vpq-blue-dark) !important;
     text-align: center;
 }
@@ -678,7 +690,7 @@ a.logo-item:hover {
     margin: 0 auto;
     grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
     gap: 0;
-    padding: 1.5rem 2rem 2rem;
+    padding: 1.5rem 2rem 2.25rem;
 }
 
 .stat-card {
@@ -937,7 +949,7 @@ a.logo-item:hover {
     }
 
     .mission-panel {
-        padding: 1.5rem 1.25rem;
+        padding: 2rem 1.25rem;
     }
 
     .mission-panel .mission-card {
@@ -960,14 +972,18 @@ a.logo-item:hover {
         font-size: 2.4rem;
     }
 
+    .stats-panel {
+        padding-top: 2rem;
+    }
+
     .stats-panel .section-title {
-        padding: 1.5rem 1.25rem 0;
+        padding: 0 1.25rem;
         text-align: center;
     }
 
     .stats-panel .stats-grid {
         grid-template-columns: 1fr;
-        padding: 1rem 1.25rem 1.5rem;
+        padding: 1rem 1.25rem 1.75rem;
     }
 
     .stat-card {
