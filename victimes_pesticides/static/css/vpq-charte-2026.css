@@ -763,12 +763,12 @@ a.logo-item:hover {
     display: block;
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 2rem 1.25rem;
+    padding: 0 2rem 0.85rem;
     border: 0;
     background: transparent;
     color: rgba(25, 41, 82, 0.72);
-    font-size: 0.7rem;
-    line-height: 1.1;
+    font-size: 0.62rem;
+    line-height: 1;
     text-align: center;
 }
 
@@ -820,13 +820,14 @@ a.logo-item:hover {
 
 
 .dernieres-actualites-section .actualite-card {
-    background: var(--vpq-cream) !important;
-    border: 0 !important;
+    background: #ffffff !important;
+    border: 1px solid var(--vpq-blue-light) !important;
     box-shadow: none !important;
 }
 
 .dernieres-actualites-section .actualite-card:hover {
-    box-shadow: 0 12px 28px rgba(25, 41, 82, 0.12) !important;
+    border-color: var(--vpq-blue) !important;
+    box-shadow: 0 10px 24px rgba(25, 41, 82, 0.10) !important;
 }
 
 .latest-news-button {
@@ -1055,7 +1056,7 @@ a.logo-item:hover {
 
     .stat-card + .stat-card {
         border-left: 0 !important;
-        border-top: 2px solid var(--vpq-green-light) !important;
+        border-top: 2px solid rgba(0, 99, 64, 0.22) !important;
     }
 
     .stat-icon {
@@ -1086,9 +1087,9 @@ a.logo-item:hover {
 
     .stats-panel .stat-sources {
         display: block;
-        padding: 0 1.25rem 1rem;
-        font-size: 0.65rem;
-        line-height: 1.15;
+        padding: 0 1.25rem 0.8rem;
+        font-size: 0.6rem;
+        line-height: 1;
         text-align: left;
     }
 
