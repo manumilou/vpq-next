@@ -82,13 +82,13 @@
                             <div class="stat-card">
                                 <div class="stat-icon" aria-hidden="true">
                                     {% if forloop.counter == 1 %}
-                                    <i class="ph ph-users-three"></i>
+                                    <i class="ph-duotone ph-users-three"></i>
                                     {% elif forloop.counter == 2 %}
-                                    <i class="ph ph-trend-up"></i>
+                                    <i class="ph-duotone ph-chart-line-up"></i>
                                     {% elif forloop.counter == 3 %}
-                                    <i class="ph ph-globe-hemisphere-west"></i>
+                                    <i class="ph-duotone ph-skull"></i>
                                     {% else %}
-                                    <i class="ph ph-lifebuoy"></i>
+                                    <i class="ph-duotone ph-hand-heart"></i>
                                     {% endif %}
                                 </div>
                                 <div class="stat-number">{{ stat.chiffre }}{% if stat.unite %}<span class="stat-unit">{{ stat.unite }}</span>{% endif %}</div>
@@ -142,11 +142,11 @@
                             <div class="mission-card">
                                 <div class="mission-icon">
                                     {% if forloop.counter == 1 %}
-                                    <i class="ph ph-megaphone"></i>
+                                    <i class="ph-duotone ph-hand-heart"></i>
                                     {% elif forloop.counter == 2 %}
-                                    <i class="ph ph-users-three"></i>
+                                    <i class="ph-duotone ph-broadcast"></i>
                                     {% else %}
-                                    <i class="ph ph-bank"></i>
+                                    <i class="ph-duotone ph-shield-check"></i>
                                     {% endif %}
                                 </div>
                                 <div class="mission-card-copy">
