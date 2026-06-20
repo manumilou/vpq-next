@@ -777,6 +777,8 @@ a.logo-item:hover {
 .stats-panel .stat-source-item a,
 .stats-panel .stat-source-separator {
     color: rgba(25, 41, 82, 0.72) !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
 }
 
 .stats-panel .stat-sources-label {
