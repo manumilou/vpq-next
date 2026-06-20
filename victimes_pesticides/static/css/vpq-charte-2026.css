@@ -358,6 +358,135 @@ button[type="submit"]:hover {
     transform: translateY(-1px);
 }
 
+
+/* Quick actions — cards inspired by VPQ educational visuals */
+.quick-actions-section {
+    background: #ffffff !important;
+}
+
+.quick-actions-section .section-title {
+    color: var(--vpq-blue-dark) !important;
+}
+
+.quick-actions-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 1rem !important;
+}
+
+.action-card {
+    position: relative;
+    min-height: 18rem !important;
+    overflow: hidden;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    padding: 1.75rem !important;
+    border: 0 !important;
+    border-radius: 0.35rem !important;
+    text-align: left !important;
+    box-shadow: none !important;
+    isolation: isolate;
+}
+
+.action-card-1,
+.action-card-3 {
+    background: linear-gradient(135deg, var(--vpq-cream) 0%, #fff8e8 64%, #ffffff 100%) !important;
+}
+
+.action-card-2 {
+    background: linear-gradient(135deg, var(--vpq-green-light) 0%, #eff8f4 62%, #ffffff 100%) !important;
+}
+
+.action-card::before,
+.action-card::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 9rem;
+    height: 9rem;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.action-card::before {
+    right: -4.5rem;
+    top: -4.5rem;
+    background: rgba(214, 237, 230, 0.82);
+}
+
+.action-card::after {
+    left: -5rem;
+    bottom: -5rem;
+    background: rgba(0, 99, 64, 0.14);
+}
+
+.action-card-2::before {
+    background: rgba(255, 243, 213, 0.9);
+}
+
+.action-card-2::after {
+    background: rgba(0, 99, 64, 0.24);
+}
+
+.action-number {
+    color: var(--vpq-green-dark);
+    font-family: var(--vpq-heading-font);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.action-copy {
+    max-width: 12.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.action-card .action-title {
+    color: var(--vpq-blue-dark) !important;
+    font-size: 1.35rem;
+    line-height: 1 !important;
+    margin: 0 0 0.75rem;
+}
+
+.action-card .action-description {
+    color: var(--vpq-blue-dark) !important;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0;
+}
+
+.action-card .action-icon {
+    position: absolute;
+    right: 1.5rem;
+    bottom: 1.35rem;
+    width: 5.8rem;
+    height: 5.8rem;
+    margin: 0;
+    color: var(--vpq-green-dark) !important;
+}
+
+.action-card .action-icon .ph {
+    font-size: 5.8rem;
+}
+
+.action-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.10) !important;
+    text-decoration: none;
+}
+
+@media (max-width: 900px) {
+    .quick-actions-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .action-card {
+        min-height: 14rem !important;
+    }
+}
+
 /* Cartes, sections, iconographie */
 .action-card,
 .mission-card,
@@ -403,6 +532,12 @@ a.logo-item:hover {
 .action-icon-help,
 .action-icon-voice {
     color: var(--vpq-green-dark) !important;
+}
+
+.action-icon .ph {
+    display: block;
+    font-size: 3rem;
+    line-height: 1;
 }
 
 .mission-section {
@@ -501,7 +636,7 @@ a.logo-item:hover {
 .mission-panel .mission-description {
     margin: 0;
     color: var(--vpq-blue-dark) !important;
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 700;
     line-height: 1.25;
 }
@@ -509,6 +644,7 @@ a.logo-item:hover {
 .stats-section {
     background: #ffffff !important;
     padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 .stats-panel {
@@ -529,7 +665,7 @@ a.logo-item:hover {
     margin: 0 auto;
     padding: 2.25rem 2.25rem 0;
     color: var(--vpq-blue-dark) !important;
-    text-align: left;
+    text-align: center;
 }
 
 .stats-panel .section-title::after {
