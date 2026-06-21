@@ -659,6 +659,58 @@ button[type="submit"]:hover {
     font-size: 1.05rem;
 }
 
+.zeffy-donation-block {
+    margin-top: 1.5rem !important;
+    margin-bottom: 2rem !important;
+}
+
+.zeffy-description {
+    max-width: 42rem;
+    color: var(--vpq-blue-dark) !important;
+    line-height: 1.55;
+}
+
+.zeffy-secure-note {
+    display: inline-flex;
+    gap: 0.45rem;
+    align-items: center;
+    margin: 0 0 0.75rem;
+    color: var(--vpq-green-dark);
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.zeffy-secure-note .ph {
+    color: var(--vpq-green-dark);
+    font-size: 1.05rem;
+}
+
+.zeffy-embed-container {
+    position: relative;
+    border: 1px solid var(--vpq-blue-light) !important;
+    border-radius: 0.45rem !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+}
+
+.zeffy-embed-container::before {
+    content: '';
+    display: block;
+    height: 0.28rem;
+    background: var(--vpq-yellow);
+}
+
+.zeffy-fallback {
+    margin: 0.75rem 0 0;
+    color: var(--vpq-muted);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.zeffy-fallback a {
+    font-weight: 800;
+}
+
 .action-card,
 .mission-card,
 .stat-card,
@@ -667,7 +719,6 @@ button[type="submit"]:hover {
 .personne-card,
 .carte-item,
 .logo-item,
-.zeffy-embed-container,
 .table-block table {
     border-color: var(--vpq-border) !important;
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.07) !important;

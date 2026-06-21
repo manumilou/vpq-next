@@ -325,20 +325,29 @@
             {% elif block.block_type == 'zeffy_donation' %}
                 <div class="zeffy-donation-block my-10">
                     {% if block.value.titre %}
-                    <h3 class="text-3xl font-bold mb-4 text-center text-gray-900">{{ block.value.titre }}</h3>
+                    <h3 class="text-2xl font-bold mb-6 text-gray-900">{{ block.value.titre }}</h3>
                     {% endif %}
                     {% if block.value.description %}
-                    <p class="text-lg text-gray-700 mb-6 text-center max-w-3xl mx-auto">{{ block.value.description }}</p>
+                    <p class="zeffy-description text-lg text-gray-700 mb-6">{{ block.value.description }}</p>
                     {% endif %}
+                    <p class="zeffy-secure-note">
+                        <i class="ph ph-lock-simple" aria-hidden="true"></i>
+                        Paiement sécurisé fourni par Zeffy.
+                    </p>
                     <div class="zeffy-embed-container bg-white rounded-lg shadow-lg overflow-hidden">
                         <iframe
                             src="{{ block.value.form_url }}"
                             style="width: 100%; height: {{ block.value.hauteur }}px; border: none;"
                             title="Formulaire de don"
+                            loading="lazy"
                             allowpaymentrequest
                             allow="payment">
                         </iframe>
                     </div>
+                    <p class="zeffy-fallback">
+                        Le formulaire ne s’affiche pas ?
+                        <a href="{{ block.value.form_url }}" target="_blank" rel="noopener">Ouvrir le formulaire de don dans une nouvelle fenêtre</a>.
+                    </p>
                 </div>
 
             {% elif block.block_type == 'mailchimp_signup' %}
