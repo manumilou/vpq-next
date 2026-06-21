@@ -510,6 +510,22 @@ button[type="submit"]:hover {
 }
 
 /* Cartes, sections, iconographie */
+.grille-logos {
+    margin-top: 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+}
+
+.grille-equipe-description {
+    max-width: 46rem;
+    color: var(--vpq-blue-dark) !important;
+    font-size: 1rem;
+    line-height: 1.55;
+}
+
+.grille-equipe-description p:last-child {
+    margin-bottom: 0;
+}
+
 .action-card,
 .mission-card,
 .stat-card,

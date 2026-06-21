@@ -137,6 +137,11 @@ class StandardPage(Page):
         ], label="Carte de personne (unique)", icon="user")),
         ('grille_equipe', blocks.StructBlock([
             ('titre', blocks.CharBlock(label="Titre de la section", required=False)),
+            ('description', blocks.RichTextBlock(
+                label="Description",
+                required=False,
+                features=['bold', 'italic', 'link']
+            )),
             ('personnes', blocks.ListBlock(
                 blocks.StructBlock([
                     ('photo', ImageChooserBlock(label="Photo", required=False)),
