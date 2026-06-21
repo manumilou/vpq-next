@@ -526,6 +526,145 @@ button[type="submit"]:hover {
     margin-bottom: 0;
 }
 
+.grille-equipe {
+    margin-top: 1.5rem !important;
+    margin-bottom: 2rem !important;
+}
+
+.grille-equipe .equipe-grid {
+    gap: 1.5rem !important;
+}
+
+.grille-equipe .personne-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--vpq-blue-light) !important;
+    border-radius: 0.45rem !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.grille-equipe .personne-card::before {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0.28rem;
+    background: var(--vpq-yellow);
+}
+
+.grille-equipe .personne-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--vpq-yellow) !important;
+    box-shadow: 0 16px 34px rgba(25, 41, 82, 0.1) !important;
+}
+
+.grille-equipe .personne-photo-container,
+.grille-equipe .personne-photo-placeholder {
+    background: var(--vpq-blue-light);
+}
+
+.grille-equipe .personne-photo-container img {
+    filter: grayscale(100%);
+}
+
+.grille-equipe .personne-card:hover .personne-photo-container img {
+    filter: grayscale(0%);
+}
+
+.grille-equipe .personne-photo-placeholder {
+    position: relative;
+    display: flex;
+    aspect-ratio: 1 / 1;
+    align-items: center;
+    justify-content: center;
+    color: var(--vpq-blue-dark);
+}
+
+.grille-equipe .personne-photo-placeholder .ph,
+.grille-equipe .personne-photo-placeholder .ph-duotone {
+    display: block;
+    font-size: 5rem;
+    line-height: 1;
+}
+
+.grille-equipe .personne-card-body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+}
+
+.grille-equipe .personne-name {
+    color: var(--vpq-blue-dark) !important;
+    font-family: var(--vpq-heading-font);
+    line-height: 1 !important;
+    text-transform: uppercase;
+}
+
+.grille-equipe .personne-role {
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+    margin-top: 0.25rem;
+    padding: 0.28rem 0.65rem;
+    border-radius: 999px;
+    background: var(--vpq-green-light) !important;
+    color: var(--vpq-green-dark) !important;
+    font-size: 0.78rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.grille-equipe .bio-text {
+    color: var(--vpq-blue-dark) !important;
+    line-height: 1.45;
+}
+
+.grille-equipe .bio-toggle {
+    width: fit-content;
+    margin-bottom: 1rem;
+    color: var(--vpq-blue) !important;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.grille-equipe .bio-toggle:hover {
+    color: var(--vpq-blue-dark) !important;
+    text-decoration: underline;
+    text-decoration-color: var(--vpq-yellow);
+    text-decoration-thickness: 0.15rem;
+    text-underline-offset: 0.18rem;
+}
+
+.grille-equipe .personne-contact-list {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--vpq-blue-light);
+}
+
+.grille-equipe .personne-contact-link {
+    color: var(--vpq-blue) !important;
+    font-weight: 700;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.grille-equipe .personne-contact-link:hover {
+    color: var(--vpq-blue-dark) !important;
+}
+
+.grille-equipe .personne-contact-link .ph {
+    flex: 0 0 auto;
+    color: var(--vpq-green-dark);
+    font-size: 1.05rem;
+}
+
 .action-card,
 .mission-card,
 .stat-card,
