@@ -605,17 +605,11 @@ button[type="submit"]:hover {
 }
 
 .grille-equipe .personne-role {
-    display: inline-flex;
-    width: fit-content;
-    max-width: 100%;
     margin-top: 0.25rem;
-    padding: 0.28rem 0.65rem;
-    border-radius: 999px;
-    background: var(--vpq-green-light) !important;
     color: var(--vpq-green-dark) !important;
-    font-size: 0.78rem;
+    font-size: 0.9rem;
     font-weight: 800;
-    line-height: 1.2;
+    line-height: 1.25;
 }
 
 .grille-equipe .bio-text {
