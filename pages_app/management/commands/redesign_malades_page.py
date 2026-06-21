@@ -49,22 +49,22 @@ class Command(BaseCommand):
                 'titre': 'Que pouvez-vous faire?',
                 'cartes': [
                     {
-                        'icone': 'shield',
+                        'icone': 'claim',
                         'titre': 'Réclamation à la CNESST',
                         'description': 'Faites reconnaître votre maladie comme maladie professionnelle et obtenez une indemnisation.',
                     },
                     {
-                        'icone': 'heart',
+                        'icone': 'medical',
                         'titre': 'Consulter un médecin',
                         'description': 'Trouvez un médecin spécialisé dans les maladies liées aux pesticides pour un diagnostic précis.',
                     },
                     {
-                        'icone': 'users',
+                        'icone': 'legal',
                         'titre': 'Recours collectif',
                         'description': 'Rejoignez le recours collectif contre les fabricants de pesticides pour défendre vos droits.',
                     },
                     {
-                        'icone': 'lightbulb',
+                        'icone': 'megaphone',
                         'titre': 'Partagez votre histoire',
                         'description': 'Aidez-nous à sensibiliser le public et à faire avancer la cause des victimes des pesticides.',
                         'lien': {

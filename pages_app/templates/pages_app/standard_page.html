@@ -195,7 +195,15 @@
                                     <p class="carte-description text-gray-600 text-sm">{{ carte.description }}</p>
                                 </div>
                                 <div class="carte-icon" aria-hidden="true">
-                                    {% if carte.icone == 'heart' %}
+                                    {% if carte.icone == 'medical' %}
+                                    <i class="ph-duotone ph-stethoscope"></i>
+                                    {% elif carte.icone == 'claim' %}
+                                    <i class="ph-duotone ph-file-text"></i>
+                                    {% elif carte.icone == 'legal' %}
+                                    <i class="ph-duotone ph-scales"></i>
+                                    {% elif carte.icone == 'megaphone' %}
+                                    <i class="ph-duotone ph-megaphone"></i>
+                                    {% elif carte.icone == 'heart' %}
                                     <i class="ph-duotone ph-hand-heart"></i>
                                     {% elif carte.icone == 'users' %}
                                     <i class="ph-duotone ph-users-three"></i>
@@ -211,6 +219,10 @@
                                     <i class="ph-duotone ph-shield-check"></i>
                                     {% elif carte.icone == 'share' %}
                                     <i class="ph-duotone ph-share-network"></i>
+                                    {% elif carte.icone == 'leaf' %}
+                                    <i class="ph-duotone ph-leaf"></i>
+                                    {% elif carte.icone == 'broadcast' %}
+                                    <i class="ph-duotone ph-broadcast"></i>
                                     {% else %}
                                     <i class="ph-duotone ph-info"></i>
                                     {% endif %}
