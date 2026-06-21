@@ -162,6 +162,10 @@ class StandardPage(Page):
                         choices=[
                             ('info', 'Information'),
                             ('medical', 'Médecin / santé'),
+                            ('brain', 'Cerveau / neurologique'),
+                            ('dna', 'ADN / cancer'),
+                            ('baby', 'Enfants / vulnérabilité'),
+                            ('wind', 'Air / respiration'),
                             ('claim', 'Réclamation / dossier'),
                             ('legal', 'Recours juridique'),
                             ('megaphone', 'Témoignage / sensibilisation'),
