@@ -1069,8 +1069,8 @@ a.logo-item:hover {
 .testimonial-copy {
     position: relative;
     z-index: 5;
-    width: 57%;
-    padding: clamp(2rem, 4.6vw, 3.5rem) clamp(1.5rem, 4vw, 3rem);
+    width: 66%;
+    padding: clamp(1.75rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
 }
 
 .testimonial-quote-mark {
@@ -1083,12 +1083,12 @@ a.logo-item:hover {
 }
 
 .testimonial-quote {
-    max-width: 27rem;
+    max-width: 34rem;
     margin: 0;
     color: #ffffff !important;
-    font-size: clamp(1.35rem, 2.3vw, 2rem);
+    font-size: clamp(1.05rem, 1.55vw, 1.38rem);
     font-weight: 700;
-    line-height: 1.22;
+    line-height: 1.32;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
 }
 
@@ -1125,9 +1125,9 @@ a.logo-item:hover {
     z-index: 2;
     top: 0;
     right: 0;
-    width: 54%;
+    width: 47%;
     height: 100%;
-    clip-path: ellipse(76% 73% at 76% 41%);
+    clip-path: ellipse(76% 73% at 82% 41%);
 }
 
 .testimonial-photo {
@@ -1212,7 +1212,7 @@ a.logo-item:hover {
 
     .testimonial-quote {
         max-width: none;
-        font-size: clamp(1.25rem, 6vw, 1.75rem);
+        font-size: clamp(1rem, 4.7vw, 1.35rem);
     }
 
     .testimonial-panel::after {
