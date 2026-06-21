@@ -184,16 +184,42 @@
                     {% endif %}
                     <div class="grid md:grid-cols-3 gap-6">
                         {% for carte in block.value.cartes %}
-                        <div class="carte-item bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow {% if carte.lien %}cursor-pointer{% endif %}">
-                            <div class="carte-icon mb-4">
-                                {% include 'includes/icon_svg.html' with icon=carte.icone %}
-                            </div>
-                            <h4 class="text-lg font-bold mb-2 text-gray-900">{{ carte.titre }}</h4>
-                            <p class="text-gray-600 text-sm">{{ carte.description }}</p>
                             {% if carte.lien %}
-                            <a href="{% get_link_url carte.lien %}" class="inline-block mt-4 text-blue-600 hover:text-blue-800 text-sm font-medium">En savoir plus →</a>
+                            {% get_link_url carte.lien as carte_url %}
+                            <a href="{{ carte_url }}" class="carte-item carte-item-{{ forloop.counter }} bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                            {% else %}
+                            <div class="carte-item carte-item-{{ forloop.counter }} bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
                             {% endif %}
-                        </div>
+                                <div class="carte-copy">
+                                    <h4 class="carte-title text-lg font-bold mb-2 text-gray-900">{{ carte.titre }}</h4>
+                                    <p class="carte-description text-gray-600 text-sm">{{ carte.description }}</p>
+                                </div>
+                                <div class="carte-icon" aria-hidden="true">
+                                    {% if carte.icone == 'heart' %}
+                                    <i class="ph-duotone ph-hand-heart"></i>
+                                    {% elif carte.icone == 'users' %}
+                                    <i class="ph-duotone ph-users-three"></i>
+                                    {% elif carte.icone == 'check' %}
+                                    <i class="ph-duotone ph-check-circle"></i>
+                                    {% elif carte.icone == 'star' %}
+                                    <i class="ph-duotone ph-star"></i>
+                                    {% elif carte.icone == 'book' %}
+                                    <i class="ph-duotone ph-book-open-text"></i>
+                                    {% elif carte.icone == 'lightbulb' %}
+                                    <i class="ph-duotone ph-lightbulb"></i>
+                                    {% elif carte.icone == 'shield' %}
+                                    <i class="ph-duotone ph-shield-check"></i>
+                                    {% elif carte.icone == 'share' %}
+                                    <i class="ph-duotone ph-share-network"></i>
+                                    {% else %}
+                                    <i class="ph-duotone ph-info"></i>
+                                    {% endif %}
+                                </div>
+                            {% if carte.lien %}
+                            </a>
+                            {% else %}
+                            </div>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>

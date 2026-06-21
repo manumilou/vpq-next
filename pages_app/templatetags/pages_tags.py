@@ -19,6 +19,9 @@ def get_link_url(link_block):
     if not link_block:
         return '#'
 
+    if isinstance(link_block, str):
+        return link_block or '#'
+
     link_type = link_block.get('link_type', 'internal')
 
     if link_type == 'internal' and link_block.get('internal_page'):
