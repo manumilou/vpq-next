@@ -10,33 +10,27 @@
         <div class="carrousel-slides relative overflow-hidden rounded-lg shadow-xl bg-white">
             {% for temoignage in value.temoignages %}
             <div class="carrousel-slide {% if forloop.first %}active{% endif %}" data-slide="{{ forloop.counter0 }}">
-                <div class="flex flex-col md:flex-row items-center gap-6 p-4 md:p-6">
-                    <!-- Photo -->
-                    <div class="flex-shrink-0">
-                        {% image temoignage.photo fill-200x200 class="rounded-full w-32 h-32 md:w-48 md:h-48 object-cover shadow-lg" %}
-                    </div>
+                <article class="testimonial-panel">
+                    <div class="testimonial-copy">
+                        <div class="testimonial-quote-mark" aria-hidden="true">“</div>
+                        <p class="testimonial-quote">{{ temoignage.citation }}</p>
 
-                    <!-- Contenu du témoignage -->
-                    <div class="flex-1 text-center md:text-left p-2">
-                        <!-- Citation avec guillemets subtiles -->
-                        <div class="mb-6">
-                            <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
-                                <span class="text-3xl text-gray-300 leading-none">"</span>{{ temoignage.citation }}<span class="text-3xl text-gray-300 leading-none">"</span>
+                        <div class="testimonial-author">
+                            <span class="testimonial-rule" aria-hidden="true"></span>
+                            <p>
+                                <span class="testimonial-name">— {{ temoignage.nom }}</span>{% if temoignage.role %}, {{ temoignage.role }}{% endif %}{% if temoignage.localisation %}<br><span class="testimonial-location">{{ temoignage.localisation }}</span>{% endif %}
                             </p>
                         </div>
-
-                        <!-- Informations sur l'auteur -->
-                        <div class="border-t border-gray-200 pt-4 mt-6">
-                            <p class="font-bold text-gray-900 text-xl">{{ temoignage.nom }}</p>
-                            {% if temoignage.role %}
-                            <p class="text-green-600 font-medium mt-1">{{ temoignage.role }}</p>
-                            {% endif %}
-                            {% if temoignage.localisation %}
-                            <p class="text-gray-500 text-sm mt-1">{{ temoignage.localisation }}</p>
-                            {% endif %}
-                        </div>
                     </div>
-                </div>
+
+                    <div class="testimonial-photo-wrap">
+                        {% image temoignage.photo fill-620x620 class="testimonial-photo" %}
+                    </div>
+
+                    <div class="testimonial-plant" aria-hidden="true">
+                        <i class="ph-duotone ph-plant"></i>
+                    </div>
+                </article>
             </div>
             {% endfor %}
         </div>
@@ -46,9 +40,7 @@
         <div class="carrousel-navigation flex justify-center items-center gap-4 mt-6">
             <!-- Bouton précédent -->
             <button class="carrousel-prev bg-white hover:bg-gray-100 text-gray-800 font-bold p-3 rounded-full shadow-lg transition" aria-label="Témoignage précédent">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                </svg>
+                <i class="ph ph-caret-left" aria-hidden="true"></i>
             </button>
 
             <!-- Indicateurs -->
@@ -60,9 +52,7 @@
 
             <!-- Bouton suivant -->
             <button class="carrousel-next bg-white hover:bg-gray-100 text-gray-800 font-bold p-3 rounded-full shadow-lg transition" aria-label="Témoignage suivant">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
+                <i class="ph ph-caret-right" aria-hidden="true"></i>
             </button>
         </div>
         {% endif %}

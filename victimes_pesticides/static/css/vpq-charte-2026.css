@@ -1022,23 +1022,162 @@ a.logo-item:hover {
 .temoignage-block blockquote,
 .temoignage-block .text-gray-900,
 .temoignage-block .text-gray-800,
-.temoignage-block .text-gray-700,
-.carrousel-slide .text-gray-900,
-.carrousel-slide .text-gray-800,
-.carrousel-slide .text-gray-700,
-.carrousel-slide .text-gray-500 {
+.temoignage-block .text-gray-700 {
     color: #ffffff !important;
 }
 
-.temoignage-block .text-gray-600,
-.carrousel-slide .text-green-600,
-.carrousel-slide .text-gray-300 {
+.temoignage-block .text-gray-600 {
     color: var(--vpq-yellow) !important;
 }
 
-.carrousel-slide img {
-    border-color: var(--vpq-yellow) !important;
-    filter: grayscale(100%);
+.carrousel-temoignages-wrapper {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+}
+
+.carrousel-temoignages-container {
+    padding: 0 !important;
+}
+
+.carrousel-slides {
+    padding: 0 !important;
+    overflow: hidden !important;
+    box-shadow: 0 20px 42px rgba(0, 0, 0, 0.16) !important;
+}
+
+.testimonial-panel {
+    position: relative;
+    min-height: 31rem;
+    overflow: hidden;
+    background: radial-gradient(circle at 72% 24%, rgba(0, 178, 115, 0.22), transparent 18rem),
+        linear-gradient(135deg, var(--vpq-green-dark) 0%, #003c2b 100%);
+    isolation: isolate;
+}
+
+.testimonial-panel::after {
+    content: '';
+    position: absolute;
+    z-index: 3;
+    right: -10%;
+    bottom: -27%;
+    width: 72%;
+    height: 48%;
+    border-radius: 58% 0 0 0 / 100% 0 0 0;
+    background: var(--vpq-green);
+}
+
+.testimonial-copy {
+    position: relative;
+    z-index: 5;
+    width: 57%;
+    padding: clamp(2rem, 4.6vw, 3.5rem) clamp(1.5rem, 4vw, 3rem);
+}
+
+.testimonial-quote-mark {
+    color: var(--vpq-yellow);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(4.75rem, 10vw, 7rem);
+    font-weight: 700;
+    line-height: 0.72;
+    margin-bottom: 0.75rem;
+}
+
+.testimonial-quote {
+    max-width: 27rem;
+    margin: 0;
+    color: #ffffff !important;
+    font-size: clamp(1.35rem, 2.3vw, 2rem);
+    font-weight: 700;
+    line-height: 1.22;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
+}
+
+.testimonial-author {
+    margin-top: clamp(1.5rem, 3.5vw, 2.25rem);
+    color: #ffffff;
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.testimonial-author p {
+    margin: 0;
+}
+
+.testimonial-rule {
+    display: block;
+    width: 2.3rem;
+    height: 0.18rem;
+    margin-bottom: 1.4rem;
+    border-radius: 999px;
+    background: var(--vpq-yellow);
+}
+
+.testimonial-location {
+    display: inline-block;
+    margin-top: 0.15rem;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.9em;
+}
+
+.testimonial-photo-wrap {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    width: 54%;
+    height: 100%;
+    clip-path: ellipse(76% 73% at 76% 41%);
+}
+
+.testimonial-photo {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: center;
+    border: 0 !important;
+    box-shadow: none !important;
+    filter: grayscale(100%) contrast(1.04);
+}
+
+.testimonial-photo-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(0, 99, 64, 0.55), transparent 42%);
+    pointer-events: none;
+}
+
+.testimonial-plant {
+    position: absolute;
+    z-index: 4;
+    right: 1.6rem;
+    bottom: 1.15rem;
+    color: rgba(255, 243, 213, 0.5);
+    transform: rotate(-8deg);
+}
+
+.testimonial-plant .ph,
+.testimonial-plant .ph-duotone {
+    display: block;
+    font-size: clamp(4rem, 9vw, 6.25rem);
+    line-height: 1;
+}
+
+.carrousel-prev,
+.carrousel-next {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-color: var(--vpq-green-light) !important;
+    color: var(--vpq-green-dark) !important;
+}
+
+.carrousel-prev .ph,
+.carrousel-next .ph {
+    font-size: 1.25rem;
 }
 
 .carrousel-prev:hover,
@@ -1047,6 +1186,41 @@ a.logo-item:hover {
     border-color: var(--vpq-yellow) !important;
     background-color: var(--vpq-yellow) !important;
     color: var(--vpq-black) !important;
+}
+
+@media (max-width: 768px) {
+    .testimonial-panel {
+        min-height: 34rem;
+    }
+
+    .testimonial-photo-wrap {
+        inset: 0 0 auto auto;
+        width: 100%;
+        height: 42%;
+        clip-path: none;
+        opacity: 0.3;
+    }
+
+    .testimonial-photo-wrap::after {
+        background: linear-gradient(180deg, transparent 0%, var(--vpq-green-dark) 100%);
+    }
+
+    .testimonial-copy {
+        width: 100%;
+        padding: 2rem 1.35rem;
+    }
+
+    .testimonial-quote {
+        max-width: none;
+        font-size: clamp(1.25rem, 6vw, 1.75rem);
+    }
+
+    .testimonial-panel::after {
+        right: -26%;
+        bottom: -20%;
+        width: 95%;
+        height: 30%;
+    }
 }
 
 /* Alertes, accordéon et recherche */
@@ -1067,21 +1241,51 @@ a.logo-item:hover {
     border-left-color: var(--vpq-yellow) !important;
 }
 
-.alerte-block.bg-blue-50 {
-    background-color: var(--vpq-blue-light) !important;
-    border-color: var(--vpq-blue) !important;
-    color: var(--vpq-blue-dark) !important;
-}
-
-.alerte-block.bg-green-50 {
-    background-color: var(--vpq-green-light) !important;
-    border-color: var(--vpq-green-dark) !important;
-    color: var(--vpq-green-dark) !important;
-}
-
-.alerte-block.bg-orange-50 {
+.alerte-block,
+.alerte-block.bg-blue-50,
+.alerte-block.bg-green-50,
+.alerte-block.bg-orange-50,
+.alerte-block.bg-red-50 {
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-start;
+    padding: 1.15rem 1.25rem !important;
     background-color: var(--vpq-orange-light) !important;
     border-color: var(--vpq-orange) !important;
+    color: var(--vpq-orange-dark) !important;
+    box-shadow: none !important;
+}
+
+.alerte-block::before,
+.alerte-block.bg-blue-50::before,
+.alerte-block.bg-green-50::before,
+.alerte-block.bg-orange-50::before,
+.alerte-block.bg-red-50::before {
+    content: none !important;
+}
+
+.alerte-icon {
+    flex: 0 0 auto;
+    color: var(--vpq-orange) !important;
+    line-height: 1;
+}
+
+.alerte-icon .ph,
+.alerte-icon .ph-duotone {
+    display: block;
+    font-size: 1.75rem;
+    line-height: 1;
+}
+
+.alerte-content {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.alerte-block h4,
+.alerte-message,
+.alerte-message p,
+.alerte-message li {
     color: var(--vpq-orange-dark) !important;
 }
 

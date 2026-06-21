@@ -270,10 +270,15 @@
                     {% elif block.value.type == 'warning' %}bg-orange-50 border-orange-600 text-orange-900
                     {% elif block.value.type == 'danger' %}bg-red-50 border-red-600 text-red-900
                     {% endif %}">
-                    {% if block.value.titre %}
-                    <h4 class="font-bold mb-2">{{ block.value.titre }}</h4>
-                    {% endif %}
-                    <div class="alerte-message">{{ block.value.message|richtext }}</div>
+                    <div class="alerte-icon" aria-hidden="true">
+                        <i class="ph-duotone ph-bell-ringing"></i>
+                    </div>
+                    <div class="alerte-content">
+                        {% if block.value.titre %}
+                        <h4 class="font-bold mb-2">{{ block.value.titre }}</h4>
+                        {% endif %}
+                        <div class="alerte-message">{{ block.value.message|richtext }}</div>
+                    </div>
                 </div>
 
             {% elif block.block_type == 'accordeon' %}
