@@ -54,6 +54,7 @@ h1,
 .footer-section h3,
 .cookie-banner-title,
 .page-content > h2,
+.page-content .prose h2,
 .grille-equipe h2,
 .grille-cartes h3,
 .statistiques-block h3,
@@ -70,6 +71,13 @@ h1,
 h2 {
     margin-top: 0 !important;
     color: var(--vpq-blue-dark) !important;
+}
+
+.page-content .prose h2 {
+    margin-top: 0 !important;
+    margin-bottom: 0.75rem !important;
+    color: var(--vpq-blue-dark) !important;
+    font-size: 1.875rem !important;
 }
 
 .hero-title {
