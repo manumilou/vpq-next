@@ -232,7 +232,10 @@ class StandardPage(Page):
             ('temoignages', blocks.ListBlock(
                 blocks.StructBlock([
                     ('photo', ImageChooserBlock(label="Photo")),
-                    ('citation', blocks.TextBlock(label="Témoignage")),
+                    ('citation', blocks.RichTextBlock(
+                        label="Témoignage",
+                        features=['bold', 'italic', 'link']
+                    )),
                     ('nom', blocks.CharBlock(label="Nom")),
                     ('role', blocks.CharBlock(label="Rôle/Titre", required=False)),
                     ('localisation', blocks.CharBlock(label="Localisation", required=False)),
