@@ -42,15 +42,8 @@
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
 
-            var analyticsConsent = null;
-            try {
-                analyticsConsent = localStorage.getItem('ga_consent');
-            } catch (error) {
-                analyticsConsent = null;
-            }
-
             // Check if user has already consented
-            if (analyticsConsent === 'accepted') {
+            if (localStorage.getItem('ga_consent') === 'accepted') {
                 // Load GA4 if consent was given
                 loadGoogleAnalytics();
             } else {
@@ -69,8 +62,7 @@
                 script.onload = function() {
                     gtag('js', new Date());
                     gtag('config', 'G-WRW4XDG67L', {
-                        'anonymize_ip': true,
-                        'cookie_domain': window.location.hostname
+                        'anonymize_ip': true
                     });
                     gtag('consent', 'update', {
                         'analytics_storage': 'granted'

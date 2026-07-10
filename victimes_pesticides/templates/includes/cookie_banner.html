@@ -23,40 +23,16 @@
 </div>
 
 <script>
-    function getCookieConsent() {
-        try {
-            return localStorage.getItem('ga_consent');
-        } catch (error) {
-            return null;
-        }
-    }
-
-    function setCookieConsent(value) {
-        try {
-            localStorage.setItem('ga_consent', value);
-        } catch (error) {
-            // Ignore storage failures; the current click should still work for this page view.
-        }
-    }
-
-    function removeCookieConsent() {
-        try {
-            localStorage.removeItem('ga_consent');
-        } catch (error) {
-            // Ignore storage failures and still reload below.
-        }
-    }
-
-    // Show banner if user hasn't made a valid choice
+    // Show banner if user hasn't made a choice
     (function() {
-        var consent = getCookieConsent();
-        if (consent !== 'accepted' && consent !== 'refused') {
+        var consent = localStorage.getItem('ga_consent');
+        if (!consent) {
             document.getElementById('cookieBanner').style.display = 'block';
         }
     })();
 
     function acceptCookies() {
-        setCookieConsent('accepted');
+        localStorage.setItem('ga_consent', 'accepted');
         document.getElementById('cookieBanner').style.display = 'none';
 
         // Load Google Analytics
@@ -74,7 +50,7 @@
     }
 
     function refuseCookies() {
-        setCookieConsent('refused');
+        localStorage.setItem('ga_consent', 'refused');
         document.getElementById('cookieBanner').style.display = 'none';
 
         // Track refusal event (without storing data)
@@ -86,9 +62,9 @@
         }
     }
 
-    // Allow users to change their mind from the privacy/cookie policy page
+    // Allow users to change their mind - add this function to your privacy policy page
     function resetCookieConsent() {
-        removeCookieConsent();
+        localStorage.removeItem('ga_consent');
         location.reload();
     }
 </script>
