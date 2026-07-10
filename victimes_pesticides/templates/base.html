@@ -69,7 +69,8 @@
                 script.onload = function() {
                     gtag('js', new Date());
                     gtag('config', 'G-WRW4XDG67L', {
-                        'anonymize_ip': true
+                        'anonymize_ip': true,
+                        'cookie_domain': window.location.hostname
                     });
                     gtag('consent', 'update', {
                         'analytics_storage': 'granted'
