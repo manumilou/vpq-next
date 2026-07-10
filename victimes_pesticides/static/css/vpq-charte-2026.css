@@ -941,7 +941,8 @@ a.logo-item:hover {
     margin-right: -50vw;
     overflow: hidden;
     border-radius: 0;
-    background: linear-gradient(105deg, var(--vpq-cream) 0%, #fff8e8 60%, #ffffff 100%);
+    background: linear-gradient(105deg, var(--vpq-green-light) 0%, #eef8f4 62%, #ffffff 100%);
+    border-top: 0.9rem solid #ffffff;
     padding: 2.5rem max(1.25rem, calc((100vw - 1280px) / 2 + 2rem));
     box-shadow: none;
 }

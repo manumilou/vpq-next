@@ -421,6 +421,18 @@
         {% endfor %}
     </div>
     {% endif %}
+
+    {% if page.slug == 'politique-de-témoins' or page.slug == 'politique-de-temoins' %}
+    <div class="mt-10 rounded-lg border border-green-200 bg-green-50 p-6">
+        <h2 class="text-2xl font-bold mb-3 text-gray-900">Gestion de vos préférences</h2>
+        <p class="mb-4 text-gray-700">
+            Vous pouvez modifier votre choix concernant les témoins analytiques à tout moment.
+        </p>
+        <button type="button" class="inline-block bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 font-medium transition-colors" onclick="resetCookieConsent()">
+            Modifier mes préférences
+        </button>
+    </div>
+    {% endif %}
 </div>
 {% endwith %}
 
