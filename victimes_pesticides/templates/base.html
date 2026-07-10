@@ -42,18 +42,22 @@
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
 
-            // Check if user has already consented
-            if (localStorage.getItem('ga_consent') === 'accepted') {
-                // Load GA4 if consent was given
-                loadGoogleAnalytics();
-            } else {
-                // Default: deny until user consents
-                gtag('consent', 'default', {
-                    'analytics_storage': 'denied'
-                });
-            }
+            // Par défaut, aucun témoin analytique n'est autorisé avant consentement.
+            gtag('consent', 'default', {
+                'analytics_storage': 'denied'
+            });
 
-            function loadGoogleAnalytics() {
+            window.loadGoogleAnalytics = function() {
+                // Le consentement doit être mis à jour avant l'initialisation GA.
+                gtag('consent', 'update', {
+                    'analytics_storage': 'granted'
+                });
+
+                if (window.vpqGoogleAnalyticsLoaded) {
+                    return;
+                }
+                window.vpqGoogleAnalyticsLoaded = true;
+
                 var script = document.createElement('script');
                 script.async = true;
                 script.src = 'https://www.googletagmanager.com/gtag/js?id=G-WRW4XDG67L';
@@ -64,10 +68,11 @@
                     gtag('config', 'G-WRW4XDG67L', {
                         'anonymize_ip': true
                     });
-                    gtag('consent', 'update', {
-                        'analytics_storage': 'granted'
-                    });
                 };
+            };
+
+            if (localStorage.getItem('ga_consent') === 'accepted') {
+                window.loadGoogleAnalytics();
             }
         </script>
     </head>

@@ -23,48 +23,86 @@
 </div>
 
 <script>
-    // Show banner if user hasn't made a choice
-    (function() {
+    function showCookieBannerIfNeeded() {
+        var banner = document.getElementById('cookieBanner');
+        if (!banner) {
+            return;
+        }
+
         var consent = localStorage.getItem('ga_consent');
         if (!consent) {
-            document.getElementById('cookieBanner').style.display = 'block';
+            banner.style.display = 'block';
         }
-    })();
+    }
 
-    function acceptCookies() {
+    function hideCookieBanner() {
+        var banner = document.getElementById('cookieBanner');
+        if (banner) {
+            banner.style.display = 'none';
+        }
+    }
+
+    function deleteCookie(name) {
+        var hostnameParts = window.location.hostname.split('.');
+        var domains = ['', window.location.hostname];
+
+        if (hostnameParts.length > 2) {
+            domains.push('.' + hostnameParts.slice(-2).join('.'));
+        }
+
+        domains.forEach(function(domain) {
+            document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + (domain ? '; domain=' + domain : '');
+        });
+    }
+
+    function deleteGoogleAnalyticsCookies() {
+        document.cookie.split(';').forEach(function(cookie) {
+            var name = cookie.split('=')[0].trim();
+            if (name === '_ga' || name === '_gid' || name.indexOf('_ga_') === 0) {
+                deleteCookie(name);
+            }
+        });
+    }
+
+    // Show banner if user hasn't made a choice
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', showCookieBannerIfNeeded);
+    } else {
+        showCookieBannerIfNeeded();
+    }
+
+    window.acceptCookies = function() {
         localStorage.setItem('ga_consent', 'accepted');
-        document.getElementById('cookieBanner').style.display = 'none';
+        hideCookieBanner();
 
-        // Load Google Analytics
-        if (typeof loadGoogleAnalytics === 'function') {
-            loadGoogleAnalytics();
+        if (typeof window.loadGoogleAnalytics === 'function') {
+            window.loadGoogleAnalytics();
         }
 
-        // Track acceptance event
         if (typeof gtag === 'function') {
             gtag('event', 'cookie_consent', {
                 'event_category': 'engagement',
                 'event_label': 'accepted'
             });
         }
-    }
+    };
 
-    function refuseCookies() {
+    window.refuseCookies = function() {
         localStorage.setItem('ga_consent', 'refused');
-        document.getElementById('cookieBanner').style.display = 'none';
+        hideCookieBanner();
+        deleteGoogleAnalyticsCookies();
 
-        // Track refusal event (without storing data)
         if (typeof gtag === 'function') {
-            gtag('event', 'cookie_consent', {
-                'event_category': 'engagement',
-                'event_label': 'refused'
+            gtag('consent', 'update', {
+                'analytics_storage': 'denied'
             });
         }
-    }
+    };
 
-    // Allow users to change their mind - add this function to your privacy policy page
-    function resetCookieConsent() {
+    // Used by the privacy policy page to let users change their choice.
+    window.resetCookieConsent = function() {
         localStorage.removeItem('ga_consent');
+        deleteGoogleAnalyticsCookies();
         location.reload();
-    }
+    };
 </script>
