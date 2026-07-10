@@ -42,22 +42,25 @@
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
 
-            // Par défaut, aucun témoin analytique n'est autorisé avant consentement.
-            gtag('consent', 'default', {
-                'analytics_storage': 'denied'
-            });
+            var analyticsConsent = null;
+            try {
+                analyticsConsent = localStorage.getItem('ga_consent');
+            } catch (error) {
+                analyticsConsent = null;
+            }
 
-            window.loadGoogleAnalytics = function() {
-                // Le consentement doit être mis à jour avant l'initialisation GA.
-                gtag('consent', 'update', {
-                    'analytics_storage': 'granted'
+            // Check if user has already consented
+            if (analyticsConsent === 'accepted') {
+                // Load GA4 if consent was given
+                loadGoogleAnalytics();
+            } else {
+                // Default: deny until user consents
+                gtag('consent', 'default', {
+                    'analytics_storage': 'denied'
                 });
+            }
 
-                if (window.vpqGoogleAnalyticsLoaded) {
-                    return;
-                }
-                window.vpqGoogleAnalyticsLoaded = true;
-
+            function loadGoogleAnalytics() {
                 var script = document.createElement('script');
                 script.async = true;
                 script.src = 'https://www.googletagmanager.com/gtag/js?id=G-WRW4XDG67L';
@@ -68,11 +71,10 @@
                     gtag('config', 'G-WRW4XDG67L', {
                         'anonymize_ip': true
                     });
+                    gtag('consent', 'update', {
+                        'analytics_storage': 'granted'
+                    });
                 };
-            };
-
-            if (localStorage.getItem('ga_consent') === 'accepted') {
-                window.loadGoogleAnalytics();
             }
         </script>
     </head>

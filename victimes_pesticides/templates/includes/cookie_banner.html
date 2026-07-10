@@ -23,86 +23,72 @@
 </div>
 
 <script>
-    function showCookieBannerIfNeeded() {
-        var banner = document.getElementById('cookieBanner');
-        if (!banner) {
-            return;
-        }
-
-        var consent = localStorage.getItem('ga_consent');
-        if (!consent) {
-            banner.style.display = 'block';
+    function getCookieConsent() {
+        try {
+            return localStorage.getItem('ga_consent');
+        } catch (error) {
+            return null;
         }
     }
 
-    function hideCookieBanner() {
-        var banner = document.getElementById('cookieBanner');
-        if (banner) {
-            banner.style.display = 'none';
+    function setCookieConsent(value) {
+        try {
+            localStorage.setItem('ga_consent', value);
+        } catch (error) {
+            // Ignore storage failures; the current click should still work for this page view.
         }
     }
 
-    function deleteCookie(name) {
-        var hostnameParts = window.location.hostname.split('.');
-        var domains = ['', window.location.hostname];
+    function removeCookieConsent() {
+        try {
+            localStorage.removeItem('ga_consent');
+        } catch (error) {
+            // Ignore storage failures and still reload below.
+        }
+    }
 
-        if (hostnameParts.length > 2) {
-            domains.push('.' + hostnameParts.slice(-2).join('.'));
+    // Show banner if user hasn't made a valid choice
+    (function() {
+        var consent = getCookieConsent();
+        if (consent !== 'accepted' && consent !== 'refused') {
+            document.getElementById('cookieBanner').style.display = 'block';
+        }
+    })();
+
+    function acceptCookies() {
+        setCookieConsent('accepted');
+        document.getElementById('cookieBanner').style.display = 'none';
+
+        // Load Google Analytics
+        if (typeof loadGoogleAnalytics === 'function') {
+            loadGoogleAnalytics();
         }
 
-        domains.forEach(function(domain) {
-            document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + (domain ? '; domain=' + domain : '');
-        });
-    }
-
-    function deleteGoogleAnalyticsCookies() {
-        document.cookie.split(';').forEach(function(cookie) {
-            var name = cookie.split('=')[0].trim();
-            if (name === '_ga' || name === '_gid' || name.indexOf('_ga_') === 0) {
-                deleteCookie(name);
-            }
-        });
-    }
-
-    // Show banner if user hasn't made a choice
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', showCookieBannerIfNeeded);
-    } else {
-        showCookieBannerIfNeeded();
-    }
-
-    window.acceptCookies = function() {
-        localStorage.setItem('ga_consent', 'accepted');
-        hideCookieBanner();
-
-        if (typeof window.loadGoogleAnalytics === 'function') {
-            window.loadGoogleAnalytics();
-        }
-
+        // Track acceptance event
         if (typeof gtag === 'function') {
             gtag('event', 'cookie_consent', {
                 'event_category': 'engagement',
                 'event_label': 'accepted'
             });
         }
-    };
+    }
 
-    window.refuseCookies = function() {
-        localStorage.setItem('ga_consent', 'refused');
-        hideCookieBanner();
-        deleteGoogleAnalyticsCookies();
+    function refuseCookies() {
+        setCookieConsent('refused');
+        document.getElementById('cookieBanner').style.display = 'none';
 
+        // Track refusal event (without storing data)
         if (typeof gtag === 'function') {
-            gtag('consent', 'update', {
-                'analytics_storage': 'denied'
+            gtag('event', 'cookie_consent', {
+                'event_category': 'engagement',
+                'event_label': 'refused'
             });
         }
-    };
+    }
 
-    // Used by the privacy policy page to let users change their choice.
-    window.resetCookieConsent = function() {
-        localStorage.removeItem('ga_consent');
-        deleteGoogleAnalyticsCookies();
+    // Allow users to change their mind from the privacy/cookie policy page
+    function resetCookieConsent() {
+        removeCookieConsent();
         location.reload();
-    };
+    }
 </script>
