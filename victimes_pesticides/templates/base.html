@@ -37,37 +37,33 @@
         {# Override this in templates to add extra stylesheets #}
         {% endblock %}
 
-        {# Google Analytics 4 - Avec consentement #}
+        {# Osano Cookie Consent - hosted CMP #}
+        <script src="https://cmp.osano.com/o1sZR61VhL/2495944a-e4e4-44e4-b162-4aa14ebfa1e9/osano.js"></script>
+
+        {# Google Analytics 4 - loaded after Osano analytics consent #}
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
 
-            // Check if user has already consented
-            if (localStorage.getItem('ga_consent') === 'accepted') {
-                // Load GA4 if consent was given
-                loadGoogleAnalytics();
-            } else {
-                // Default: deny until user consents
-                gtag('consent', 'default', {
-                    'analytics_storage': 'denied'
-                });
-            }
-
             function loadGoogleAnalytics() {
+                if (window.vpqGoogleAnalyticsLoaded) {
+                    return;
+                }
+                window.vpqGoogleAnalyticsLoaded = true;
+
                 var script = document.createElement('script');
                 script.async = true;
                 script.src = 'https://www.googletagmanager.com/gtag/js?id=G-WRW4XDG67L';
                 document.head.appendChild(script);
 
-                script.onload = function() {
-                    gtag('js', new Date());
-                    gtag('config', 'G-WRW4XDG67L', {
-                        'anonymize_ip': true
-                    });
-                    gtag('consent', 'update', {
-                        'analytics_storage': 'granted'
-                    });
-                };
+                gtag('js', new Date());
+                gtag('config', 'G-WRW4XDG67L', {
+                    'anonymize_ip': true
+                });
+            }
+
+            if (window.Osano && window.Osano.cm) {
+                window.Osano.cm.addEventListener('osano-cm-analytics', loadGoogleAnalytics);
             }
         </script>
     </head>
@@ -85,9 +81,6 @@
         </main>
 
         {% include "includes/footer.html" %}
-
-        {# Cookie Consent Banner #}
-        {% include "includes/cookie_banner.html" %}
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/victimes_pesticides.js' %}"></script>
