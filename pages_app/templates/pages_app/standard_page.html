@@ -301,7 +301,7 @@
                     {% endif %}
                     <div class="space-y-2">
                         {% for item in block.value.items %}
-                        <div class="accordeon-item border border-gray-200 rounded-lg overflow-hidden">
+                        <div id="{{ item.question|slugify }}" class="accordeon-item border border-gray-200 rounded-lg overflow-hidden">
                             <button class="accordeon-toggle w-full text-left px-6 py-4 bg-white hover:bg-gray-50 flex justify-between items-center font-medium text-gray-900" data-target="accordeon-{{ forloop.parentloop.counter }}-{{ forloop.counter }}" aria-controls="accordeon-{{ forloop.parentloop.counter }}-{{ forloop.counter }}">
                                 {{ item.question }}
                                 <svg class="accordeon-icon w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

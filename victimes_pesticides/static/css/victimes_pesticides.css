@@ -1906,6 +1906,10 @@ div.card-banner {
     margin-top: 0.75rem;
 }
 
+.accordeon-item {
+    scroll-margin-top: 7rem;
+}
+
 .presumption-legend {
     display: flex;
     flex-wrap: wrap;
