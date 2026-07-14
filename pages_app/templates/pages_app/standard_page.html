@@ -302,13 +302,13 @@
                     <div class="space-y-2">
                         {% for item in block.value.items %}
                         <div class="accordeon-item border border-gray-200 rounded-lg overflow-hidden">
-                            <button class="accordeon-toggle w-full text-left px-6 py-4 bg-white hover:bg-gray-50 flex justify-between items-center font-medium text-gray-900" data-target="accordeon-{{ forloop.counter }}">
+                            <button class="accordeon-toggle w-full text-left px-6 py-4 bg-white hover:bg-gray-50 flex justify-between items-center font-medium text-gray-900" data-target="accordeon-{{ forloop.parentloop.counter }}-{{ forloop.counter }}" aria-controls="accordeon-{{ forloop.parentloop.counter }}-{{ forloop.counter }}">
                                 {{ item.question }}
                                 <svg class="accordeon-icon w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                 </svg>
                             </button>
-                            <div class="accordeon-content hidden px-6 py-4 bg-gray-50" id="accordeon-{{ forloop.counter }}">
+                            <div class="accordeon-content hidden px-6 py-4 bg-gray-50" id="accordeon-{{ forloop.parentloop.counter }}-{{ forloop.counter }}">
                                 <div class="prose">{{ item.reponse|richtext }}</div>
                             </div>
                         </div>

@@ -39,7 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
         toggle.setAttribute('aria-expanded', 'false');
         toggle.addEventListener('click', function() {
             const targetId = this.getAttribute('data-target');
-            const content = document.getElementById(targetId);
+            const accordeonItem = this.closest('.accordeon-item');
+            const content = accordeonItem ? accordeonItem.querySelector('.accordeon-content') : document.getElementById(targetId);
             const icon = this.querySelector('.accordeon-icon');
 
             if (content) {
