@@ -345,6 +345,10 @@ button:focus {
     isolation: isolate;
 }
 
+.template-standardpage .standard-page-hero {
+    min-height: clamp(20rem, 52vh, 32rem) !important;
+}
+
 .hero-block .bg-black {
     background: #000000 !important;
 }
