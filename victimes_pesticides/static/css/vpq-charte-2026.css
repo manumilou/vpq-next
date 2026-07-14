@@ -1212,8 +1212,11 @@ a.logo-item:hover {
 
 /* CTA final */
 .cta-bg-green {
-    background: linear-gradient(90deg, var(--vpq-blue-dark) 0%, var(--vpq-blue) 56%, var(--vpq-orange) 100%) !important;
-    color: #ffffff !important;
+    background:
+        radial-gradient(circle at 12% 20%, rgba(252, 193, 10, 0.42), transparent 18rem),
+        radial-gradient(circle at 88% 80%, rgba(234, 90, 36, 0.22), transparent 20rem),
+        linear-gradient(105deg, var(--vpq-cream) 0%, #fff8e8 58%, var(--vpq-orange-light) 100%) !important;
+    color: var(--vpq-blue-dark) !important;
     position: relative;
     isolation: isolate;
     overflow: hidden;
@@ -1221,7 +1224,7 @@ a.logo-item:hover {
 
 .cta-bg-green .cta-final-title,
 .cta-bg-green .cta-final-text {
-    color: #ffffff !important;
+    color: var(--vpq-blue-dark) !important;
 }
 
 .cta-bg-gray {
