@@ -276,7 +276,17 @@
                     {% elif block.value.type == 'danger' %}bg-red-50 border-red-600 text-red-900
                     {% endif %}">
                     <div class="alerte-icon" aria-hidden="true">
-                        <i class="ph-duotone ph-bell-ringing"></i>
+                        {% if block.value.type == 'info' %}
+                        <i class="ph-duotone ph-info"></i>
+                        {% elif block.value.type == 'success' %}
+                        <i class="ph-duotone ph-check-circle"></i>
+                        {% elif block.value.type == 'warning' %}
+                        <i class="ph-duotone ph-warning"></i>
+                        {% elif block.value.type == 'danger' %}
+                        <i class="ph-duotone ph-x-circle"></i>
+                        {% else %}
+                        <i class="ph-duotone ph-info"></i>
+                        {% endif %}
                     </div>
                     <div class="alerte-content">
                         {% if block.value.titre %}

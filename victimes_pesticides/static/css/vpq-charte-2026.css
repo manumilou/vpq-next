@@ -1506,10 +1506,31 @@ a.logo-item:hover {
     gap: 0.9rem;
     align-items: flex-start;
     padding: 1.15rem 1.25rem !important;
+    box-shadow: none !important;
+}
+
+.alerte-block.bg-blue-50 {
+    background-color: var(--vpq-blue-light) !important;
+    border-color: var(--vpq-blue) !important;
+    color: var(--vpq-blue-dark) !important;
+}
+
+.alerte-block.bg-green-50 {
+    background-color: var(--vpq-green-light) !important;
+    border-color: var(--vpq-green) !important;
+    color: var(--vpq-green-dark) !important;
+}
+
+.alerte-block.bg-orange-50 {
     background-color: var(--vpq-orange-light) !important;
     border-color: var(--vpq-orange) !important;
     color: var(--vpq-orange-dark) !important;
-    box-shadow: none !important;
+}
+
+.alerte-block.bg-red-50 {
+    background-color: #fef2f2 !important;
+    border-color: #dc2626 !important;
+    color: #7f1d1d !important;
 }
 
 .alerte-block::before,
@@ -1522,8 +1543,23 @@ a.logo-item:hover {
 
 .alerte-icon {
     flex: 0 0 auto;
-    color: var(--vpq-orange) !important;
     line-height: 1;
+}
+
+.alerte-block.bg-blue-50 .alerte-icon {
+    color: var(--vpq-blue) !important;
+}
+
+.alerte-block.bg-green-50 .alerte-icon {
+    color: var(--vpq-green) !important;
+}
+
+.alerte-block.bg-orange-50 .alerte-icon {
+    color: var(--vpq-orange) !important;
+}
+
+.alerte-block.bg-red-50 .alerte-icon {
+    color: #dc2626 !important;
 }
 
 .alerte-icon .ph,
@@ -1542,7 +1578,7 @@ a.logo-item:hover {
 .alerte-message,
 .alerte-message p,
 .alerte-message li {
-    color: var(--vpq-orange-dark) !important;
+    color: inherit !important;
 }
 
 .table-block th {
