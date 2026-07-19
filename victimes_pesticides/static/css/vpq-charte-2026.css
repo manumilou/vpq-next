@@ -1493,6 +1493,11 @@ a.logo-item:hover {
     color: var(--vpq-orange) !important;
 }
 
+.accordeon-toggle,
+.accordeon-content {
+    font-family: var(--vpq-body-font) !important;
+}
+
 .accordeon-content .prose li {
     border-left-color: var(--vpq-yellow) !important;
 }
