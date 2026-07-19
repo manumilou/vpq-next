@@ -155,6 +155,7 @@ class StandardPage(Page):
         ], label="Grille d'équipe", icon="group")),
         ('grille_cartes', blocks.StructBlock([
             ('titre', blocks.CharBlock(label="Titre de la section", required=False)),
+            ('sous_titre', blocks.TextBlock(label="Sous-titre", required=False)),
             ('cartes', blocks.ListBlock(
                 blocks.StructBlock([
                     ('icone', blocks.ChoiceBlock(
@@ -165,7 +166,9 @@ class StandardPage(Page):
                             ('brain', 'Cerveau / neurologique'),
                             ('dna', 'ADN / cancer'),
                             ('baby', 'Enfants / vulnérabilité'),
+                            ('hand_palm', 'Main / contact peau'),
                             ('wind', 'Air / respiration'),
+                            ('smiley_nervous', 'Bouche / ingestion'),
                             ('claim', 'Réclamation / dossier'),
                             ('legal', 'Recours juridique'),
                             ('megaphone', 'Témoignage / sensibilisation'),

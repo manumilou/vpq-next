@@ -177,12 +177,15 @@
             {% elif block.block_type == 'grille_cartes' %}
                 <div class="grille-cartes my-4">
                     {% if block.value.titre %}
-                    <h3 class="text-2xl font-bold mb-6 text-gray-900">{{ block.value.titre }}</h3>
+                    <h2 class="text-2xl font-bold mb-3 text-gray-900">{{ block.value.titre }}</h2>
+                    {% endif %}
+                    {% if block.value.sous_titre %}
+                    <p class="grille-cartes-subtitle text-gray-700 mb-6">{{ block.value.sous_titre }}</p>
                     {% endif %}
                     <div class="grid md:grid-cols-3 gap-6">
                         {% for carte in block.value.cartes %}
-                            {% if carte.lien %}
                             {% get_link_url carte.lien as carte_url %}
+                            {% if carte_url != '#' %}
                             <a href="{{ carte_url }}" class="carte-item carte-item-{{ forloop.counter }} bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
                             {% else %}
                             <div class="carte-item carte-item-{{ forloop.counter }} bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
@@ -200,8 +203,12 @@
                                     <i class="ph-duotone ph-dna"></i>
                                     {% elif carte.icone == 'baby' %}
                                     <i class="ph-duotone ph-baby"></i>
+                                    {% elif carte.icone == 'hand_palm' %}
+                                    <i class="ph-duotone ph-hand-palm"></i>
                                     {% elif carte.icone == 'wind' %}
                                     <i class="ph-duotone ph-wind"></i>
+                                    {% elif carte.icone == 'smiley_nervous' %}
+                                    <i class="ph-duotone ph-smiley-nervous"></i>
                                     {% elif carte.icone == 'claim' %}
                                     <i class="ph-duotone ph-file-text"></i>
                                     {% elif carte.icone == 'legal' %}
@@ -232,7 +239,7 @@
                                     <i class="ph-duotone ph-info"></i>
                                     {% endif %}
                                 </div>
-                            {% if carte.lien %}
+                            {% if carte_url != '#' %}
                             </a>
                             {% else %}
                             </div>
