@@ -75,7 +75,8 @@ h2 {
 }
 
 .page-content > h2,
-.page-content .prose h2 {
+.page-content .prose h2,
+.grille-cartes > h2 {
     margin-top: 0 !important;
     margin-bottom: 0.75rem !important;
     color: var(--vpq-blue-dark) !important;
@@ -87,7 +88,6 @@ h2 {
 }
 
 .grille-equipe > h3,
-.grille-cartes > h2,
 .grille-logos > h3,
 .zeffy-donation-block > h3 {
     margin-top: 0 !important;
