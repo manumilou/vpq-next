@@ -1267,11 +1267,6 @@ a.logo-item:hover {
     color: var(--vpq-yellow) !important;
 }
 
-.carrousel-temoignages-wrapper {
-    margin-top: 3rem !important;
-    margin-bottom: 3rem !important;
-}
-
 .carrousel-temoignages-container {
     padding: 0 !important;
 }
