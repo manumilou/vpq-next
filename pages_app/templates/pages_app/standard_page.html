@@ -21,7 +21,7 @@
         {% for block in page.corps %}
             {% if block.block_type == 'hero_block' %}
                 {# Full-bleed hero block, matching the homepage banner treatment #}
-                <div class="hero-block standard-page-hero relative w-full hero-height flex items-center justify-center overflow-hidden my-8">
+                <div class="hero-block standard-page-hero relative w-full hero-height flex items-center justify-center overflow-hidden my-2">
                     {% image block.value.image_fond fill-1920x1080 as hero_img %}
                     <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ hero_img.url }}');"></div>
                     <div class="absolute inset-0 bg-black" style="opacity: {{ block.value.opacite_overlay|default:40 }}%;"></div>
@@ -64,12 +64,12 @@
                 <h2 id="{{ block.value|slugify }}" class="text-3xl font-bold mt-6 mb-3 text-gray-900">{{ block.value }}</h2>
 
             {% elif block.block_type == 'image' %}
-                <figure class="my-8">
+                <figure class="my-2">
                     {% image block.value width-800 class="rounded-lg shadow-md w-full" %}
                 </figure>
 
             {% elif block.block_type == 'image_avec_legende' %}
-                <figure class="my-8">
+                <figure class="my-2">
                     {% image block.value.image width-800 class="rounded-lg shadow-md w-full" %}
                     {% if block.value.legende or block.value.credit %}
                     <figcaption class="text-sm text-gray-600 mt-2 text-center">
@@ -80,7 +80,7 @@
                 </figure>
 
             {% elif block.block_type == 'citation' %}
-                <blockquote class="border-l-4 border-blue-600 pl-6 py-2 my-6 text-xl italic text-gray-700">
+                <blockquote class="border-l-4 border-blue-600 pl-6 py-2 my-4 text-xl italic text-gray-700">
                     {{ block.value }}
                 </blockquote>
 
@@ -103,13 +103,13 @@
                 </div>
 
             {% elif block.block_type == 'deux_colonnes' %}
-                <div class="deux-colonnes grid md:grid-cols-2 gap-8 my-8">
+                <div class="deux-colonnes grid md:grid-cols-2 gap-8 my-2">
                     <div class="prose">{{ block.value.colonne_gauche|richtext }}</div>
                     <div class="prose">{{ block.value.colonne_droite|richtext }}</div>
                 </div>
 
             {% elif block.block_type == 'carte_personne' %}
-                <div class="carte-personne bg-white border border-gray-200 rounded-lg p-6 my-6 shadow-sm hover:shadow-md transition-shadow">
+                <div class="carte-personne bg-white border border-gray-200 rounded-lg p-6 my-4 shadow-sm hover:shadow-md transition-shadow">
                     <div class="flex items-start gap-4">
                         {% if block.value.photo %}
                         <div class="flex-shrink-0">
@@ -128,7 +128,7 @@
                 </div>
 
             {% elif block.block_type == 'grille_equipe' %}
-                <div class="grille-equipe my-6">
+                <div class="grille-equipe my-4">
                     {% if block.value.titre %}
                     <h3 class="text-2xl font-bold mb-6 text-gray-900">{{ block.value.titre }}</h3>
                     {% endif %}
@@ -175,7 +175,7 @@
                 </div>
 
             {% elif block.block_type == 'grille_cartes' %}
-                <div class="grille-cartes my-6">
+                <div class="grille-cartes my-4">
                     {% if block.value.titre %}
                     <h3 class="text-2xl font-bold mb-6 text-gray-900">{{ block.value.titre }}</h3>
                     {% endif %}
@@ -242,7 +242,7 @@
                 </div>
 
             {% elif block.block_type == 'statistiques' %}
-                <div class="statistiques-block my-6">
+                <div class="statistiques-block my-4">
                     {% if block.value.titre %}
                     <h3 class="text-2xl font-bold mb-6 text-center text-gray-900">{{ block.value.titre }}</h3>
                     {% endif %}
@@ -287,7 +287,7 @@
                 </div>
 
             {% elif block.block_type == 'accordeon' %}
-                <div class="accordeon-block my-6">
+                <div class="accordeon-block my-4">
                     {% if block.value.titre %}
                     <h3 class="text-2xl font-bold mb-6 text-gray-900">{{ block.value.titre }}</h3>
                     {% with titre_accordeon=block.value.titre|lower %}
@@ -320,7 +320,7 @@
                 {% include "blocks/carrousel_temoignages_block.html" with value=block.value %}
 
             {% elif block.block_type == 'appel_action' %}
-                <div class="bg-gradient-to-r from-blue-50 to-orange-50 border border-blue-200 rounded-lg p-8 my-8">
+                <div class="bg-gradient-to-r from-blue-50 to-orange-50 border border-blue-200 rounded-lg p-8 my-2">
                     <h3 class="text-2xl font-bold mb-3 text-gray-900">{{ block.value.titre }}</h3>
                     <p class="mb-4 text-lg text-gray-700">{{ block.value.texte }}</p>
                     {% if block.value.lien and block.value.texte_bouton %}
@@ -331,7 +331,7 @@
                 </div>
 
             {% elif block.block_type == 'zeffy_donation' %}
-                <div class="zeffy-donation-block my-6">
+                <div class="zeffy-donation-block my-4">
                     {% if block.value.titre %}
                     <h3 class="text-2xl font-bold mb-6 text-gray-900">{{ block.value.titre }}</h3>
                     {% endif %}
@@ -359,7 +359,7 @@
                 </div>
 
             {% elif block.block_type == 'mailchimp_signup' %}
-                <div class="mailchimp-signup-block my-6 {% if block.value.style == 'box' %}bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200 rounded-lg p-8{% endif %}">
+                <div class="mailchimp-signup-block my-4 {% if block.value.style == 'box' %}bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200 rounded-lg p-8{% endif %}">
                     {% if block.value.titre %}
                     <h3 class="text-2xl font-bold mb-3 text-gray-900 {% if block.value.style == 'box' %}text-center{% endif %}">{{ block.value.titre }}</h3>
                     {% endif %}
@@ -391,12 +391,12 @@
                 </div>
 
             {% elif block.block_type == 'tableau' %}
-                <div class="table-block my-8 overflow-x-auto">
+                <div class="table-block my-2 overflow-x-auto">
                     {% include_block block %}
                 </div>
 
             {% elif block.block_type == 'grille_logos' %}
-                <div class="grille-logos my-6">
+                <div class="grille-logos my-4">
                     {% if block.value.titre %}
                     <h3 class="text-2xl font-bold mb-6 text-gray-900">{{ block.value.titre }}</h3>
                     {% endif %}
