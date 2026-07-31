@@ -87,6 +87,12 @@ h2 {
     margin-top: 0.75rem !important;
 }
 
+/* Page À propos : rapprocher l'intro "VPQ, c'est quoi ?" du bloc Mission. */
+.page-content-a-propos > .prose + .grille-cartes,
+.page-content-a-propos > .prose + h2 {
+    margin-top: -0.5rem !important;
+}
+
 .grille-equipe > h3,
 .grille-logos > h3,
 .zeffy-donation-block > h3 {
@@ -1134,7 +1140,7 @@ a.logo-item:hover {
     display: block;
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 2rem 0.85rem;
+    padding: 0 2rem 2.5rem;
     border: 0;
     background: transparent;
     color: rgba(25, 41, 82, 0.72);
@@ -1727,7 +1733,7 @@ a.logo-item:hover {
 
     .stats-panel .stat-sources {
         display: block;
-        padding: 0 1.25rem 0.8rem;
+        padding: 0 1.25rem 2rem;
         font-size: 0.6rem;
         line-height: 1;
         text-align: left;

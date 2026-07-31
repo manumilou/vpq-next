@@ -17,7 +17,7 @@
     {% endif %}
 
     {% if page.corps %}
-    <div class="page-content">
+    <div class="page-content page-content-{{ page.slug }}">
         {% for block in page.corps %}
             {% if block.block_type == 'hero_block' %}
                 {# Full-bleed hero block, matching the homepage banner treatment #}
@@ -231,6 +231,12 @@
                                     <i class="ph-duotone ph-shield-check"></i>
                                     {% elif carte.icone == 'share' %}
                                     <i class="ph-duotone ph-share-network"></i>
+                                    {% elif carte.icone == 'compass' %}
+                                    <i class="ph-duotone ph-compass"></i>
+                                    {% elif carte.icone == 'user-three' %}
+                                    <i class="ph-duotone ph-users-three"></i>
+                                    {% elif carte.icone == 'plant' %}
+                                    <i class="ph-duotone ph-plant"></i>
                                     {% elif carte.icone == 'leaf' %}
                                     <i class="ph-duotone ph-leaf"></i>
                                     {% elif carte.icone == 'broadcast' %}
