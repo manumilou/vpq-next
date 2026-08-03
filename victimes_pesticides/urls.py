@@ -8,6 +8,7 @@ from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
+from victimes_pesticides.legacy_redirects import legacy_redirect_urlpatterns
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
@@ -15,6 +16,8 @@ urlpatterns = [
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
 ]
+
+urlpatterns += legacy_redirect_urlpatterns()
 
 
 if settings.DEBUG:
