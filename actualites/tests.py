@@ -20,6 +20,18 @@ class LegacyRedirectTests(SimpleTestCase):
         self.assertEqual(response.status_code, 301)
         self.assertEqual(response["Location"], "/a-propos/")
 
+    def test_legacy_presse_index_redirects_to_actualites_index(self):
+        response = self.client.get("/presse/")
+
+        self.assertEqual(response.status_code, 301)
+        self.assertEqual(response["Location"], "/actualites/")
+
+    def test_legacy_presse_index_redirect_accepts_missing_trailing_slash(self):
+        response = self.client.get("/presse")
+
+        self.assertEqual(response.status_code, 301)
+        self.assertEqual(response["Location"], "/actualites/")
+
     def test_another_legacy_presse_article_redirects_to_actualite(self):
         response = self.client.get("/presse/petition-glyphosate/")
 

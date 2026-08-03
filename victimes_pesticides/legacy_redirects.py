@@ -15,6 +15,7 @@ LEGACY_REDIRECTS = {
     # URLs here only after verifying that the old path existed or is producing
     # 404s, and that the destination contains the matching current content.
     "/mission/": "/a-propos/",
+    "/presse/": "/actualites/",
     "/presse/action-qc/": "/actualites/action-qc/",
     "/presse/memoire-arla/": "/actualites/memoire-arla/",
     "/presse/petition-glyphosate/": "/actualites/petition-glyphosate/",
