@@ -1,11 +1,93 @@
 {% extends "base.html" %}
 
-{% block title %}Page not found{% endblock %}
+{% block title %}Page introuvable{% endblock %}
 
 {% block body_class %}template-404{% endblock %}
 
 {% block content %}
-<h1>Page not found</h1>
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+    <section class="not-found-hero bg-white rounded-lg shadow-md p-8 mb-8 text-center" aria-labelledby="not-found-title">
+        <p class="not-found-code text-sm font-bold text-green-600 mb-2">Erreur 404</p>
+        <h1 id="not-found-title" class="text-4xl font-bold mb-4 text-gray-900">Cette page n’a pas germé 🌱</h1>
+        <p class="text-xl text-gray-700 leading-relaxed mb-6">
+            Mais pas de panique : vous pouvez retrouver les contenus importants ci-dessous.
+        </p>
+        <p class="text-gray-600 mb-8">
+            Le site de VPQ a récemment changé. Certains anciens liens peuvent avoir été déplacés,
+            notamment les communiqués de presse maintenant classés dans les actualités.
+        </p>
 
-<h2>Sorry, this page could not be found.</h2>
+        <form action="{% url 'search' %}" method="get" class="search-form not-found-search" role="search">
+            <div class="search-input-wrapper">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+                <input
+                    id="not-found-search-input"
+                    type="text"
+                    name="query"
+                    placeholder="Rechercher sur le site..."
+                    class="search-input"
+                    aria-label="Rechercher sur le site"
+                >
+            </div>
+            <button type="submit" class="search-button">Rechercher</button>
+        </form>
+    </section>
+
+    <section class="grille-cartes not-found-links" aria-labelledby="quick-links-title">
+        <h2 id="quick-links-title" class="text-2xl font-bold mb-3 text-gray-900">Liens rapides</h2>
+        <p class="grille-cartes-subtitle text-gray-700 mb-6">Quelques portes d’entrée utiles pour continuer votre visite.</p>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <a href="/" class="carte-item bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                <div class="carte-copy">
+                    <h3 class="carte-title text-lg font-bold mb-2 text-gray-900">Accueil</h3>
+                    <p class="carte-description text-gray-600 text-sm">Retourner à la page principale de VPQ.</p>
+                </div>
+                <div class="carte-icon" aria-hidden="true"><i class="ph-duotone ph-house"></i></div>
+            </a>
+
+            <a href="/actualites/" class="carte-item bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                <div class="carte-copy">
+                    <h3 class="carte-title text-lg font-bold mb-2 text-gray-900">Actualités</h3>
+                    <p class="carte-description text-gray-600 text-sm">Lire les communiqués, nouvelles et prises de position.</p>
+                </div>
+                <div class="carte-icon" aria-hidden="true"><i class="ph-duotone ph-newspaper"></i></div>
+            </a>
+
+            <a href="/a-propos/" class="carte-item bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                <div class="carte-copy">
+                    <h3 class="carte-title text-lg font-bold mb-2 text-gray-900">À propos</h3>
+                    <p class="carte-description text-gray-600 text-sm">Découvrir la mission et l’équipe de VPQ.</p>
+                </div>
+                <div class="carte-icon" aria-hidden="true"><i class="ph-duotone ph-plant"></i></div>
+            </a>
+
+            <a href="/risques/" class="carte-item bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                <div class="carte-copy">
+                    <h3 class="carte-title text-lg font-bold mb-2 text-gray-900">Quels risques ?</h3>
+                    <p class="carte-description text-gray-600 text-sm">Comprendre les effets des pesticides sur la santé.</p>
+                </div>
+                <div class="carte-icon" aria-hidden="true"><i class="ph-duotone ph-warning-circle"></i></div>
+            </a>
+
+            <a href="/malades/" class="carte-item bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                <div class="carte-copy">
+                    <h3 class="carte-title text-lg font-bold mb-2 text-gray-900">Malades, que faire ?</h3>
+                    <p class="carte-description text-gray-600 text-sm">Trouver de l’information et des pistes d’orientation.</p>
+                </div>
+                <div class="carte-icon" aria-hidden="true"><i class="ph-duotone ph-first-aid-kit"></i></div>
+            </a>
+
+            <a href="/soutenez-vpq/" class="carte-item bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                <div class="carte-copy">
+                    <h3 class="carte-title text-lg font-bold mb-2 text-gray-900">Soutenir VPQ</h3>
+                    <p class="carte-description text-gray-600 text-sm">Appuyer la défense des personnes affectées.</p>
+                </div>
+                <div class="carte-icon" aria-hidden="true"><i class="ph-duotone ph-hand-heart"></i></div>
+            </a>
+        </div>
+    </section>
+</div>
 {% endblock %}
