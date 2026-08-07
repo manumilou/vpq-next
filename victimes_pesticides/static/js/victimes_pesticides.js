@@ -1,93 +1,144 @@
-// Mobile Menu Toggle
-document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuButton = document.getElementById('mobileMenuButton');
-    const mobileNav = document.getElementById('mobileNav');
-
-    if (mobileMenuButton && mobileNav) {
-        mobileMenuButton.addEventListener('click', function() {
-            mobileNav.classList.toggle('hidden');
-            const expanded = !mobileNav.classList.contains('hidden');
-            mobileMenuButton.setAttribute('aria-expanded', expanded);
-            mobileMenuButton.setAttribute('aria-label', expanded ? 'Fermer le menu' : 'Ouvrir le menu');
-        });
-
-        // Close mobile menu when clicking on a link
-        const mobileLinks = mobileNav.querySelectorAll('a');
-        mobileLinks.forEach(function(link) {
-            link.addEventListener('click', function() {
-                mobileNav.classList.add('hidden');
-            });
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const isClickInsideNav = mobileNav.contains(event.target);
-            const isClickOnButton = mobileMenuButton.contains(event.target);
-
-            if (!isClickInsideNav && !isClickOnButton && !mobileNav.classList.contains('hidden')) {
-                mobileNav.classList.add('hidden');
-                mobileMenuButton.setAttribute('aria-expanded', 'false');
-                mobileMenuButton.setAttribute('aria-label', 'Ouvrir le menu');
-            }
-        });
-    }
-
-    // Accordion Toggle
-    const accordeonToggles = document.querySelectorAll('.accordeon-toggle');
-
-    function getAccordeonContent(toggle) {
-        const targetId = toggle.getAttribute('data-target');
-        const accordeonItem = toggle.closest('.accordeon-item');
-        return accordeonItem ? accordeonItem.querySelector('.accordeon-content') : document.getElementById(targetId);
-    }
-
-    function setAccordeonExpanded(toggle, expanded) {
-        const content = getAccordeonContent(toggle);
-        const icon = toggle.querySelector('.accordeon-icon');
-
-        if (content) {
-            content.classList.toggle('hidden', !expanded);
-            toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-            if (icon) {
-                icon.classList.toggle('rotate-180', expanded);
-            }
+// Mobile Menu Toggle + accordions
+(function() {
+    function onReady(callback) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', callback);
+        } else {
+            callback();
         }
     }
 
-    function openAccordeonFromHash() {
-        if (!window.location.hash) {
+    function hasClass(element, className) {
+        return element && element.classList && element.classList.contains(className);
+    }
+
+    function toggleClass(element, className, shouldAdd) {
+        if (!element || !element.classList) {
             return;
         }
 
-        let targetId = window.location.hash.substring(1);
-        try {
-            targetId = decodeURIComponent(targetId);
-        } catch (error) {
-            // Keep the raw hash if decoding fails.
-        }
-
-        const target = document.getElementById(targetId);
-        const accordeonItem = target && target.classList.contains('accordeon-item') ? target : target?.closest('.accordeon-item');
-        const toggle = accordeonItem ? accordeonItem.querySelector('.accordeon-toggle') : null;
-
-        if (toggle) {
-            setAccordeonExpanded(toggle, true);
-            window.requestAnimationFrame(function() {
-                accordeonItem.scrollIntoView({ block: 'start' });
-            });
+        if (shouldAdd) {
+            element.classList.add(className);
+        } else {
+            element.classList.remove(className);
         }
     }
 
-    accordeonToggles.forEach(function(toggle) {
-        // Set initial ARIA state
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.addEventListener('click', function() {
-            const content = getAccordeonContent(this);
-            const expanded = content ? content.classList.contains('hidden') : false;
-            setAccordeonExpanded(this, expanded);
-        });
-    });
+    function closestByClass(element, className) {
+        while (element && element !== document) {
+            if (hasClass(element, className)) {
+                return element;
+            }
+            element = element.parentNode;
+        }
+        return null;
+    }
 
-    openAccordeonFromHash();
-    window.addEventListener('hashchange', openAccordeonFromHash);
-});
+    onReady(function() {
+        var mobileMenuButton = document.getElementById('mobileMenuButton');
+        var mobileNav = document.getElementById('mobileNav');
+
+        if (mobileMenuButton && mobileNav) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileNav.classList.toggle('hidden');
+                var expanded = !mobileNav.classList.contains('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+                mobileMenuButton.setAttribute('aria-label', expanded ? 'Fermer le menu' : 'Ouvrir le menu');
+            });
+
+            // Close mobile menu when clicking on a link
+            var mobileLinks = mobileNav.querySelectorAll('a');
+            for (var i = 0; i < mobileLinks.length; i++) {
+                mobileLinks[i].addEventListener('click', function() {
+                    mobileNav.classList.add('hidden');
+                });
+            }
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                var isClickInsideNav = mobileNav.contains(event.target);
+                var isClickOnButton = mobileMenuButton.contains(event.target);
+
+                if (!isClickInsideNav && !isClickOnButton && !mobileNav.classList.contains('hidden')) {
+                    mobileNav.classList.add('hidden');
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    mobileMenuButton.setAttribute('aria-label', 'Ouvrir le menu');
+                }
+            });
+        }
+
+        // Accordion Toggle
+        var accordeonToggles = document.querySelectorAll('.accordeon-toggle');
+
+        function getAccordeonContent(toggle) {
+            var targetId = toggle.getAttribute('data-target');
+            var accordeonItem = closestByClass(toggle, 'accordeon-item');
+            var content = accordeonItem ? accordeonItem.querySelector('.accordeon-content') : null;
+
+            if (!content && targetId) {
+                content = document.getElementById(targetId);
+            }
+
+            return content;
+        }
+
+        function setAccordeonExpanded(toggle, expanded) {
+            var content = getAccordeonContent(toggle);
+            var icon = toggle.querySelector('.accordeon-icon');
+
+            if (content) {
+                toggleClass(content, 'hidden', !expanded);
+                toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+                toggleClass(icon, 'rotate-180', expanded);
+            }
+        }
+
+        function openAccordeonFromHash() {
+            if (!window.location.hash) {
+                return;
+            }
+
+            var targetId = window.location.hash.substring(1);
+            try {
+                targetId = decodeURIComponent(targetId);
+            } catch (error) {
+                // Keep the raw hash if decoding fails.
+            }
+
+            var target = document.getElementById(targetId);
+            var accordeonItem = null;
+
+            if (target) {
+                accordeonItem = hasClass(target, 'accordeon-item') ? target : closestByClass(target, 'accordeon-item');
+            }
+
+            var toggle = accordeonItem ? accordeonItem.querySelector('.accordeon-toggle') : null;
+
+            if (toggle) {
+                setAccordeonExpanded(toggle, true);
+                var scrollToAccordeon = function() {
+                    accordeonItem.scrollIntoView(true);
+                };
+
+                if (window.requestAnimationFrame) {
+                    window.requestAnimationFrame(scrollToAccordeon);
+                } else {
+                    scrollToAccordeon();
+                }
+            }
+        }
+
+        for (var j = 0; j < accordeonToggles.length; j++) {
+            // Set initial ARIA state
+            accordeonToggles[j].setAttribute('aria-expanded', 'false');
+            accordeonToggles[j].addEventListener('click', function() {
+                var content = getAccordeonContent(this);
+                var expanded = content ? content.classList.contains('hidden') : false;
+                setAccordeonExpanded(this, expanded);
+            });
+        }
+
+        openAccordeonFromHash();
+        window.addEventListener('hashchange', openAccordeonFromHash);
+    });
+})();
