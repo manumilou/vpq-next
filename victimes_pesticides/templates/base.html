@@ -37,6 +37,9 @@
         {# Override this in templates to add extra stylesheets #}
         {% endblock %}
 
+        {# Global javascript - load before Osano so essential UI interactions are never consent-blocked #}
+        <script type="text/javascript" src="{% static 'js/victimes_pesticides.js' %}?v=4"></script>
+
         {# Osano Cookie Consent - hosted CMP #}
         <script src="https://cmp.osano.com/etNNryz2sF/83c0c294-8d2e-4315-add4-0c71ce5fd63c/osano.js?language=fr&variant=three"></script>
 
@@ -81,9 +84,6 @@
         </main>
 
         {% include "includes/footer.html" %}
-
-        {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/victimes_pesticides.js' %}?v=3"></script>
 
         {% block extra_js %}
         {# Override this in templates to add extra javascript #}
